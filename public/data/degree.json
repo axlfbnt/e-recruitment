@@ -1,0 +1,44 @@
+[
+    {
+        "degree": "Sarjana",
+        "acronym": "S1",
+        "description": "Gelar akademik tingkat pertama setelah menempuh pendidikan tinggi minimal 4 tahun.",
+        "type": "Undergraduate"
+    },
+    {
+        "degree": "Magister",
+        "acronym": "S2",
+        "description": "Gelar akademik tingkat lanjutan setelah menyelesaikan studi sarjana.",
+        "type": "Graduate"
+    },
+    {
+        "degree": "Doktor",
+        "acronym": "S3",
+        "description": "Gelar akademik tertinggi yang diberikan setelah menyelesaikan penelitian dalam bidang studi tertentu.",
+        "type": "Doctoral"
+    },
+    {
+        "degree": "Diploma III",
+        "acronym": "D3",
+        "description": "Gelar vokasi yang diperoleh setelah menyelesaikan pendidikan selama 3 tahun.",
+        "type": "Vocational"
+    },
+    {
+        "degree": "Diploma IV",
+        "acronym": "D4",
+        "description": "Gelar vokasi yang setara dengan S1 tetapi lebih fokus pada keterampilan teknis.",
+        "type": "Vocational"
+    },
+    {
+        "degree": "Spesialis",
+        "acronym": "Sp",
+        "description": "Gelar lanjutan setelah menyelesaikan program magister di bidang spesialisasi tertentu, biasanya di bidang kedokteran.",
+        "type": "Specialist"
+    },
+    {
+        "degree": "Profesi",
+        "acronym": "Prof",
+        "description": "Gelar yang diberikan setelah menempuh pendidikan tambahan untuk persiapan profesi tertentu, seperti dokter, apoteker, atau insinyur.",
+        "type": "Professional"
+    }
+]

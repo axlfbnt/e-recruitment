@@ -1,0 +1,452 @@
+[
+    {
+        "id": 1,
+        "function": "Marketing",
+        "description": "Strategi pemasaran dan kampanye untuk meningkatkan kesadaran merek."
+    },
+    {
+        "id": 2,
+        "function": "Data Analysis",
+        "description": "Menganalisis data untuk mendukung keputusan bisnis."
+    },
+    {
+        "id": 3,
+        "function": "Software Development",
+        "description": "Mengembangkan dan memelihara perangkat lunak sesuai kebutuhan perusahaan."
+    },
+    {
+        "id": 4,
+        "function": "Human Resources",
+        "description": "Mengelola rekrutmen, pelatihan, dan pengembangan karyawan."
+    },
+    {
+        "id": 5,
+        "function": "Sales",
+        "description": "Menjual produk atau layanan perusahaan kepada pelanggan."
+    },
+    {
+        "id": 6,
+        "function": "Finance",
+        "description": "Mengelola keuangan perusahaan, termasuk anggaran dan pelaporan."
+    },
+    {
+        "id": 7,
+        "function": "Project Management",
+        "description": "Merencanakan, mengelola, dan mengawasi proyek agar selesai tepat waktu."
+    },
+    {
+        "id": 8,
+        "function": "Customer Support",
+        "description": "Memberikan dukungan kepada pelanggan mengenai produk atau layanan."
+    },
+    {
+        "id": 9,
+        "function": "Operations",
+        "description": "Mengelola proses operasi sehari-hari perusahaan untuk efisiensi."
+    },
+    {
+        "id": 10,
+        "function": "Product Management",
+        "description": "Mengelola siklus hidup produk dari pengembangan hingga peluncuran."
+    },
+    {
+        "id": 11,
+        "function": "Business Development",
+        "description": "Mengidentifikasi peluang bisnis baru untuk perusahaan."
+    },
+    {
+        "id": 12,
+        "function": "Legal",
+        "description": "Menangani semua aspek hukum perusahaan dan memastikan kepatuhan."
+    },
+    {
+        "id": 13,
+        "function": "Accounting",
+        "description": "Mengelola pencatatan keuangan perusahaan dan pelaporan akuntansi."
+    },
+    {
+        "id": 14,
+        "function": "Public Relations",
+        "description": "Mengelola hubungan perusahaan dengan media dan publik."
+    },
+    {
+        "id": 15,
+        "function": "Content Creation",
+        "description": "Membuat konten yang relevan dan menarik untuk pemasaran digital."
+    },
+    {
+        "id": 16,
+        "function": "Graphic Design",
+        "description": "Membuat desain visual untuk media digital dan cetak."
+    },
+    {
+        "id": 17,
+        "function": "Logistics",
+        "description": "Mengelola rantai pasokan dan distribusi barang perusahaan."
+    },
+    {
+        "id": 18,
+        "function": "Engineering",
+        "description": "Mengembangkan solusi teknis dan teknologi untuk perusahaan."
+    },
+    {
+        "id": 19,
+        "function": "Supply Chain Management",
+        "description": "Mengawasi aliran barang dan layanan dalam rantai pasokan."
+    },
+    {
+        "id": 20,
+        "function": "Quality Assurance",
+        "description": "Memastikan produk dan layanan memenuhi standar kualitas."
+    },
+    {
+        "id": 21,
+        "function": "Human Resources Development",
+        "description": "Pengembangan dan pelatihan sumber daya manusia di perusahaan."
+    },
+    {
+        "id": 22,
+        "function": "Digital Marketing",
+        "description": "Strategi pemasaran menggunakan platform digital."
+    },
+    {
+        "id": 23,
+        "function": "Social Media Management",
+        "description": "Mengelola kehadiran perusahaan di media sosial."
+    },
+    {
+        "id": 24,
+        "function": "IT Support",
+        "description": "Memberikan dukungan teknis terkait perangkat keras dan perangkat lunak."
+    },
+    {
+        "id": 25,
+        "function": "Risk Management",
+        "description": "Mengidentifikasi dan mengelola risiko dalam operasi perusahaan."
+    },
+    {
+        "id": 26,
+        "function": "Training & Development",
+        "description": "Mengembangkan program pelatihan untuk karyawan."
+    },
+    {
+        "id": 27,
+        "function": "Research & Development",
+        "description": "Penelitian untuk mengembangkan produk atau layanan baru."
+    },
+    {
+        "id": 28,
+        "function": "Event Management",
+        "description": "Merencanakan dan mengelola acara atau kegiatan perusahaan."
+    },
+    {
+        "id": 29,
+        "function": "Procurement",
+        "description": "Mengelola pembelian barang dan jasa untuk perusahaan."
+    },
+    {
+        "id": 30,
+        "function": "Facility Management",
+        "description": "Mengelola fasilitas fisik perusahaan untuk mendukung operasional."
+    },
+    {
+        "id": 31,
+        "function": "Compliance",
+        "description": "Memastikan perusahaan mematuhi peraturan dan regulasi yang berlaku."
+    },
+    {
+        "id": 32,
+        "function": "Investor Relations",
+        "description": "Mengelola hubungan perusahaan dengan investor."
+    },
+    {
+        "id": 33,
+        "function": "Auditing",
+        "description": "Memeriksa catatan keuangan untuk akurasi dan kepatuhan."
+    },
+    {
+        "id": 34,
+        "function": "Corporate Strategy",
+        "description": "Membantu merumuskan strategi perusahaan untuk pertumbuhan jangka panjang."
+    },
+    {
+        "id": 35,
+        "function": "Copywriting",
+        "description": "Menulis teks promosi untuk pemasaran dan periklanan."
+    },
+    {
+        "id": 36,
+        "function": "Customer Relationship Management",
+        "description": "Mengelola hubungan dengan pelanggan untuk meningkatkan retensi."
+    },
+    {
+        "id": 37,
+        "function": "Product Design",
+        "description": "Merancang produk sesuai kebutuhan pasar dan pelanggan."
+    },
+    {
+        "id": 38,
+        "function": "Talent Acquisition",
+        "description": "Mengelola proses rekrutmen untuk menemukan talenta terbaik."
+    },
+    {
+        "id": 39,
+        "function": "E-commerce Management",
+        "description": "Mengelola operasional toko online perusahaan."
+    },
+    {
+        "id": 40,
+        "function": "Network Administration",
+        "description": "Mengelola jaringan komputer dan sistem komunikasi perusahaan."
+    },
+    {
+        "id": 41,
+        "function": "Data Engineering",
+        "description": "Membangun infrastruktur data untuk analisis dan pemrosesan."
+    },
+    {
+        "id": 42,
+        "function": "Brand Management",
+        "description": "Mengelola dan mempromosikan citra dan nilai merek perusahaan."
+    },
+    {
+        "id": 43,
+        "function": "UX/UI Design",
+        "description": "Merancang antarmuka pengguna untuk meningkatkan pengalaman pengguna."
+    },
+    {
+        "id": 44,
+        "function": "Vendor Management",
+        "description": "Mengelola hubungan dan negosiasi dengan vendor."
+    },
+    {
+        "id": 45,
+        "function": "Technical Support",
+        "description": "Memberikan bantuan teknis kepada pelanggan dan pengguna produk."
+    },
+    {
+        "id": 46,
+        "function": "Media Buying",
+        "description": "Membeli ruang iklan di media untuk kampanye pemasaran."
+    },
+    {
+        "id": 47,
+        "function": "Corporate Social Responsibility",
+        "description": "Mengelola program tanggung jawab sosial perusahaan."
+    },
+    {
+        "id": 48,
+        "function": "Investor Communication",
+        "description": "Berkomunikasi dengan pemegang saham dan investor."
+    },
+    {
+        "id": 49,
+        "function": "Internal Communications",
+        "description": "Mengelola komunikasi internal di dalam perusahaan."
+    },
+    {
+        "id": 50,
+        "function": "Partnerships",
+        "description": "Membangun dan mengelola hubungan kemitraan strategis untuk perusahaan."
+    },
+    {
+        "id": 61,
+        "function": "Change Management",
+        "description": "Mengelola perubahan di dalam organisasi secara efektif."
+    },
+    {
+        "id": 62,
+        "function": "System Administration",
+        "description": "Mengelola sistem komputer dan server untuk perusahaan."
+    },
+    {
+        "id": 63,
+        "function": "Enterprise Architecture",
+        "description": "Merancang dan mengelola arsitektur teknologi untuk mendukung bisnis."
+    },
+    {
+        "id": 64,
+        "function": "IT Governance",
+        "description": "Mengelola kebijakan, proses, dan kerangka kerja IT."
+    },
+    {
+        "id": 65,
+        "function": "Corporate Finance",
+        "description": "Mengelola struktur keuangan perusahaan dan keputusan investasi."
+    },
+    {
+        "id": 66,
+        "function": "Human Capital Management",
+        "description": "Strategi untuk memaksimalkan nilai karyawan bagi perusahaan."
+    },
+    {
+        "id": 67,
+        "function": "Network Security",
+        "description": "Mengelola keamanan jaringan perusahaan dari ancaman digital."
+    },
+    {
+        "id": 68,
+        "function": "Environmental Health and Safety",
+        "description": "Mengelola lingkungan kerja agar aman dan sesuai regulasi."
+    },
+    {
+        "id": 69,
+        "function": "Information Security",
+        "description": "Melindungi informasi perusahaan dari akses yang tidak sah."
+    },
+    {
+        "id": 70,
+        "function": "Data Science",
+        "description": "Menganalisis data besar untuk mengungkap wawasan bisnis."
+    },
+    {
+        "id": 71,
+        "function": "Agile Coaching",
+        "description": "Memandu tim untuk menerapkan prinsip-prinsip Agile."
+    },
+    {
+        "id": 72,
+        "function": "Learning and Development",
+        "description": "Mengembangkan program pelatihan untuk meningkatkan keterampilan karyawan."
+    },
+    {
+        "id": 73,
+        "function": "Technical Writing",
+        "description": "Menyusun dokumen teknis untuk produk atau proses bisnis."
+    },
+    {
+        "id": 74,
+        "function": "Event Coordination",
+        "description": "Mengelola aspek teknis dan logistik acara perusahaan."
+    },
+    {
+        "id": 75,
+        "function": "Field Sales",
+        "description": "Melakukan penjualan langsung di lapangan kepada pelanggan."
+    },
+    {
+        "id": 76,
+        "function": "Customer Success Management",
+        "description": "Membantu pelanggan mencapai hasil optimal dari produk/layanan."
+    },
+    {
+        "id": 77,
+        "function": "Sustainability Management",
+        "description": "Mengelola inisiatif perusahaan untuk mendukung keberlanjutan lingkungan."
+    },
+    {
+        "id": 78,
+        "function": "UX Research",
+        "description": "Melakukan penelitian untuk meningkatkan pengalaman pengguna produk."
+    },
+    {
+        "id": 79,
+        "function": "Mobile Development",
+        "description": "Mengembangkan aplikasi untuk perangkat mobile."
+    },
+    {
+        "id": 80,
+        "function": "SEO Specialist",
+        "description": "Mengoptimalkan konten web agar mudah ditemukan di mesin pencari."
+    },
+    {
+        "id": 81,
+        "function": "Database Administration",
+        "description": "Mengelola dan memelihara sistem basis data perusahaan."
+    },
+    {
+        "id": 82,
+        "function": "Internal Audit",
+        "description": "Menilai proses operasional dan keuangan internal perusahaan."
+    },
+    {
+        "id": 83,
+        "function": "Cloud Computing",
+        "description": "Mengelola dan mengoptimalkan infrastruktur komputasi awan perusahaan."
+    },
+    {
+        "id": 84,
+        "function": "Legal Compliance",
+        "description": "Memastikan bahwa semua tindakan bisnis sesuai dengan peraturan hukum."
+    },
+    {
+        "id": 85,
+        "function": "Treasury Management",
+        "description": "Mengelola keuangan, likuiditas, dan investasi perusahaan."
+    },
+    {
+        "id": 86,
+        "function": "Contract Management",
+        "description": "Mengelola kontrak antara perusahaan dengan pihak eksternal."
+    },
+    {
+        "id": 87,
+        "function": "Cybersecurity",
+        "description": "Melindungi sistem informasi dari ancaman siber."
+    },
+    {
+        "id": 88,
+        "function": "Market Research",
+        "description": "Menganalisis tren pasar dan perilaku konsumen."
+    },
+    {
+        "id": 89,
+        "function": "Vendor Relations",
+        "description": "Mengelola hubungan dengan vendor untuk pengadaan barang/jasa."
+    },
+    {
+        "id": 90,
+        "function": "Visual Merchandising",
+        "description": "Merancang tata letak produk di toko untuk meningkatkan penjualan."
+    },
+    {
+        "id": 91,
+        "function": "Product Testing",
+        "description": "Mengelola pengujian produk untuk memastikan kualitas."
+    },
+    {
+        "id": 92,
+        "function": "Software Testing",
+        "description": "Mengelola pengujian perangkat lunak untuk menemukan bug atau error."
+    },
+    {
+        "id": 93,
+        "function": "Executive Support",
+        "description": "Memberikan dukungan administrasi kepada manajemen eksekutif."
+    },
+    {
+        "id": 94,
+        "function": "Public Speaking",
+        "description": "Memberikan presentasi atau berbicara di depan umum untuk perusahaan."
+    },
+    {
+        "id": 95,
+        "function": "Digital Transformation",
+        "description": "Mengelola inisiatif transformasi digital di dalam perusahaan."
+    },
+    {
+        "id": 96,
+        "function": "ERP Implementation",
+        "description": "Mengelola implementasi sistem ERP di dalam perusahaan."
+    },
+    {
+        "id": 97,
+        "function": "Affiliate Marketing",
+        "description": "Mengelola program pemasaran afiliasi untuk perusahaan."
+    },
+    {
+        "id": 98,
+        "function": "Inventory Management",
+        "description": "Mengelola persediaan barang perusahaan agar optimal."
+    },
+    {
+        "id": 99,
+        "function": "Pricing Strategy",
+        "description": "Merancang strategi penetapan harga untuk produk/layanan perusahaan."
+    },
+    {
+        "id": 100,
+        "function": "Customer Experience",
+        "description": "Meningkatkan pengalaman pelanggan dalam setiap interaksi dengan perusahaan."
+    }
+]

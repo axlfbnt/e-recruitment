@@ -1,0 +1,1416 @@
+[
+    {
+        "id": 1,
+        "name": "Universitas Indonesia",
+        "acronym": "UI",
+        "location": "Depok, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 2,
+        "name": "Universitas Gadjah Mada",
+        "acronym": "UGM",
+        "location": "Yogyakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 3,
+        "name": "Institut Teknologi Bandung",
+        "acronym": "ITB",
+        "location": "Bandung, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 4,
+        "name": "Institut Pertanian Bogor",
+        "acronym": "IPB",
+        "location": "Bogor, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 5,
+        "name": "Universitas Diponegoro",
+        "acronym": "UNDIP",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 6,
+        "name": "Universitas Padjadjaran",
+        "acronym": "UNPAD",
+        "location": "Sumedang, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 7,
+        "name": "Universitas Airlangga",
+        "acronym": "UNAIR",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 8,
+        "name": "Universitas Brawijaya",
+        "acronym": "UB",
+        "location": "Malang, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 9,
+        "name": "Universitas Sebelas Maret",
+        "acronym": "UNS",
+        "location": "Surakarta, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 10,
+        "name": "Institut Teknologi Sepuluh Nopember",
+        "acronym": "ITS",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 11,
+        "name": "Universitas Hasanuddin",
+        "acronym": "UNHAS",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 12,
+        "name": "Universitas Pendidikan Indonesia",
+        "acronym": "UPI",
+        "location": "Bandung, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 13,
+        "name": "Universitas Sumatera Utara",
+        "acronym": "USU",
+        "location": "Medan, Sumatera Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 14,
+        "name": "Universitas Udayana",
+        "acronym": "UNUD",
+        "location": "Badung, Bali",
+        "type": "Negeri"
+    },
+    {
+        "id": 15,
+        "name": "Universitas Bina Nusantara",
+        "acronym": "BINUS",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 16,
+        "name": "Universitas Negeri Malang",
+        "acronym": "UM",
+        "location": "Malang, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 17,
+        "name": "Universitas Andalas",
+        "acronym": "UNAND",
+        "location": "Padang, Sumatera Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 18,
+        "name": "Universitas Islam Indonesia",
+        "acronym": "UII",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 19,
+        "name": "Universitas Jember",
+        "acronym": "UNEJ",
+        "location": "Jember, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 20,
+        "name": "Universitas Syiah Kuala",
+        "acronym": "USK",
+        "location": "Banda Aceh, Aceh",
+        "type": "Negeri"
+    },
+    {
+        "id": 21,
+        "name": "Universitas Negeri Yogyakarta",
+        "acronym": "UNY",
+        "location": "Yogyakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 22,
+        "name": "Universitas Muhammadiyah Yogyakarta",
+        "acronym": "UMY",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 23,
+        "name": "Universitas Negeri Semarang",
+        "acronym": "UNNES",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 24,
+        "name": "Universitas Lampung",
+        "acronym": "UNILA",
+        "location": "Bandar Lampung, Lampung",
+        "type": "Negeri"
+    },
+    {
+        "id": 25,
+        "name": "Universitas Mercu Buana",
+        "acronym": "UMB",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 26,
+        "name": "Universitas Tarumanagara",
+        "acronym": "UNTAR",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 27,
+        "name": "Universitas Negeri Surabaya",
+        "acronym": "UNESA",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 28,
+        "name": "Universitas Kristen Petra",
+        "acronym": "UKP",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 29,
+        "name": "Universitas Katolik Parahyangan",
+        "acronym": "UNPAR",
+        "location": "Bandung, Jawa Barat",
+        "type": "Swasta"
+    },
+    {
+        "id": 30,
+        "name": "Universitas Trisakti",
+        "acronym": "TRISAKTI",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 31,
+        "name": "Universitas Kristen Satya Wacana",
+        "acronym": "UKSW",
+        "location": "Salatiga, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 32,
+        "name": "Universitas Pembangunan Nasional Veteran Jakarta",
+        "acronym": "UPNVJ",
+        "location": "Jakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 33,
+        "name": "Universitas Muhammadiyah Malang",
+        "acronym": "UMM",
+        "location": "Malang, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 34,
+        "name": "Universitas Negeri Jakarta",
+        "acronym": "UNJ",
+        "location": "Jakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 35,
+        "name": "Universitas Atma Jaya Yogyakarta",
+        "acronym": "UAJY",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 36,
+        "name": "Universitas Sanata Dharma",
+        "acronym": "USD",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 37,
+        "name": "Universitas Pelita Harapan",
+        "acronym": "UPH",
+        "location": "Tangerang, Banten",
+        "type": "Swasta"
+    },
+    {
+        "id": 38,
+        "name": "Universitas Islam Negeri Syarif Hidayatullah Jakarta",
+        "acronym": "UIN Jakarta",
+        "location": "Jakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 39,
+        "name": "Universitas Muhammadiyah Surakarta",
+        "acronym": "UMS",
+        "location": "Surakarta, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 40,
+        "name": "Universitas Negeri Makassar",
+        "acronym": "UNM",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 41,
+        "name": "Universitas Sriwijaya",
+        "acronym": "UNSRI",
+        "location": "Palembang, Sumatera Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 42,
+        "name": "Universitas Islam Negeri Sunan Ampel",
+        "acronym": "UIN Surabaya",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 43,
+        "name": "Universitas Katolik Indonesia Atma Jaya",
+        "acronym": "UNIKA Atma Jaya",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 44,
+        "name": "Universitas Tanjungpura",
+        "acronym": "UNTAN",
+        "location": "Pontianak, Kalimantan Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 45,
+        "name": "Universitas Islam Indonesia",
+        "acronym": "UII",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 46,
+        "name": "Universitas Mulawarman",
+        "acronym": "UNMUL",
+        "location": "Samarinda, Kalimantan Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 47,
+        "name": "Universitas Negeri Gorontalo",
+        "acronym": "UNG",
+        "location": "Gorontalo",
+        "type": "Negeri"
+    },
+    {
+        "id": 48,
+        "name": "Universitas Pancasila",
+        "acronym": "UP",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 49,
+        "name": "Universitas Mercu Buana",
+        "acronym": "UMB",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 50,
+        "name": "Universitas Esa Unggul",
+        "acronym": "UEU",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 51,
+        "name": "Universitas Jenderal Soedirman",
+        "acronym": "UNSOED",
+        "location": "Purwokerto, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 52,
+        "name": "Universitas Islam Negeri Alauddin",
+        "acronym": "UIN Alauddin",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 53,
+        "name": "Universitas Sam Ratulangi",
+        "acronym": "UNSRAT",
+        "location": "Manado, Sulawesi Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 54,
+        "name": "Universitas Muhammadiyah Sumatera Utara",
+        "acronym": "UMSU",
+        "location": "Medan, Sumatera Utara",
+        "type": "Swasta"
+    },
+    {
+        "id": 55,
+        "name": "Universitas Kristen Duta Wacana",
+        "acronym": "UKDW",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 56,
+        "name": "Universitas Islam Negeri Raden Intan",
+        "acronym": "UIN Raden Intan",
+        "location": "Lampung",
+        "type": "Negeri"
+    },
+    {
+        "id": 57,
+        "name": "Universitas Islam Negeri Sunan Gunung Djati",
+        "acronym": "UIN Bandung",
+        "location": "Bandung, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 58,
+        "name": "Universitas Lambung Mangkurat",
+        "acronym": "ULM",
+        "location": "Banjarmasin, Kalimantan Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 59,
+        "name": "Universitas Sultan Ageng Tirtayasa",
+        "acronym": "UNTIRTA",
+        "location": "Serang, Banten",
+        "type": "Negeri"
+    },
+    {
+        "id": 60,
+        "name": "Universitas Muhammadiyah Purwokerto",
+        "acronym": "UMP",
+        "location": "Purwokerto, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 61,
+        "name": "Universitas Katolik Widya Mandala",
+        "acronym": "UKWMS",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 62,
+        "name": "Universitas Negeri Medan",
+        "acronym": "UNIMED",
+        "location": "Medan, Sumatera Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 63,
+        "name": "Universitas Ahmad Dahlan",
+        "acronym": "UAD",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 64,
+        "name": "Universitas Pattimura",
+        "acronym": "UNPATTI",
+        "location": "Ambon, Maluku",
+        "type": "Negeri"
+    },
+    {
+        "id": 65,
+        "name": "Universitas Cenderawasih",
+        "acronym": "UNCEN",
+        "location": "Jayapura, Papua",
+        "type": "Negeri"
+    },
+    {
+        "id": 66,
+        "name": "Universitas Islam Negeri Walisongo",
+        "acronym": "UIN Walisongo",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 67,
+        "name": "Universitas Islam Negeri Maulana Malik Ibrahim",
+        "acronym": "UIN Malang",
+        "location": "Malang, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 68,
+        "name": "Universitas Katolik Soegijapranata",
+        "acronym": "UNIKA Soegijapranata",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 69,
+        "name": "Universitas Pembangunan Nasional Veteran Yogyakarta",
+        "acronym": "UPN Veteran Yogyakarta",
+        "location": "Yogyakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 70,
+        "name": "Universitas Negeri Tanjungpura",
+        "acronym": "UNTAN",
+        "location": "Pontianak, Kalimantan Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 71,
+        "name": "Universitas Muhammadiyah Yogyakarta",
+        "acronym": "UMY",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 72,
+        "name": "Universitas Negeri Manado",
+        "acronym": "UNIMA",
+        "location": "Tondano, Sulawesi Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 73,
+        "name": "Universitas Sultan Syarif Kasim",
+        "acronym": "UIN Sultan Syarif Kasim",
+        "location": "Pekanbaru, Riau",
+        "type": "Negeri"
+    },
+    {
+        "id": 74,
+        "name": "Universitas Muhammadiyah Semarang",
+        "acronym": "UNIMUS",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 75,
+        "name": "Universitas Al Azhar Indonesia",
+        "acronym": "UAI",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 76,
+        "name": "Universitas Kristen Indonesia",
+        "acronym": "UKI",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 77,
+        "name": "Universitas Muhammadiyah Surabaya",
+        "acronym": "UM Surabaya",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 78,
+        "name": "Universitas Negeri Palangkaraya",
+        "acronym": "UNPAR",
+        "location": "Palangkaraya, Kalimantan Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 79,
+        "name": "Universitas Muhammadiyah Makassar",
+        "acronym": "UNISMUH Makassar",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Swasta"
+    },
+    {
+        "id": 80,
+        "name": "Universitas Muhammadiyah Gresik",
+        "acronym": "UMG",
+        "location": "Gresik, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 81,
+        "name": "Universitas Muhammadiyah Prof. Dr. Hamka",
+        "acronym": "UHAMKA",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 82,
+        "name": "Universitas Negeri Papua",
+        "acronym": "UNIPA",
+        "location": "Manokwari, Papua Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 83,
+        "name": "Universitas Muhammadiyah Palembang",
+        "acronym": "UMP",
+        "location": "Palembang, Sumatera Selatan",
+        "type": "Swasta"
+    },
+    {
+        "id": 84,
+        "name": "Universitas Muhammadiyah Jakarta",
+        "acronym": "UMJ",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 85,
+        "name": "Universitas Bung Hatta",
+        "acronym": "UBH",
+        "location": "Padang, Sumatera Barat",
+        "type": "Swasta"
+    },
+    {
+        "id": 86,
+        "name": "Universitas Siliwangi",
+        "acronym": "UNSIL",
+        "location": "Tasikmalaya, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 87,
+        "name": "Universitas Muhammadiyah Bengkulu",
+        "acronym": "UMB",
+        "location": "Bengkulu",
+        "type": "Swasta"
+    },
+    {
+        "id": 88,
+        "name": "Universitas Negeri Surabaya",
+        "acronym": "UNESA",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 89,
+        "name": "Universitas Muhammadiyah Banjarmasin",
+        "acronym": "UMBJM",
+        "location": "Banjarmasin, Kalimantan Selatan",
+        "type": "Swasta"
+    },
+    {
+        "id": 90,
+        "name": "Universitas Kristen Maranatha",
+        "acronym": "UKM",
+        "location": "Bandung, Jawa Barat",
+        "type": "Swasta"
+    },
+    {
+        "id": 91,
+        "name": "Universitas Palangka Raya",
+        "acronym": "UPR",
+        "location": "Palangka Raya, Kalimantan Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 92,
+        "name": "Universitas Batam",
+        "acronym": "UNIBA",
+        "location": "Batam, Kepulauan Riau",
+        "type": "Swasta"
+    },
+    {
+        "id": 93,
+        "name": "Universitas Muhammadiyah Magelang",
+        "acronym": "UMMGL",
+        "location": "Magelang, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 94,
+        "name": "Universitas Muhammadiyah Purworejo",
+        "acronym": "UMP",
+        "location": "Purworejo, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 95,
+        "name": "Universitas Muhammadiyah Ponorogo",
+        "acronym": "UMP",
+        "location": "Ponorogo, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 96,
+        "name": "Universitas Pembangunan Nasional Veteran Jawa Timur",
+        "acronym": "UPNVJT",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 97,
+        "name": "Universitas Muhammadiyah Kalimantan Timur",
+        "acronym": "UMKT",
+        "location": "Samarinda, Kalimantan Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 98,
+        "name": "Universitas Muhammadiyah Luwuk",
+        "acronym": "UML",
+        "location": "Luwuk, Sulawesi Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 99,
+        "name": "Universitas Nusa Cendana",
+        "acronym": "UNDANA",
+        "location": "Kupang, Nusa Tenggara Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 100,
+        "name": "Universitas Pasundan",
+        "acronym": "UNPAS",
+        "location": "Bandung, Jawa Barat",
+        "type": "Swasta"
+    },
+    {
+        "id": 101,
+        "name": "Politeknik Elektronika Negeri Surabaya",
+        "acronym": "PENS",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 102,
+        "name": "Politeknik Negeri Jakarta",
+        "acronym": "PNJ",
+        "location": "Depok, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 103,
+        "name": "Politeknik Negeri Bandung",
+        "acronym": "POLBAN",
+        "location": "Bandung, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 104,
+        "name": "Politeknik Negeri Semarang",
+        "acronym": "POLINES",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 105,
+        "name": "Politeknik Negeri Malang",
+        "acronym": "POLINEMA",
+        "location": "Malang, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 106,
+        "name": "Politeknik Negeri Sriwijaya",
+        "acronym": "POLSRI",
+        "location": "Palembang, Sumatera Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 107,
+        "name": "Politeknik Negeri Medan",
+        "acronym": "POLMED",
+        "location": "Medan, Sumatera Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 108,
+        "name": "Politeknik Negeri Jember",
+        "acronym": "POLIJE",
+        "location": "Jember, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 109,
+        "name": "Politeknik Negeri Bali",
+        "acronym": "PNB",
+        "location": "Bali",
+        "type": "Negeri"
+    },
+    {
+        "id": 110,
+        "name": "Politeknik Negeri Kupang",
+        "acronym": "PNK",
+        "location": "Kupang, Nusa Tenggara Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 109,
+        "name": "Politeknik Negeri Balikpapan",
+        "acronym": "POLIBAL",
+        "location": "Balikpapan, Kalimantan Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 110,
+        "name": "Politeknik Negeri Kupang",
+        "acronym": "PNK",
+        "location": "Kupang, Nusa Tenggara Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 111,
+        "name": "Politeknik Negeri Pontianak",
+        "acronym": "POLNEP",
+        "location": "Pontianak, Kalimantan Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 112,
+        "name": "Politeknik Negeri Padang",
+        "acronym": "PNP",
+        "location": "Padang, Sumatera Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 113,
+        "name": "Politeknik Negeri Samarinda",
+        "acronym": "POLNES",
+        "location": "Samarinda, Kalimantan Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 114,
+        "name": "Politeknik Negeri Batam",
+        "acronym": "POLIBATAM",
+        "location": "Batam, Kepulauan Riau",
+        "type": "Negeri"
+    },
+    {
+        "id": 115,
+        "name": "Politeknik Negeri Ujung Pandang",
+        "acronym": "PNUP",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 116,
+        "name": "Politeknik Pertanian Negeri Payakumbuh",
+        "acronym": "POLITANI",
+        "location": "Payakumbuh, Sumatera Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 117,
+        "name": "Politeknik Kesehatan Kemenkes Jakarta I",
+        "acronym": "POLTEKKES Jakarta I",
+        "location": "Jakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 118,
+        "name": "Politeknik Kesehatan Kemenkes Bandung",
+        "acronym": "POLTEKKES Bandung",
+        "location": "Bandung, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 119,
+        "name": "Politeknik Kesehatan Kemenkes Surabaya",
+        "acronym": "POLTEKKES Surabaya",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 120,
+        "name": "Politeknik Kesehatan Kemenkes Makassar",
+        "acronym": "POLTEKKES Makassar",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 121,
+        "name": "Politeknik Negeri Lhokseumawe",
+        "acronym": "PNL",
+        "location": "Lhokseumawe, Aceh",
+        "type": "Negeri"
+    },
+    {
+        "id": 122,
+        "name": "Politeknik Pertanian Negeri Samarinda",
+        "acronym": "POLITANI Samarinda",
+        "location": "Samarinda, Kalimantan Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 123,
+        "name": "Politeknik Maritim Negeri Indonesia",
+        "acronym": "POLIMARIN",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 124,
+        "name": "Politeknik Kesehatan Kemenkes Malang",
+        "acronym": "POLTEKKES Malang",
+        "location": "Malang, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 125,
+        "name": "Politeknik Negeri Banjarmasin",
+        "acronym": "POLIBAN",
+        "location": "Banjarmasin, Kalimantan Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 126,
+        "name": "Politeknik Kesehatan Kemenkes Semarang",
+        "acronym": "POLTEKKES Semarang",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 127,
+        "name": "Politeknik Kesehatan Kemenkes Yogyakarta",
+        "acronym": "POLTEKKES Yogyakarta",
+        "location": "Yogyakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 128,
+        "name": "Politeknik Perkapalan Negeri Surabaya",
+        "acronym": "PPNS",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 129,
+        "name": "Politeknik Negeri Bengkalis",
+        "acronym": "POLBENG",
+        "location": "Bengkalis, Riau",
+        "type": "Negeri"
+    },
+    {
+        "id": 130,
+        "name": "Politeknik Maritim Negeri Indonesia",
+        "acronym": "POLIMARIN",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 131,
+        "name": "Politeknik Negeri Tanah Laut",
+        "acronym": "POLITALA",
+        "location": "Tanah Laut, Kalimantan Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 132,
+        "name": "Universitas Islam Sultan Agung",
+        "acronym": "UNISSULA",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 133,
+        "name": "Universitas Katolik De La Salle",
+        "acronym": "UNIKA De La Salle",
+        "location": "Manado, Sulawesi Utara",
+        "type": "Swasta"
+    },
+    {
+        "id": 134,
+        "name": "Politeknik Negeri Madiun",
+        "acronym": "PNM",
+        "location": "Madiun, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 135,
+        "name": "Universitas Nahdlatul Ulama Surabaya",
+        "acronym": "UNUSA",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 136,
+        "name": "Politeknik Negeri Subang",
+        "acronym": "POLSUB",
+        "location": "Subang, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 137,
+        "name": "Universitas Islam Malang",
+        "acronym": "UNISMA",
+        "location": "Malang, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 138,
+        "name": "Politeknik Manufaktur Negeri Bandung",
+        "acronym": "POLMAN",
+        "location": "Bandung, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 139,
+        "name": "Universitas PGRI Semarang",
+        "acronym": "UPGRIS",
+        "location": "Semarang, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 140,
+        "name": "Politeknik Negeri Banyuwangi",
+        "acronym": "POLIWANGI",
+        "location": "Banyuwangi, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 141,
+        "name": "Universitas Dipa Makassar",
+        "acronym": "UNIDIPA",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Swasta"
+    },
+    {
+        "id": 142,
+        "name": "Politeknik Negeri Nusa Utara",
+        "acronym": "POLNUSTAR",
+        "location": "Kepulauan Sangihe, Sulawesi Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 143,
+        "name": "Universitas Islam Negeri Mataram",
+        "acronym": "UIN Mataram",
+        "location": "Mataram, Nusa Tenggara Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 144,
+        "name": "Politeknik Negeri Bengkulu",
+        "acronym": "POLIBENG",
+        "location": "Bengkulu",
+        "type": "Negeri"
+    },
+    {
+        "id": 145,
+        "name": "Universitas Muhammadiyah Kendari",
+        "acronym": "UM Kendari",
+        "location": "Kendari, Sulawesi Tenggara",
+        "type": "Swasta"
+    },
+    {
+        "id": 146,
+        "name": "Universitas Sulawesi Barat",
+        "acronym": "UNSULBAR",
+        "location": "Majene, Sulawesi Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 147,
+        "name": "Politeknik Negeri Ketapang",
+        "acronym": "POLITAP",
+        "location": "Ketapang, Kalimantan Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 148,
+        "name": "Universitas Muhammadiyah Gorontalo",
+        "acronym": "UMG",
+        "location": "Gorontalo",
+        "type": "Swasta"
+    },
+    {
+        "id": 149,
+        "name": "Politeknik Pertanian Negeri Kupang",
+        "acronym": "POLITANI Kupang",
+        "location": "Kupang, Nusa Tenggara Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 150,
+        "name": "Universitas Muhammadiyah Mataram",
+        "acronym": "UMMataram",
+        "location": "Mataram, Nusa Tenggara Barat",
+        "type": "Swasta"
+    },
+    {
+        "id": 151,
+        "name": "Universitas Merdeka Malang",
+        "acronym": "UNMER",
+        "location": "Malang, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 152,
+        "name": "Universitas Trunojoyo",
+        "acronym": "UTM",
+        "location": "Bangkalan, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 153,
+        "name": "Universitas Islam Negeri Ar-Raniry",
+        "acronym": "UIN Ar-Raniry",
+        "location": "Banda Aceh, Aceh",
+        "type": "Negeri"
+    },
+    {
+        "id": 154,
+        "name": "Universitas Surabaya",
+        "acronym": "UBAYA",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 155,
+        "name": "Universitas Tidar",
+        "acronym": "UNTIDAR",
+        "location": "Magelang, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 156,
+        "name": "Universitas Muhammadiyah Pontianak",
+        "acronym": "UMP Pontianak",
+        "location": "Pontianak, Kalimantan Barat",
+        "type": "Swasta"
+    },
+    {
+        "id": 157,
+        "name": "Universitas Islam Negeri Raden Fatah",
+        "acronym": "UIN Raden Fatah",
+        "location": "Palembang, Sumatera Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 158,
+        "name": "Universitas Borneo Tarakan",
+        "acronym": "UBT",
+        "location": "Tarakan, Kalimantan Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 159,
+        "name": "Universitas Kristen Satya Wacana",
+        "acronym": "UKSW",
+        "location": "Salatiga, Jawa Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 160,
+        "name": "Universitas Simalungun",
+        "acronym": "USI",
+        "location": "Pematangsiantar, Sumatera Utara",
+        "type": "Swasta"
+    },
+    {
+        "id": 161,
+        "name": "Universitas Teknokrat Indonesia",
+        "acronym": "UTI",
+        "location": "Bandar Lampung, Lampung",
+        "type": "Swasta"
+    },
+    {
+        "id": 162,
+        "name": "Universitas Kristen Indonesia Maluku",
+        "acronym": "UKIM",
+        "location": "Ambon, Maluku",
+        "type": "Swasta"
+    },
+    {
+        "id": 163,
+        "name": "Politeknik Kesehatan Kemenkes Palembang",
+        "acronym": "POLTEKKES Palembang",
+        "location": "Palembang, Sumatera Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 164,
+        "name": "Universitas Janabadra",
+        "acronym": "UJB",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 165,
+        "name": "Universitas Darma Persada",
+        "acronym": "UNSADA",
+        "location": "Jakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 166,
+        "name": "Universitas Muhammadiyah Luwuk",
+        "acronym": "UML",
+        "location": "Luwuk, Sulawesi Tengah",
+        "type": "Swasta"
+    },
+    {
+        "id": 167,
+        "name": "Universitas Borneo Tarakan",
+        "acronym": "UBT",
+        "location": "Tarakan, Kalimantan Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 168,
+        "name": "Universitas Kristen Indonesia Paulus",
+        "acronym": "UKIP",
+        "location": "Makassar, Sulawesi Selatan",
+        "type": "Swasta"
+    },
+    {
+        "id": 169,
+        "name": "Universitas Mahendradatta",
+        "acronym": "UNMAR",
+        "location": "Denpasar, Bali",
+        "type": "Swasta"
+    },
+    {
+        "id": 170,
+        "name": "Universitas Sam Ratulangi",
+        "acronym": "UNSRAT",
+        "location": "Manado, Sulawesi Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 171,
+        "name": "Politeknik Kesehatan Kemenkes Tanjung Karang",
+        "acronym": "POLTEKKES Tanjung Karang",
+        "location": "Bandar Lampung, Lampung",
+        "type": "Negeri"
+    },
+    {
+        "id": 172,
+        "name": "Institut Seni Indonesia Yogyakarta",
+        "acronym": "ISI Yogyakarta",
+        "location": "Yogyakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 173,
+        "name": "Politeknik Negeri Bengkulu",
+        "acronym": "POLIBENG",
+        "location": "Bengkulu",
+        "type": "Negeri"
+    },
+    {
+        "id": 174,
+        "name": "Universitas Cenderawasih",
+        "acronym": "UNCEN",
+        "location": "Jayapura, Papua",
+        "type": "Negeri"
+    },
+    {
+        "id": 175,
+        "name": "Institut Teknologi Kalimantan",
+        "acronym": "ITK",
+        "location": "Balikpapan, Kalimantan Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 176,
+        "name": "Universitas Kristen Artha Wacana",
+        "acronym": "UKAW",
+        "location": "Kupang, Nusa Tenggara Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 177,
+        "name": "Politeknik Negeri Manado",
+        "acronym": "POLIMDO",
+        "location": "Manado, Sulawesi Utara",
+        "type": "Negeri"
+    },
+    {
+        "id": 178,
+        "name": "Institut Pertanian Stiper Yogyakarta",
+        "acronym": "INSTIPER",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 179,
+        "name": "Politeknik Negeri Tanah Laut",
+        "acronym": "POLITALA",
+        "location": "Tanah Laut, Kalimantan Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 180,
+        "name": "Universitas Papua",
+        "acronym": "UNIPA",
+        "location": "Manokwari, Papua Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 181,
+        "name": "Institut Seni Indonesia Surakarta",
+        "acronym": "ISI Surakarta",
+        "location": "Surakarta, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 182,
+        "name": "Universitas Nahdlatul Ulama Surabaya",
+        "acronym": "UNUSA",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 183,
+        "name": "Universitas Muhammadiyah Gorontalo",
+        "acronym": "UMG",
+        "location": "Gorontalo",
+        "type": "Swasta"
+    },
+    {
+        "id": 184,
+        "name": "Politeknik Perkapalan Negeri Surabaya",
+        "acronym": "PPNS",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 185,
+        "name": "Institut Teknologi Sumatera",
+        "acronym": "ITERA",
+        "location": "Lampung",
+        "type": "Negeri"
+    },
+    {
+        "id": 186,
+        "name": "Institut Pemerintahan Dalam Negeri",
+        "acronym": "IPDN",
+        "location": "Sumedang, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 187,
+        "name": "Universitas Kanjuruhan Malang",
+        "acronym": "UNIKAMA",
+        "location": "Malang, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 188,
+        "name": "Institut Teknologi Sumatera",
+        "acronym": "ITERA",
+        "location": "Lampung",
+        "type": "Negeri"
+    },
+    {
+        "id": 189,
+        "name": "Politeknik Perkapalan Negeri Surabaya",
+        "acronym": "PPNS",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 190,
+        "name": "Institut Pertanian Stiper Yogyakarta",
+        "acronym": "INSTIPER",
+        "location": "Yogyakarta",
+        "type": "Swasta"
+    },
+    {
+        "id": 191,
+        "name": "Politeknik Negeri Tanah Laut",
+        "acronym": "POLITALA",
+        "location": "Tanah Laut, Kalimantan Selatan",
+        "type": "Negeri"
+    },
+    {
+        "id": 192,
+        "name": "Universitas Papua",
+        "acronym": "UNIPA",
+        "location": "Manokwari, Papua Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 193,
+        "name": "Institut Seni Indonesia Surakarta",
+        "acronym": "ISI Surakarta",
+        "location": "Surakarta, Jawa Tengah",
+        "type": "Negeri"
+    },
+    {
+        "id": 194,
+        "name": "Universitas Nahdlatul Ulama Surabaya",
+        "acronym": "UNUSA",
+        "location": "Surabaya, Jawa Timur",
+        "type": "Swasta"
+    },
+    {
+        "id": 195,
+        "name": "Politeknik Negeri Madiun",
+        "acronym": "PNM",
+        "location": "Madiun, Jawa Timur",
+        "type": "Negeri"
+    },
+    {
+        "id": 196,
+        "name": "Institut Seni Indonesia Yogyakarta",
+        "acronym": "ISI Yogyakarta",
+        "location": "Yogyakarta",
+        "type": "Negeri"
+    },
+    {
+        "id": 197,
+        "name": "Universitas Muhammadiyah Gorontalo",
+        "acronym": "UMG",
+        "location": "Gorontalo",
+        "type": "Swasta"
+    },
+    {
+        "id": 198,
+        "name": "Institut Pemerintahan Dalam Negeri",
+        "acronym": "IPDN",
+        "location": "Sumedang, Jawa Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 199,
+        "name": "Politeknik Negeri Pontianak",
+        "acronym": "POLNEP",
+        "location": "Pontianak, Kalimantan Barat",
+        "type": "Negeri"
+    },
+    {
+        "id": 200,
+        "name": "Politeknik Negeri Padang",
+        "acronym": "PNP",
+        "location": "Padang, Sumatera Barat",
+        "type": "Negeri"
+    }
+]

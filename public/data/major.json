@@ -1,0 +1,867 @@
+[
+    {
+        "id": 1,
+        "major": "Teknik Informatika",
+        "field": "Teknologi Informasi",
+        "degree": ["S1", "S2", "D3", "D4"]
+    },
+    {
+        "id": 2,
+        "major": "Kedokteran",
+        "field": "Kesehatan",
+        "degree": ["S1", "Prof", "Sp"]
+    },
+    {
+        "id": 3,
+        "major": "Manajemen",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 4,
+        "major": "Akuntansi",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2", "D3", "D4"]
+    },
+    {
+        "id": 5,
+        "major": "Hukum",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 6,
+        "major": "Ilmu Komunikasi",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 7,
+        "major": "Teknik Sipil",
+        "field": "Teknik",
+        "degree": ["S1", "S2", "D3", "D4"]
+    },
+    {
+        "id": 8,
+        "major": "Agronomi",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 9,
+        "major": "Desain Interior",
+        "field": "Seni dan Desain",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 10,
+        "major": "Keperawatan",
+        "field": "Kesehatan",
+        "degree": ["S1", "D3", "Prof"]
+    },
+    {
+        "id": 11,
+        "major": "Teknik Elektro",
+        "field": "Teknik",
+        "degree": ["S1", "S2", "D3", "D4"]
+    },
+    {
+        "id": 12,
+        "major": "Pendidikan Bahasa Inggris",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 13,
+        "major": "Teknik Mesin",
+        "field": "Teknik",
+        "degree": ["S1", "S2", "D3", "D4"]
+    },
+    {
+        "id": 14,
+        "major": "Farmasi",
+        "field": "Kesehatan",
+        "degree": ["S1", "Prof"]
+    },
+    {
+        "id": 15,
+        "major": "Arsitektur",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 16,
+        "major": "Psikologi",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 17,
+        "major": "Pendidikan Guru Sekolah Dasar",
+        "field": "Pendidikan",
+        "degree": ["S1"]
+    },
+    {
+        "id": 18,
+        "major": "Teknik Industri",
+        "field": "Teknik",
+        "degree": ["S1", "S2", "D4"]
+    },
+    {
+        "id": 19,
+        "major": "Desain Komunikasi Visual",
+        "field": "Seni dan Desain",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 20,
+        "major": "Perhotelan",
+        "field": "Pariwisata",
+        "degree": ["D3", "D4"]
+    },
+    {
+        "id": 21,
+        "major": "Ilmu Politik",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 22,
+        "major": "Ilmu Administrasi Bisnis",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 23,
+        "major": "Pendidikan Matematika",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 24,
+        "major": "Kehutanan",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 25,
+        "major": "Teknik Kimia",
+        "field": "Teknik",
+        "degree": ["S1", "S2", "D4"]
+    },
+    {
+        "id": 26,
+        "major": "Agroteknologi",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 27,
+        "major": "Sistem Informasi",
+        "field": "Teknologi Informasi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 28,
+        "major": "Ekonomi Pembangunan",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 29,
+        "major": "Ilmu Hubungan Internasional",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 30,
+        "major": "Teknik Lingkungan",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 31,
+        "major": "Teknik Geologi",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 32,
+        "major": "Ilmu Komputer",
+        "field": "Teknologi Informasi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 33,
+        "major": "Ilmu Gizi",
+        "field": "Kesehatan",
+        "degree": ["S1", "S2", "D4"]
+    },
+    {
+        "id": 34,
+        "major": "Desain Produk",
+        "field": "Seni dan Desain",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 35,
+        "major": "Teknik Fisika",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 36,
+        "major": "Pendidikan Dokter Gigi",
+        "field": "Kesehatan",
+        "degree": ["S1", "Prof"]
+    },
+    {
+        "id": 37,
+        "major": "Teknik Telekomunikasi",
+        "field": "Teknik",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 38,
+        "major": "Statistika",
+        "field": "Matematika dan Ilmu Pengetahuan Alam",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 39,
+        "major": "Sastra Inggris",
+        "field": "Sastra",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 40,
+        "major": "Perencanaan Wilayah dan Kota",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 41,
+        "major": "Bioteknologi",
+        "field": "Ilmu Pengetahuan Alam",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 42,
+        "major": "Teknik Pertambangan",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 43,
+        "major": "Kimia",
+        "field": "Matematika dan Ilmu Pengetahuan Alam",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 44,
+        "major": "Farmasi Klinis",
+        "field": "Kesehatan",
+        "degree": ["S1", "Prof"]
+    },
+    {
+        "id": 45,
+        "major": "Ilmu Ekonomi",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 46,
+        "major": "Teknologi Pangan",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 47,
+        "major": "Teknik Perkapalan",
+        "field": "Teknik",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 48,
+        "major": "Teknik Material",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 49,
+        "major": "Ilmu Kesehatan Masyarakat",
+        "field": "Kesehatan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 50,
+        "major": "Teknologi Informasi",
+        "field": "Teknologi Informasi",
+        "degree": ["S1", "S2", "D4"]
+    },
+    {
+        "id": 51,
+        "major": "Ilmu Kelautan",
+        "field": "Perikanan",
+        "degree": ["S1", "S2"]
+    },
+    { "id": 52, "major": "Sastra Jepang", "field": "Sastra", "degree": ["S1"] },
+    {
+        "id": 53,
+        "major": "Teknik Bioenergi",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 54,
+        "major": "Teknik Kelautan",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 55,
+        "major": "Pariwisata",
+        "field": "Pariwisata",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 56,
+        "major": "Ilmu Hukum Internasional",
+        "field": "Hukum",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 57,
+        "major": "Pendidikan Fisika",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 58,
+        "major": "Agribisnis",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 59,
+        "major": "Ilmu Sejarah",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 60,
+        "major": "Arkeologi",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1"]
+    },
+    {
+        "id": 61,
+        "major": "Sastra Indonesia",
+        "field": "Sastra",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 62,
+        "major": "Ilmu Perpustakaan",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 63,
+        "major": "Teknologi Rekayasa Pangan",
+        "field": "Teknologi Pangan",
+        "degree": ["D4"]
+    },
+    {
+        "id": 64,
+        "major": "Ilmu Lingkungan",
+        "field": "Sains",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 65,
+        "major": "Teknik Geofisika",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    { "id": 66, "major": "Teknik Nuklir", "field": "Teknik", "degree": ["S1"] },
+    {
+        "id": 67,
+        "major": "Meteorologi",
+        "field": "Sains",
+        "degree": ["S1", "S2"]
+    },
+    { "id": 68, "major": "Biologi", "field": "Sains", "degree": ["S1", "S2"] },
+    {
+        "id": 69,
+        "major": "Ilmu Politik",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 70,
+        "major": "Teknik Otomotif",
+        "field": "Teknik",
+        "degree": ["D3", "D4"]
+    },
+    {
+        "id": 71,
+        "major": "Perbankan Syariah",
+        "field": "Ekonomi",
+        "degree": ["S1", "D3"]
+    },
+    {
+        "id": 72,
+        "major": "Administrasi Negara",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 73,
+        "major": "Ekonomi Syariah",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 74,
+        "major": "Teknik Komputer",
+        "field": "Teknologi Informasi",
+        "degree": ["D3", "D4"]
+    },
+    {
+        "id": 75,
+        "major": "Pendidikan Jasmani",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 76,
+        "major": "Sastra Prancis",
+        "field": "Sastra",
+        "degree": ["S1"]
+    },
+    {
+        "id": 77,
+        "major": "Ilmu Jurnalistik",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1"]
+    },
+    {
+        "id": 78,
+        "major": "Ilmu Administrasi Publik",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 79,
+        "major": "Teknik Industri Pertanian",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 80,
+        "major": "Seni Musik",
+        "field": "Seni",
+        "degree": ["S1", "D4"]
+    },
+    { "id": 81, "major": "Seni Tari", "field": "Seni", "degree": ["S1"] },
+    {
+        "id": 82,
+        "major": "Sosiologi",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 83,
+        "major": "Pendidikan Biologi",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 84,
+        "major": "Ilmu Kriminologi",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1"]
+    },
+    {
+        "id": 85,
+        "major": "Teknik Penerbangan",
+        "field": "Teknik",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 86,
+        "major": "Teknik Otomasi",
+        "field": "Teknik",
+        "degree": ["D4"]
+    },
+    {
+        "id": 87,
+        "major": "Desain Fashion",
+        "field": "Seni dan Desain",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 88,
+        "major": "Ilmu Psikologi Islam",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 89,
+        "major": "Teknik Arsitektur Lansekap",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 90,
+        "major": "Perikanan",
+        "field": "Perikanan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 91,
+        "major": "Pendidikan Kimia",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 92,
+        "major": "Pendidikan Geografi",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 93,
+        "major": "Antropologi",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    { "id": 94, "major": "Sastra Arab", "field": "Sastra", "degree": ["S1"] },
+    {
+        "id": 95,
+        "major": "Teknologi Pertanian",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 96,
+        "major": "Teknik Metalurgi",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 97,
+        "major": "Filsafat",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 98,
+        "major": "Kesejahteraan Sosial",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 99,
+        "major": "Ekonomi Pertanian",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 100,
+        "major": "Teknik Mesin Otomotif",
+        "field": "Teknik",
+        "degree": ["D3", "D4"]
+    },
+    {
+        "id": 101,
+        "major": "Seni Rupa",
+        "field": "Seni dan Desain",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 102,
+        "major": "Pendidikan Bahasa Arab",
+        "field": "Pendidikan",
+        "degree": ["S1"]
+    },
+    {
+        "id": 103,
+        "major": "Ilmu Perikanan",
+        "field": "Perikanan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 104,
+        "major": "Teknik Pengelasan",
+        "field": "Teknik",
+        "degree": ["D3", "D4"]
+    },
+    {
+        "id": 105,
+        "major": "Kearsipan",
+        "field": "Sosial dan Humaniora",
+        "degree": ["D3"]
+    },
+    {
+        "id": 106,
+        "major": "Teknologi Laboratorium Medik",
+        "field": "Kesehatan",
+        "degree": ["D3", "D4"]
+    },
+    {
+        "id": 107,
+        "major": "Manajemen Hutan",
+        "field": "Kehutanan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 108,
+        "major": "Ilmu Pertanahan",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1"]
+    },
+    { "id": 109, "major": "Sastra Korea", "field": "Sastra", "degree": ["S1"] },
+    {
+        "id": 110,
+        "major": "Ilmu Administrasi Niaga",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 111,
+        "major": "Pendidikan Teknik Informatika",
+        "field": "Pendidikan",
+        "degree": ["S1"]
+    },
+    {
+        "id": 112,
+        "major": "Manajemen Logistik",
+        "field": "Ekonomi",
+        "degree": ["S1", "D3", "D4"]
+    },
+    {
+        "id": 113,
+        "major": "Ilmu Kedokteran Gigi",
+        "field": "Kesehatan",
+        "degree": ["S1", "Prof"]
+    },
+    {
+        "id": 114,
+        "major": "Oseanografi",
+        "field": "Ilmu Kelautan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 115,
+        "major": "Ilmu Kesehatan Lingkungan",
+        "field": "Kesehatan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 116,
+        "major": "Perencanaan Pembangunan",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 117,
+        "major": "Sistem Komputer",
+        "field": "Teknologi Informasi",
+        "degree": ["S1", "S2", "D3", "D4"]
+    },
+    {
+        "id": 118,
+        "major": "Farmasi Industri",
+        "field": "Kesehatan",
+        "degree": ["S1", "D3", "D4"]
+    },
+    {
+        "id": 119,
+        "major": "Teknik Perminyakan",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 120,
+        "major": "Rekayasa Sistem",
+        "field": "Teknologi Informasi",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 121,
+        "major": "Teknik Bioproses",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 122,
+        "major": "Agroekoteknologi",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 123,
+        "major": "Ilmu Sosial",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 124,
+        "major": "Teknik Instrumentasi",
+        "field": "Teknik",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 125,
+        "major": "Teknik Lingkungan Hidup",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 126,
+        "major": "Geomatika",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    { "id": 127, "major": "Sastra Rusia", "field": "Sastra", "degree": ["S1"] },
+    {
+        "id": 128,
+        "major": "Pengelolaan Sumberdaya Alam",
+        "field": "Ilmu Pengetahuan Alam",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 129,
+        "major": "Ilmu Kesejahteraan Keluarga",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1"]
+    },
+    {
+        "id": 130,
+        "major": "Manajemen Informatika",
+        "field": "Teknologi Informasi",
+        "degree": ["D3"]
+    },
+    {
+        "id": 131,
+        "major": "Aktuaria",
+        "field": "Matematika dan Ilmu Pengetahuan Alam",
+        "degree": ["S1"]
+    },
+    {
+        "id": 132,
+        "major": "Manajemen Sumber Daya Perairan",
+        "field": "Perikanan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 133,
+        "major": "Teknik Kimia Industri",
+        "field": "Teknik",
+        "degree": ["D4"]
+    },
+    {
+        "id": 134,
+        "major": "Sastra Italia",
+        "field": "Sastra",
+        "degree": ["S1"]
+    },
+    {
+        "id": 135,
+        "major": "Manajemen Perikanan",
+        "field": "Perikanan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 136,
+        "major": "Pendidikan Bahasa Daerah",
+        "field": "Pendidikan",
+        "degree": ["S1"]
+    },
+    {
+        "id": 137,
+        "major": "Manajemen Agribisnis",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 138,
+        "major": "Ilmu Pemerintahan",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 139,
+        "major": "Sosiologi Pedesaan",
+        "field": "Sosial dan Humaniora",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 140,
+        "major": "Ilmu Fisika Terapan",
+        "field": "Fisika",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 141,
+        "major": "Ilmu Kesehatan Hewan",
+        "field": "Kesehatan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 142,
+        "major": "Teknologi Industri Pertanian",
+        "field": "Pertanian",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 143,
+        "major": "Teknik Transportasi",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 144,
+        "major": "Teknik Konservasi",
+        "field": "Teknik",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 145,
+        "major": "Pendidikan Bahasa Inggris",
+        "field": "Pendidikan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 146,
+        "major": "Teknik Rekayasa Lingkungan",
+        "field": "Teknik",
+        "degree": ["D4"]
+    },
+    {
+        "id": 147,
+        "major": "Pengelolaan Hutan",
+        "field": "Kehutanan",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 148,
+        "major": "Pariwisata Syariah",
+        "field": "Pariwisata",
+        "degree": ["S1", "D4"]
+    },
+    {
+        "id": 149,
+        "major": "Manajemen Sumberdaya Manusia",
+        "field": "Ekonomi",
+        "degree": ["S1", "S2"]
+    },
+    {
+        "id": 150,
+        "major": "Teknologi Pengolahan Hasil Perikanan",
+        "field": "Perikanan",
+        "degree": ["S1", "D4"]
+    }
+]
