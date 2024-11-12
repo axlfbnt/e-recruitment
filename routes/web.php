@@ -14,7 +14,6 @@ use App\Http\Controllers\erecruitment\ManPowerPlanningController;
 use App\Http\Controllers\erecruitment\PsychologicalTestController;
 use App\Http\Controllers\erecruitment\TemplateFormA3Controller;
 use App\Http\Controllers\erecruitment\TemplateFormA4Controller;
-use SebastianBergmann\Template\Template;
 
 /*
 |--------------------------------------------------------------------------
