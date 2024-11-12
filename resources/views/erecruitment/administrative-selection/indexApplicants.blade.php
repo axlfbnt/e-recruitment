@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Tabel Data Pelamar -->
                 <div class="row">
                     <div class="col-12">
@@ -110,8 +110,8 @@
                                                     <h5 class="mb-1">{{ $applicant->full_name ?? 'Not Available' }}<span
                                                             class="text-muted"> | </span>
                                                         @if ($applicant->cv_path)
-                                                            <a href="/administrative-selection/{{ $applicant->id }}/applicant-cv" target="_blank"
-                                                                class="small">View Applicant CV</a>
+                                                            <a href="/administrative-selection/{{ $applicant->id }}/applicant-cv"
+                                                                target="_blank" class="small">View Applicant CV</a>
                                                         @else
                                                             <span class="small text-muted">View Applicant CV</span>
                                                         @endif
