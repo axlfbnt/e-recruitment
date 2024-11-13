@@ -66,14 +66,19 @@
                                         <i class="ri-inbox-archive-line"></i>
                                     </button>
                                     <button type="button" class="btn btn-soft-primary ms-2 button-invite-vacancy"
-                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="tooltip" 
+                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="tooltip"
                                         data-bs-placement="top" data-bs-title="Invite Vacancy">
                                         <i class="ri-send-plane-fill"></i>
                                     </button>
-                                    <button type="button" class="btn btn-info ms-2 button-bulk"
+                                    <button type="button" class="btn btn-pink ms-2 button-bulk"
                                         {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
                                         data-bs-target="#importModal">
                                         <i class="ri-file-copy-2-line me-1"></i> Bulk Process
+                                    </button>
+                                    <button type="button" class="btn btn-info ms-2 button-invitation"
+                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
+                                        data-bs-target="#">
+                                        <i class="ri-chat-forward-line me-1"></i> Psycho-test Invitation
                                     </button>
                                 </div>
                             </div>
@@ -124,7 +129,7 @@
                                                         @endif
                                                     </h5>
                                                     <p class="mb-1 text-muted">
-                                                        <i class="ri-user-star-line"></i> Profesional
+                                                        <i class="ri-user-star-line"></i> Professional
                                                         ({{ $applicant->years_experience ?? '0' }} years -
                                                         {{ $applicant->months_experience ?? '0' }} months)
                                                         <br>
