@@ -142,9 +142,10 @@ class InputApplicationController extends Controller
         ]);
 
         // Menghasilkan applicant_id dengan format APP-birth_date-panjang_string_nama
+        $domicileId = $request->input('domicile');
         $birthDate = date('Ymd', strtotime($request->input('birth_date')));
         $nameLength = strlen($request->input('full_name')); // Menghitung panjang string dari full_name
-        $applicantId = 'APP-' . $birthDate . $nameLength; // Format: APP-YYYYMMDD-lengthOfName
+        $applicantId = $nameLength . $birthDate . $domicileId; // Format: lengthOfName-YYYYMMDD-domicileId
 
         // Cek apakah pelamar sudah pernah mendaftar berdasarkan kombinasi full_name, email, birth_date
         $existingApplicant = TrxInputApplication::where('full_name', $request->input('full_name'))
