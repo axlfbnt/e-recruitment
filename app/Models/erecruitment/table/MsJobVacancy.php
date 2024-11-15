@@ -10,7 +10,7 @@ class MsJobVacancy extends Model
 {
     use SoftDeletes;
     use HasFactory;
-    
+
     protected $connection = 'mysql-erec';
     public $table = "ms_jobvacancy";
     protected $fillable = [

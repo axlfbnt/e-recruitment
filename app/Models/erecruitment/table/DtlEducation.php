@@ -12,7 +12,8 @@ class DtlEducation extends Model
     protected $connection = 'mysql-erec';
     public $table = "dtl_education";
     protected $fillable = [
-        'inputapplication_id',
+        'id',
+        'applicant_id',
         'degree',
         'institution',
         'major',

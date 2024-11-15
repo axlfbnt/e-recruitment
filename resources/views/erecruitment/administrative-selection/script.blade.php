@@ -36,7 +36,7 @@
                     }
                 },
                 {
-                    data: 'status',
+                    data: 'vacancy_status',
                     render: function(data, type, row) {
                         var labelClass = '';
                         if (data === 'Open') {

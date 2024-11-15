@@ -42,7 +42,7 @@
                     data: 'domicile',
                 },
                 {
-                    data: 'created_at',
+                    data: 'application_date',
                     visible: false
                 },
                 {
@@ -246,18 +246,23 @@
             }
         });
 
-        $('#importForm').on('submit', function(event) {
+        $('#importButton').on('click', function(event) {
+            var formData = new FormData($('#importForm')[0]); // Ambil data form
+
             $.ajax({
-                url: "{{ url('input-application/import') }}",
+                url: "{{ url('input-application/import') }}", // URL untuk import data
                 type: 'POST',
-                data: new FormData(this), // Mengambil data dari form
+                data: formData, // Mengirim data form menggunakan FormData
                 processData: false,
                 contentType: false,
                 success: function(response) {
-
+                    // Menangani response sukses
+                    alert('Data imported successfully');
                 },
-                error: function(xhr) {
-
+                error: function(xhr, status, error) {
+                    // Menangani error
+                    console.error('Error occurred: ' + error);
+                    alert('Error occurred: ' + error); // Menampilkan pesan error
                 }
             });
         });
@@ -1067,6 +1072,7 @@
 
     $(document).on('click', '.button-edit', function() {
         var id = $(this).data('id'); // Mengambil ID dari tombol edit
+        console.log(id);
         isEditing = true; // Menandai bahwa proses sedang dalam mode edit
 
         $.ajax({
@@ -1074,13 +1080,20 @@
             type: 'GET',
             success: function(response) {
                 if (response) {
-                    // Pengisian data personal
-                    $('#application-id').val(response.application.id);
-                    $('#edit-company').val(response.application.company).trigger('change');
+                    // Mengambil data company dan vacancy dari response.vacancies
+                    if (response.vacancies && response.vacancies.length > 0) {
+                        let vacancy = response.vacancies[0]; // Ambil data vacancy pertama
 
-                    // Panggil fungsi untuk mengambil vacancy berdasarkan company
-                    loadVacancyData(response.application.company, response.application.vacancy);
+                        // Menampilkan company dan vacancy di form edit
+                        $('#edit-company').val(vacancy.company).trigger('change');
+                        $('#edit-expected-salary').val(vacancy
+                            .expected_salary); // Mengambil expected_salary dari vacancy
+                        loadVacancyData(vacancy.company, vacancy
+                            .vacancy); // Load vacancy data sesuai dengan data dari vacancy
+                    }
 
+                    // Ambil data dari application untuk form
+                    $('#applicant_id').val(response.application.applicant_id);
                     $('#edit-name').val(response.application.full_name);
                     $('#edit-email').val(response.application.email);
                     $('#edit-birth-date').val(response.application.birth_date);
@@ -1089,7 +1102,6 @@
                     $('#edit-phone-number').val(response.application.phone_number);
                     $('#edit-years-experience').val(response.application.years_experience);
                     $('#edit-months-experience').val(response.application.months_experience);
-                    $('#edit-expected-salary').val(response.application.expected_salary);
 
                     // Isi preview foto
                     if (response.application.photo_path) {
@@ -1097,13 +1109,13 @@
                         $('#upload-text-edit').hide();
                     }
 
-                    // Simulasikan klik "Add" untuk setiap data yang diambil dari server
+                    // Simulasikan data detail
                     simulateEducationData(response.educations);
                     simulateOrganizationData(response.organizations);
                     simulateInternshipData(response.internships);
                     simulateJobExperienceData(response.jobExperiences);
 
-                    isEditing = false; // Setelah semua selesai, kembali ke mode normal
+                    isEditing = false;
                 } else {
                     alert('Data not found');
                     isEditing = false;

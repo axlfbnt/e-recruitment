@@ -13,7 +13,7 @@ class DtlJobExperience extends Model
     public $table = "dtl_jobexperience";
     protected $fillable = [
         'id',
-        'inputapplication_id',
+        'applicant_id',
         'company_name',
         'title',
         'position',

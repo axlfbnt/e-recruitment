@@ -64,7 +64,7 @@
                                             <th>Phone Number</th>
                                             <th>Email</th>
                                             <th>Domicile</th>
-                                            <th>Created At</th>
+                                            <th>Application Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -1348,7 +1348,7 @@
                             <label for="excel_file" class="form-label">Upload Excel File</label>
                             <input type="file" class="form-control" id="excel_file" name="excel_file" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Import</button>
+                        <button type="submit" id="importButton" class="btn btn-primary">Import</button>
                     </form>
                 </div>
             </div>

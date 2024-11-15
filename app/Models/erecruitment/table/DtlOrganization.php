@@ -13,7 +13,7 @@ class DtlOrganization extends Model
     public $table = "dtl_organization";
     protected $fillable = [
         'id',
-        'inputapplication_id',
+        'applicant_id',
         'organization_name',
         'scope',
         'title',

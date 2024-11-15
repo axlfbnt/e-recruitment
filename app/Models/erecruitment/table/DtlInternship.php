@@ -13,7 +13,7 @@ class DtlInternship extends Model
     public $table = "dtl_internship";
     protected $fillable = [
         'id',
-        'inputapplication_id',
+        'applicant_id',
         'company_name',
         'function_role',
         'industry',

@@ -87,7 +87,8 @@
                 if (selectedApplicants.length > 0) {
                     console.log('Selected Applicants:', selectedApplicants); // Debugging log
                     $.ajax({
-                        url: "{{ url('/administrative-selection/approvalAdministrative') }}" + "/" + vacancyId,
+                        url: "{{ url('/administrative-selection/approvalAdministrative') }}" +
+                            "/" + vacancyId,
                         type: 'PUT',
                         data: {
                             _token: '{{ csrf_token() }}',
@@ -116,7 +117,8 @@
             let selectedApplicants = applicantIds || getSelectedApplicants();
             if (selectedApplicants.length > 0) {
                 $.ajax({
-                    url: "{{ url('/administrative-selection/approvalAdministrative') }}" + "/" + vacancyId,
+                    url: "{{ url('/administrative-selection/approvalAdministrative') }}" + "/" +
+                        vacancyId,
                     type: 'PUT',
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -182,7 +184,7 @@
                         data: 'company'
                     },
                     {
-                        data: 'vacancy'
+                        data: 'position_name'
                     },
                     {
                         data: 'last_stage'
@@ -191,7 +193,7 @@
                         data: 'status'
                     },
                     {
-                        data: 'applied_date'
+                        data: 'application_date'
                     },
                     {
                         data: 'created_at',

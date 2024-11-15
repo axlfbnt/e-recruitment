@@ -11,9 +11,9 @@ class TrxInputApplication extends Model
 
     protected $connection = 'mysql-erec';
     public $table = "trx_inputapplication";
+    protected $primaryKey = 'applicant_id';
     protected $fillable = [
-        'company',
-        'vacancy',
+        'applicant_id',
         'full_name',
         'email',
         'birth_date',
@@ -22,43 +22,37 @@ class TrxInputApplication extends Model
         'phone_number',
         'years_experience',
         'months_experience',
-        'expected_salary',
         'photo_path',
         'cv_path',
-        'applicant_status',
-        'last_stage',
-        'administrative_status',
-        'psychological_status',
-        'interview_status',
-        'offering_status',
-        'mcu_status',
-        'invite_status',
-        'invite_stage',
-        'invite_vacancy',
         'created_by',
         'updated_by',
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
+
+    public function vacancyApplications()
+    {
+        return $this->hasMany(DtlApplicantVacancy::class, 'applicant_id');
+    }
 
     public function education()
     {
-        return $this->hasMany(DtlEducation::class, 'inputapplication_id');
+        return $this->hasMany(DtlEducation::class, 'applicant_id');
     }
     
     public function organization()
     {
-        return $this->hasMany(DtlOrganization::class, 'inputapplication_id');
+        return $this->hasMany(DtlOrganization::class, 'applicant_id');
     }
     
     public function internship()
     {
-        return $this->hasMany(DtlInternship::class, 'inputapplication_id');
+        return $this->hasMany(DtlInternship::class, 'applicant_id');
     }
     
     public function jobExperience()
     {
-        return $this->hasMany(DtlJobExperience::class, 'inputapplication_id');
+        return $this->hasMany(DtlJobExperience::class, 'applicant_id');
     }
 }

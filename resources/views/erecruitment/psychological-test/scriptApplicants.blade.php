@@ -99,7 +99,8 @@
                         data: {
                             _token: '{{ csrf_token() }}',
                             status: 'Invited',
-                            applicants: selectedApplicants, // Kirim semua applicantId
+                            applicants: selectedApplicants, 
+                            vacancy_id: vacancyId,
                             invite_vacancy: inviteVacancy,
                             invite_stage: inviteStage
                         },
@@ -197,7 +198,7 @@
                         data: 'status'
                     },
                     {
-                        data: 'applied_date'
+                        data: 'application_date'
                     },
                     {
                         data: 'created_at',

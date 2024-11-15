@@ -5,12 +5,14 @@ namespace App\Http\Controllers\erecruitment;
 use App\Http\Controllers\Controller;
 use App\Mail\AdministrativeSelectionPassMail;
 use App\Mail\AdministrativeSelectionRejectMail;
+use App\Models\erecruitment\table\DtlApplicantVacancy;
 use App\Models\erecruitment\table\DtlEducation;
 use App\Models\erecruitment\table\DtlHistory;
 use App\Models\erecruitment\table\DtlJobExperience;
 use App\Models\erecruitment\table\MsDomicile;
 use App\Models\erecruitment\table\MsJobDesc;
 use App\Models\erecruitment\table\TrxInputApplication;
+use App\Models\erecruitment\view\VwInputApplicantion;
 use App\Models\erecruitment\view\VwPsychologicalTest;
 use DateTime;
 use Yajra\DataTables\DataTables;
@@ -46,8 +48,8 @@ class PsychologicalTestController extends Controller
     public function getApplicantsData($id)
     {
         // Mengambil data pelamar dengan paginasi
-        $applicants = TrxInputApplication::where('vacancy', $id)
-            ->where('applicant_status', 'In Process')
+        $applicants = VwInputApplicantion::where('vacancy', $id)
+            ->where('status', 'In Process')
             ->where('last_stage', 'Psychological Test')
             ->paginate(10);
 
@@ -61,32 +63,12 @@ class PsychologicalTestController extends Controller
             } else {
                 $applicant->age = 'Not Available';
             }
-
-            // Mengambil nama domicile dari MsDomicile berdasarkan ID
-            if ($applicant->domicile) {
-                $domicile = MsDomicile::find($applicant->domicile);
-                $applicant->domicile_name = $domicile ? $domicile->name : 'Not Available';
-            } else {
-                $applicant->domicile_name = 'Not Available';
-            }
         }
 
         return view('erecruitment.psychological-test.indexApplicants', [
             'jobVacancyId' => $id,
             'applicants' => $applicants
         ]);
-    }
-
-    public function applicantCV($id)
-    {
-        $cv = TrxInputApplication::findOrFail($id);
-        $pathInfo = pathinfo($cv->cv_path);
-        $filename = $pathInfo['basename'];
-
-        // Perbaiki path agar sesuai dengan yang sudah digunakan untuk foto
-        $cvPath = storage_path('app/public/cv/' . $filename);
-
-        return Response::file($cvPath);
     }
 
     public function approvalAdministrative(Request $request)
@@ -111,46 +93,41 @@ class PsychologicalTestController extends Controller
 
         // Update status untuk semua pelamar yang dipilih berdasarkan kondisi
         if ($status === 'Initial Interview') {
-            TrxInputApplication::whereIn('id', $applicantIds)
+            DtlApplicantVacancy::whereIn('applicant_id', $applicantIds)
+                ->where('vacancy', $vacancyId)
                 ->update([
                     'last_stage' => 'Initial Interview',
                     'psychological_status' => 'Pass Psychological Test',
                     'interview_status' => 'Waiting for invitation'
                 ]);
         } elseif ($status === 'Failed Psychological Test') {
-            TrxInputApplication::whereIn('id', $applicantIds)
+            DtlApplicantVacancy::whereIn('applicant_id', $applicantIds)
+                ->where('vacancy', $vacancyId)
                 ->update([
-                    'applicant_status' => 'Rejected',
+                    'status' => 'Rejected',
                     'psychological_status' => 'Failed Psychological Test'
                 ]);
         } elseif ($status === 'Candidate Pooling') {
-            TrxInputApplication::whereIn('id', $applicantIds)
+            DtlApplicantVacancy::whereIn('applicant_id', $applicantIds)
+                ->where('vacancy', $vacancyId)
                 ->update([
-                    'applicant_status' => 'Candidate Pooling',
+                    'status' => 'Candidate Pooling',
                     'psychological_status' => 'Failed Psychological Test'
                 ]);
         } elseif ($status === 'Invited') {
-            TrxInputApplication::whereIn('id', $applicantIds)
+            DtlApplicantVacancy::whereIn('applicant_id', $applicantIds)
+                ->where('vacancy', $vacancyId)
                 ->update([
-                    'applicant_status' => 'Invited',
+                    'status' => 'Invited',
                     'psychological_status' => 'Failed Psychological Test',
                     'invite_status' => 'Not yet confirmed',
                     'invite_vacancy' => $inviteVacancy,
                     'invite_stage' => $inviteStage
                 ]);
         } else {
-            TrxInputApplication::whereIn('id', $applicantIds)
-                ->update(['last_stage' => $status]);
-        }
-
-        // Update history untuk setiap applicant
-        foreach ($applicantIds as $applicantId) {
-            DtlHistory::where('inputapplication_id', $applicantId)
+            DtlApplicantVacancy::whereIn('applicant_id', $applicantIds)
                 ->where('vacancy', $vacancyId)
-                ->update([
-                    'last_stage' => $status,
-                    'status' => $status
-                ]);
+                ->update(['last_stage' => $status]);
         }
 
         return response()->json(['success' => 'Applicant status updated successfully.']);

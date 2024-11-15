@@ -163,7 +163,6 @@ Route::prefix('psychological-test')->group(function () {
     Route::put('/{id}', [PsychologicalTestController::class, 'update'])->name('psychological-test.update');
     Route::delete('/{id}', [PsychologicalTestController::class, 'destroy'])->name('psychological-test.destroy');
     Route::get('/{id}/applicants-data', [PsychologicalTestController::class, 'getApplicantsData'])->name('psychological-test-applicants.data');
-    Route::get('/{id}/applicant-cv', [PsychologicalTestController::class, 'applicantCV'])->name('psychological-test.applicantCV');
     Route::put('/approvalAdministrative/{id}', [PsychologicalTestController::class, 'approvalAdministrative'])->name('psychological-test.approvalAdministrative');
     Route::post('/import', [PsychologicalTestController::class, 'importBulkProcess'])->name('psychological-test.import');
 });

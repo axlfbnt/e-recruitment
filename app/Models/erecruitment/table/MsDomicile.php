@@ -15,4 +15,9 @@ class MsDomicile extends Model
         'id',
         "name",
     ];
+
+    public function inputApplications()
+    {
+        return $this->hasMany(TrxInputApplication::class, 'domicile', 'id');
+    }
 }

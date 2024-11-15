@@ -94,7 +94,7 @@
                                                     <div class="me-3">
                                                         <!-- Checkbox untuk memilih pelamar -->
                                                         <input type="checkbox" class="form-check-input select-applicant"
-                                                            value="{{ $applicant->id }}" />
+                                                            value="{{ $applicant->applicant_id }}" />
                                                     </div>
                                                     <div class="me-3">
                                                         <!-- Gambar pelamar -->
@@ -110,7 +110,7 @@
                                                     <h5 class="mb-1">{{ $applicant->full_name ?? 'Not Available' }}<span
                                                             class="text-muted"> | </span>
                                                         @if ($applicant->cv_path)
-                                                            <a href="/administrative-selection/{{ $applicant->id }}/applicant-cv"
+                                                            <a href="/administrative-selection/{{ $applicant->applicant_id }}/applicant-cv"
                                                                 target="_blank" class="small">View Applicant CV</a>
                                                         @else
                                                             <span class="small text-muted">View Applicant CV</span>
@@ -127,7 +127,7 @@
                                                         {{ $applicant->age ?? 'Not Available' }} y.o
                                                     </p>
                                                     <p class="mb-1 text-muted"><strong>Applied date:</strong>
-                                                        {{ $applicant->created_at ? $applicant->created_at->format('d/m/Y') : 'Not Available' }}
+                                                        {{ \Carbon\Carbon::parse($applicant->application_date)->format('d/m/Y') ?? 'Not Available' }}
                                                         |
                                                         <strong>Status:</strong>
                                                         {{ $applicant->administrative_status ?? 'Not Available' }}
@@ -176,16 +176,16 @@
 
                                                     <div class="dropdown position-absolute" style="top: 15px; right: 15px;">
                                                         <button class="btn btn-link text-muted p-0" type="button"
-                                                            id="dropdownMenuButton{{ $applicant->id }}"
+                                                            id="dropdownMenuButton{{ $applicant->applicant_id }}"
                                                             data-bs-toggle="dropdown" aria-expanded="false">
                                                             <i class="ri-more-2-fill" style="font-size: 1.5rem;"></i>
                                                         </button>
                                                         <ul class="dropdown-menu dropdown-menu-end"
-                                                            aria-labelledby="dropdownMenuButton{{ $applicant->id }}">
+                                                            aria-labelledby="dropdownMenuButton{{ $applicant->applicant_id }}">
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    id="detailsMenu{{ $applicant->id }}"
-                                                                    data-applicant-id="{{ $applicant->id }}">
+                                                                    id="detailsMenu{{ $applicant->applicant_id }}"
+                                                                    data-applicant-id="{{ $applicant->applicant_id }}">
                                                                     <i class="ri-contacts-line"></i> View Detail
                                                                 </a>
                                                             </li>
@@ -194,16 +194,16 @@
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    id="addToPoolMenu{{ $applicant->id }}"
-                                                                    data-applicant-id="{{ $applicant->id }}">
+                                                                    id="addToPoolMenu{{ $applicant->applicant_id }}"
+                                                                    data-applicant-id="{{ $applicant->applicant_id }}">
                                                                     <i class="ri-inbox-archive-line"></i> Add to Candidate
                                                                     Pool
                                                                 </a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    id="inviteMenu{{ $applicant->id }}"
-                                                                    data-applicant-id="{{ $applicant->id }}">
+                                                                    id="inviteMenu{{ $applicant->applicant_id }}"
+                                                                    data-applicant-id="{{ $applicant->applicant_id }}">
                                                                     <i class="ri-send-plane-fill me-1"></i>Invite to
                                                                     Another Vacancy
                                                                 </a>
@@ -213,15 +213,15 @@
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item text-success"
-                                                                    id="passMenu{{ $applicant->id }}"
-                                                                    data-applicant-id="{{ $applicant->id }}">
+                                                                    id="passMenu{{ $applicant->applicant_id }}"
+                                                                    data-applicant-id="{{ $applicant->applicant_id }}">
                                                                     <i class="ri-check-fill me-1"></i>Pass Candidate
                                                                 </a>
                                                             </li>
                                                             <li>
                                                                 <a class="dropdown-item text-danger"
-                                                                    id="failMenu{{ $applicant->id }}"
-                                                                    data-applicant-id="{{ $applicant->id }}">
+                                                                    id="failMenu{{ $applicant->applicant_id }}"
+                                                                    data-applicant-id="{{ $applicant->applicant_id }}">
                                                                     <i class="ri-close-fill me-1"></i>Reject Candidate
                                                                 </a>
                                                             </li>
