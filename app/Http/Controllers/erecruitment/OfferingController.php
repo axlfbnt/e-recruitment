@@ -39,7 +39,7 @@ class OfferingController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
-                    return view('erecruitment.final-interview.action')->with('data', $data);
+                    return view('erecruitment.offering.action')->with('data', $data);
                 })
                 ->make(true);
         }
@@ -70,6 +70,13 @@ class OfferingController extends Controller
             'jobVacancyId' => $id,
             'applicants' => $applicants
         ]);
+    }
+
+    public function applicantIdName($id)
+    {
+        $data = TrxInputApplication::where('applicant_id', $id)->first();
+
+        return response()->json(['result' => $data]);
     }
 
     public function approvalAdministrative(Request $request)

@@ -42,7 +42,7 @@
         });
 
         document.querySelector('.button-invite-vacancy').addEventListener('click', function() {
-            
+
             var modal = new bootstrap.Modal(document.getElementById('invitevacancy-modal'));
             modal.show();
         });
@@ -96,7 +96,7 @@
                         data: {
                             _token: '{{ csrf_token() }}',
                             status: 'Invited',
-                            applicants: selectedApplicants, 
+                            applicants: selectedApplicants,
                             vacancy_id: vacancyId,
                             invite_vacancy: inviteVacancy,
                             invite_stage: inviteStage
@@ -144,7 +144,7 @@
         // Fungsi untuk mengambil ID pelamar yang dipilih
         function getSelectedApplicants() {
             let selectedApplicants = [];
-            $('.select-applicant:checked').each(function() {                                                                                                                                                                      
+            $('.select-applicant:checked').each(function() {
                 selectedApplicants.push($(this).val()); // Ambil nilai (ID) dari checkbox yang dipilih
             });
             return selectedApplicants; // Mengembalikan array ID pelamar yang dipilih
@@ -229,7 +229,6 @@
         // Event listener untuk dropdown menu lainnya
         $('body').on('click', '[id^=addToPoolMenu]', function() {
             var applicantId = $(this).attr('id').replace('addToPoolMenu', '');
-            console.log('Add to Candidate Pool clicked for applicant ID:', applicantId);
             handleBulkAction(vacancyId, 'Candidate Pooling', [applicantId]);
         });
 
@@ -239,16 +238,30 @@
             $('#invitevacancy-modal').data('applicant-id', applicantId);
         });
 
-        $('body').on('click', '[id^=passMenu]', function() {
-            var applicantId = $(this).attr('id').replace('passMenu', '');
+        $('body').on('click', '[id^=offeringMenu]', function() {
+            var applicantId = $(this).data('applicant-id');
+            $('#offeringletter-modal').modal('show');
+            $('#offeringletter-modal').data('applicant-id', applicantId);
             console.log('Pass clicked for applicant ID:', applicantId);
-            handleBulkAction(vacancyId, 'Offering', [applicantId]);
+
+            $.ajax({
+                url: "{{ url('offering') }}" + "/" + applicantId + '/applicantIdName',
+                type: 'GET',
+                success: function(response) {
+                    $('#name').val(response.result.full_name);
+                    $('#applicant-id').val(response.result.applicant_id);
+                },
+                error: function(xhr) {
+                    console.log('An error occurred:', xhr.responseText);
+                    // Optionally show an error message to the user
+                }
+            });
         });
 
-        $('body').on('click', '[id^=failMenu]', function() {
-            var applicantId = $(this).attr('id').replace('failMenu', '');
-            console.log('Fail clicked for applicant ID:', applicantId);
-            handleBulkAction(vacancyId, 'Failed Interview Test', [applicantId]);
+        $('body').on('click', '[id^=mcuMenu]', function() {
+            var applicantId = $(this).data('applicant-id');
+            $('#mcu-modal').modal('show');
+            $('#mcu-modal').data('applicant-id', applicantId);
         });
     });
 

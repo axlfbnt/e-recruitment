@@ -224,6 +224,7 @@ Route::prefix('offering')->group(function () {
     Route::put('/{id}', [OfferingController::class, 'update'])->name('offering.update');
     Route::delete('/{id}', [OfferingController::class, 'destroy'])->name('offering.destroy');
     Route::get('/{id}/applicants-data', [OfferingController::class, 'getApplicantsData'])->name('offering-applicants.data');
+    Route::get('/{id}/applicantIdName', [OfferingController::class, 'applicantIdName'])->name('offering.applicantIdName');
     Route::put('/approvalAdministrative/{id}', [OfferingController::class, 'approvalAdministrative'])->name('offering.approvalAdministrative');
     Route::post('/import', [OfferingController::class, 'importBulkProcess'])->name('offering.import');
 });

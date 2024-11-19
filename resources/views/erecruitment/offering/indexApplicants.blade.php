@@ -59,11 +59,6 @@
                                         data-bs-placement="top" data-bs-title="Invite Vacancy">
                                         <i class="ri-send-plane-fill"></i>
                                     </button>
-                                    <button type="button" class="btn btn-success ms-2 button-offering"
-                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="ri-mail-star-line me-1"></i> Send Offering Letter
-                                    </button>
                                     <button type="button" class="btn btn-info ms-2 button-mcu"
                                         {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
                                         data-bs-target="#">
@@ -317,6 +312,66 @@
                             <button type="button" id="closeModalBtn" class="btn btn-soft-warning me-2"
                                 onclick="resetInviteVacancyModal()" data-bs-dismiss="modal">Cancel</button>
                             <button class="btn btn-primary button-invite" type="button">Invite <i
+                                    class=" ri-send-plane-fill"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Offering Letter modal content -->
+    <div id="offeringletter-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="auth-brand text-center mt-2 mb-3 position-relative top-0">
+                        <a class="logo-dark">
+                            <span class="logo-lg">
+                                <img src="{{ asset('images/recruitment.png') }}" alt="dark logo"
+                                    style="vertical-align: middle; width: 35px; height: auto;">
+                                <span
+                                    style="vertical-align: middle; font-size: 15px; font-weight: bold; margin-left: 10px;">
+                                    OFFERING LETTER
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <form class="needs-validation ps-3 pe-3" novalidate>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input class="form-control" type="text" id="name" required disabled
+                                    placeholder="fill name">
+                                <div class="invalid-feedback">
+                                    Please fill a name.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="applicant-id" class="form-label">Applicant ID</label>
+                                <input class="form-control" type="text" id="applicant-id" required disabled
+                                    placeholder="fill applicant id">
+                                <div class="invalid-feedback">
+                                    Please fill an applicant id.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="offering-letter" class="form-label">Upload Offering Letter <span
+                                    style="color: red; font-size: 11px;">*file allowed are pdf</span></label>
+                            <input class="form-control" type="file" id="offering-letter" accept="application/pdf"
+                                placeholder="upload offering letter">
+                            <div class="invalid-feedback">
+                                Please upload Offering Letter.
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mb-4 mt-3">
+                            <button type="button" id="closeModalBtn" class="btn btn-soft-warning me-2"
+                                onclick="resetInviteVacancyModal()" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-success button-send" type="button">Send <i
                                     class=" ri-send-plane-fill"></i></button>
                         </div>
                     </form>
