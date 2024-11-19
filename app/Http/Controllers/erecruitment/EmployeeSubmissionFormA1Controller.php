@@ -94,7 +94,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
         return $abbreviation;
     }
 
-    public function getPositions_mpp()
+    public function getPositions_forFormA1()
     {
         $userDepartment = Auth::user()->department;
         $userDivision = Auth::user()->division;

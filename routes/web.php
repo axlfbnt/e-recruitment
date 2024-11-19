@@ -70,7 +70,7 @@ Route::prefix('employee-submission-forma1')->group(function () {
 });
 
 // Get Data Kebutuhan Form A1
-Route::get('/get-positions-mpp', [EmployeeSubmissionFormA1Controller::class, 'getPositions_mpp'])->name('get.positions_mpp');
+Route::get('/get-positions-forFormA1', [EmployeeSubmissionFormA1Controller::class, 'getPositions_forFormA1'])->name('get.positions_forFormA1');
 Route::get('/get-position-details', [EmployeeSubmissionFormA1Controller::class, 'getPositionDetails'])->name('get.getPositionDetails');
 
 // Rute untuk JobDescriptionController dengan prefix 'Job Description'
@@ -96,6 +96,7 @@ Route::prefix('job-vacancy')->group(function () {
 });
 
 // Get Data Kebutuhan Job Vacancy
+Route::get('/get-positions-forVacancy', [JobVacancyController::class, 'getPositions_forVacancy'])->name('get.positions_forVacancy');
 Route::get('/get-flowrecruitment', [JobVacancyController::class, 'getFlowRecruitment'])->name('get.flowrecruitment');
 
 // Rute untuk InputApplicationController dengan prefix 'Input Application'

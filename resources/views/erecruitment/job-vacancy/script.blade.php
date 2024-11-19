@@ -104,7 +104,7 @@
         });
 
         $.ajax({
-            url: "{{ url('get-positions-mpp') }}",
+            url: "{{ url('get-positions-forVacancy') }}",
             type: 'GET',
             dataType: 'json',
             success: function(data) {

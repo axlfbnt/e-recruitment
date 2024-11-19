@@ -47,6 +47,13 @@ class JobVacancyController extends Controller
         return view('erecruitment.job-vacancy.index');
     }
 
+    public function getPositions_forVacancy()
+    {
+        $positions = MsManPowerPlanning::select('id_mpp', 'position')->get();
+
+        return response()->json($positions);
+    }
+
     public function getFlowRecruitment()
     {
         $flowRecruitment = MsFlowRecruitment::select('id_flowrecruitment', 'template_name')->get();

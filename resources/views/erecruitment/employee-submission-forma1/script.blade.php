@@ -142,7 +142,7 @@
         });
 
         $.ajax({
-            url: "{{ url('get-positions-mpp') }}",
+            url: "{{ url('get-positions-forFormA1') }}",
             type: 'GET',
             dataType: 'json',
             success: function(data) {

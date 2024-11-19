@@ -62,7 +62,7 @@
                                     <button type="button" class="btn btn-success ms-2 button-offering"
                                         {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
                                         data-bs-target="#">
-                                        <i class="ri-chat-forward-line me-1"></i> Send Offering Letter
+                                        <i class="ri-mail-star-line me-1"></i> Send Offering Letter
                                     </button>
                                     <button type="button" class="btn btn-info ms-2 button-mcu"
                                         {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
@@ -216,7 +216,7 @@
                                                                 <a class="dropdown-item text-success"
                                                                     id="offeringMenu{{ $applicant->applicant_id }}"
                                                                     data-applicant-id="{{ $applicant->applicant_id }}">
-                                                                    <i class="ri-chat-forward-line me-1"></i>Send Offering
+                                                                    <i class="ri-mail-star-line me-1"></i>Send Offering
                                                                     Letter
                                                                 </a>
                                                             </li>
