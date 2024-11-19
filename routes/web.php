@@ -3,7 +3,10 @@
 use App\Http\Controllers\erecruitment\AdministrativeSelectionController;
 use App\Http\Controllers\erecruitment\CandidatePoolingController;
 use App\Http\Controllers\erecruitment\EmployeeSubmissionFormA1Controller;
+use App\Http\Controllers\erecruitment\FinalInterviewController;
 use App\Http\Controllers\erecruitment\FlowRecruitmentController;
+use App\Http\Controllers\erecruitment\FollowUpInterviewController;
+use App\Http\Controllers\erecruitment\InitialInterviewController;
 use App\Http\Controllers\erecruitment\JobDescriptionController;
 use App\Http\Controllers\erecruitment\JobVacancyController;
 use App\Http\Controllers\erecruitment\InputApplicationController;
@@ -11,6 +14,7 @@ use App\Http\Controllers\erecruitment\InvitationApplicantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\erecruitment\ManPowerPlanningController;
+use App\Http\Controllers\erecruitment\OfferingController;
 use App\Http\Controllers\erecruitment\PsychologicalTestController;
 use App\Http\Controllers\erecruitment\TemplateFormA3Controller;
 use App\Http\Controllers\erecruitment\TemplateFormA4Controller;
@@ -165,6 +169,62 @@ Route::prefix('psychological-test')->group(function () {
     Route::get('/{id}/applicants-data', [PsychologicalTestController::class, 'getApplicantsData'])->name('psychological-test-applicants.data');
     Route::put('/approvalAdministrative/{id}', [PsychologicalTestController::class, 'approvalAdministrative'])->name('psychological-test.approvalAdministrative');
     Route::post('/import', [PsychologicalTestController::class, 'importBulkProcess'])->name('psychological-test.import');
+});
+
+// Rute untuk InitialInterviewController dengan prefix 'Initial Interview'
+Route::prefix('initial-interview')->group(function () {
+    Route::get('/', [InitialInterviewController::class, 'index'])->name('initial-interview.index');
+    Route::get('/create', [InitialInterviewController::class, 'create'])->name('initial-interview.create');
+    Route::post('/', [InitialInterviewController::class, 'store'])->name('initial-interview.store');
+    Route::get('/{id}', [InitialInterviewController::class, 'show'])->name('initial-interview.show');
+    Route::get('/{id}/edit', [InitialInterviewController::class, 'edit'])->name('initial-interview.edit');
+    Route::put('/{id}', [InitialInterviewController::class, 'update'])->name('initial-interview.update');
+    Route::delete('/{id}', [InitialInterviewController::class, 'destroy'])->name('initial-interview.destroy');
+    Route::get('/{id}/applicants-data', [InitialInterviewController::class, 'getApplicantsData'])->name('initial-interview-applicants.data');
+    Route::put('/approvalAdministrative/{id}', [InitialInterviewController::class, 'approvalAdministrative'])->name('initial-interview.approvalAdministrative');
+    Route::post('/import', [InitialInterviewController::class, 'importBulkProcess'])->name('initial-interview.import');
+});
+
+// Rute untuk FollowUpInterviewController dengan prefix 'Follow-up Interview'
+Route::prefix('followup-interview')->group(function () {
+    Route::get('/', [FollowUpInterviewController::class, 'index'])->name('followup-interview.index');
+    Route::get('/create', [FollowUpInterviewController::class, 'create'])->name('followup-interview.create');
+    Route::post('/', [FollowUpInterviewController::class, 'store'])->name('followup-interview.store');
+    Route::get('/{id}', [FollowUpInterviewController::class, 'show'])->name('followup-interview.show');
+    Route::get('/{id}/edit', [FollowUpInterviewController::class, 'edit'])->name('followup-interview.edit');
+    Route::put('/{id}', [FollowUpInterviewController::class, 'update'])->name('followup-interview.update');
+    Route::delete('/{id}', [FollowUpInterviewController::class, 'destroy'])->name('followup-interview.destroy');
+    Route::get('/{id}/applicants-data', [FollowUpInterviewController::class, 'getApplicantsData'])->name('followup-interview-applicants.data');
+    Route::put('/approvalAdministrative/{id}', [FollowUpInterviewController::class, 'approvalAdministrative'])->name('followup-interview.approvalAdministrative');
+    Route::post('/import', [FollowUpInterviewController::class, 'importBulkProcess'])->name('followup-interview.import');
+});
+
+// Rute untuk FinalInterviewController dengan prefix 'Final Interview'
+Route::prefix('final-interview')->group(function () {
+    Route::get('/', [FinalInterviewController::class, 'index'])->name('final-interview.index');
+    Route::get('/create', [FinalInterviewController::class, 'create'])->name('final-interview.create');
+    Route::post('/', [FinalInterviewController::class, 'store'])->name('final-interview.store');
+    Route::get('/{id}', [FinalInterviewController::class, 'show'])->name('final-interview.show');
+    Route::get('/{id}/edit', [FinalInterviewController::class, 'edit'])->name('final-interview.edit');
+    Route::put('/{id}', [FinalInterviewController::class, 'update'])->name('final-interview.update');
+    Route::delete('/{id}', [FinalInterviewController::class, 'destroy'])->name('final-interview.destroy');
+    Route::get('/{id}/applicants-data', [FinalInterviewController::class, 'getApplicantsData'])->name('final-interview-applicants.data');
+    Route::put('/approvalAdministrative/{id}', [FinalInterviewController::class, 'approvalAdministrative'])->name('final-interview.approvalAdministrative');
+    Route::post('/import', [FinalInterviewController::class, 'importBulkProcess'])->name('final-interview.import');
+});
+
+// Rute untuk OfferingController dengan prefix 'Offering'
+Route::prefix('offering')->group(function () {
+    Route::get('/', [OfferingController::class, 'index'])->name('offering.index');
+    Route::get('/create', [OfferingController::class, 'create'])->name('offering.create');
+    Route::post('/', [OfferingController::class, 'store'])->name('offering.store');
+    Route::get('/{id}', [OfferingController::class, 'show'])->name('offering.show');
+    Route::get('/{id}/edit', [OfferingController::class, 'edit'])->name('offering.edit');
+    Route::put('/{id}', [OfferingController::class, 'update'])->name('offering.update');
+    Route::delete('/{id}', [OfferingController::class, 'destroy'])->name('offering.destroy');
+    Route::get('/{id}/applicants-data', [OfferingController::class, 'getApplicantsData'])->name('offering-applicants.data');
+    Route::put('/approvalAdministrative/{id}', [OfferingController::class, 'approvalAdministrative'])->name('offering.approvalAdministrative');
+    Route::post('/import', [OfferingController::class, 'importBulkProcess'])->name('offering.import');
 });
 
 // Rute untuk FlowRecruitmentController dengan prefix 'Flow Recruitment'

@@ -15,6 +15,7 @@ use App\Models\erecruitment\table\MsInstitution;
 use App\Models\erecruitment\table\MsJobVacancy;
 use App\Models\erecruitment\table\MsMajor;
 use App\Models\erecruitment\table\TrxInputApplication;
+use App\Models\erecruitment\view\VwInputApplicantion;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +32,8 @@ class CandidatePoolingController extends Controller
     public function index(Request $request)
     {
         if ($request->expectsJson()) {
-            $data = TrxInputApplication::query()
-                ->join('ms_domicile', 'trx_inputapplication.domicile', '=', 'ms_domicile.id')
-                ->where('applicant_status', 'Candidate Pooling')
-                ->select('trx_inputapplication.*', 'ms_domicile.name as domicile_name');
+            $data = VwInputApplicantion::query()
+                ->where('status', 'Candidate Pooling');
 
             return DataTables::of($data)
                 ->addIndexColumn()

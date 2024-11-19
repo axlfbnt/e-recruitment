@@ -42,7 +42,7 @@
                     data: 'domicile',
                 },
                 {
-                    data: 'created_at',
+                    data: 'application_date',
                     visible: false
                 },
                 {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\erecruitment;
 
 use App\Http\Controllers\Controller;
 use App\Models\erecruitment\table\TrxInputApplication;
+use App\Models\erecruitment\view\VwInputApplicantion;
 use App\Models\erecruitment\view\VwInvitationApplicant;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
@@ -36,11 +37,9 @@ class InvitationApplicantController extends Controller
     public function getApplicantsData(Request $request, $id)
     {
         if ($request->expectsJson()) {
-            $data = TrxInputApplication::query()
-                ->join('ms_domicile', 'trx_inputapplication.domicile', '=', 'ms_domicile.id')
-                ->where('applicant_status', 'Invited')
+            $data = VwInputApplicantion::query()
                 ->where('invite_vacancy', $id)
-                ->select('trx_inputapplication.*', 'ms_domicile.name as domicile_name');
+                ->where('status', 'Invited');
 
             return DataTables::of($data)
                 ->addIndexColumn()

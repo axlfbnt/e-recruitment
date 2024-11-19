@@ -8,11 +8,11 @@
         });
 
         // Inisialisasi Datatable
-        $('#invitation-datatable').DataTable({
+        $('#offering-datatable').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ url('invitation-applicant') }}",
+                url: "{{ url('offering') }}",
                 type: 'GET'
             },
             columns: [{
@@ -30,7 +30,7 @@
                     data: 'department'
                 },
                 {
-                    data: 'total_invited_applicants',
+                    data: 'total_applicants',
                     render: function(data, type, row) {
                         return data == 0 ? 'No applicant' : data; 
                     }
