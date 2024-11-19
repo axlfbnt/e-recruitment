@@ -140,6 +140,9 @@ class PsychologicalTestController extends Controller
             'excel_file' => 'required|mimes:xlsx,xls',
         ]);
 
+        // Ambil ID vacancy
+        $vacancyId = $request->input('vacancy_id');
+
         // Ambil file Excel
         $file = $request->file('excel_file');
         $spreadsheet = IOFactory::load($file);
@@ -151,11 +154,14 @@ class PsychologicalTestController extends Controller
         try {
             // Loop melalui data di Excel
             foreach ($dataArray as $row) {
-                $applicantName = $row['A']; // Kolom A: Nama Pelamar
-                $status = $row['B']; // Kolom B: Status (Pass / Reject)
+                $applicantId = $row['A']; // Kolom A: Applicant ID
+                $applicantName = $row['B']; // Kolom B: Nama Pelamar
+                $status = $row['C']; // Kolom C: Status (Pass / Reject)
 
                 // Cari pelamar berdasarkan nama
-                $applicant = TrxInputApplication::where('full_name', $applicantName)->first();
+                $applicant = DtlApplicantVacancy::where('applicant_id', $applicantId)
+                    ->where('vacancy', $vacancyId)
+                    ->first();
 
                 if ($applicant) {
                     // Pembaruan berdasarkan status

@@ -42,7 +42,7 @@
         });
 
         document.querySelector('.button-invite-vacancy').addEventListener('click', function() {
-            
+
             var modal = new bootstrap.Modal(document.getElementById('invitevacancy-modal'));
             modal.show();
         });
@@ -99,7 +99,7 @@
                         data: {
                             _token: '{{ csrf_token() }}',
                             status: 'Invited',
-                            applicants: selectedApplicants, 
+                            applicants: selectedApplicants,
                             vacancy_id: vacancyId,
                             invite_vacancy: inviteVacancy,
                             invite_stage: inviteStage
@@ -263,9 +263,12 @@
         $.ajax({
             url: "{{ route('psychological-test.import') }}", // Rute untuk mengimpor file
             type: 'POST',
-            data: formData,
-            processData: false, // Jangan proses data form
-            contentType: false, // Jangan tentukan content type, karena file diupload
+            data: {
+                formData,
+                vacancy_id: vacancyId
+            },
+            processData: false, 
+            contentType: false, 
             success: function(response) {
                 // Jika sukses, tampilkan pesan sukses dan tutup modal
                 $('#importMessage').html(
