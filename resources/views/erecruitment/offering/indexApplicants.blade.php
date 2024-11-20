@@ -49,20 +49,18 @@
                                 </div>
                                 <div class="vr mx-2"></div>
                                 <div>
+                                    <button type="button" class="btn btn-success ms-2 button-pass"
+                                        {{ $applicants->isEmpty() ? 'disabled' : '' }}>
+                                        <i class="ri-check-fill me-1"></i> Pass
+                                    </button>
                                     <button type="button" class="btn btn-soft-info ms-2 button-candidate-pooling"
-                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="tooltip"
-                                        data-bs-placement="top" data-bs-title="Candidate Pooling">
-                                        <i class="ri-inbox-archive-line"></i>
+                                        {{ $applicants->isEmpty() ? 'disabled' : '' }}>
+                                        <i class="ri-inbox-archive-line me-1"></i> Candidate Pooling
                                     </button>
                                     <button type="button" class="btn btn-soft-primary ms-2 button-invite-vacancy"
-                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="tooltip"
-                                        data-bs-placement="top" data-bs-title="Invite Vacancy">
-                                        <i class="ri-send-plane-fill"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-info ms-2 button-mcu"
-                                        {{ $applicants->isEmpty() ? 'disabled' : '' }} data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="ri-chat-forward-line me-1"></i> Medical Check Up Invitation
+                                        data-bs-toggle="modal" data-bs-target="#invitevacancy-modal"
+                                        {{ $applicants->isEmpty() ? 'disabled' : '' }}>
+                                        <i class="ri-send-plane-fill me-1"></i> Invite to Another Vacancy
                                     </button>
                                 </div>
                             </div>
@@ -340,20 +338,20 @@
                     <form class="needs-validation ps-3 pe-3" novalidate>
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input class="form-control" type="text" id="name" required disabled
-                                    placeholder="fill name">
-                                <div class="invalid-feedback">
-                                    Please fill a name.
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
                                 <label for="applicant-id" class="form-label">Applicant ID</label>
                                 <input class="form-control" type="text" id="applicant-id" required disabled
                                     placeholder="fill applicant id">
                                 <div class="invalid-feedback">
                                     Please fill an applicant id.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input class="form-control" type="text" id="name" required disabled
+                                    placeholder="fill name">
+                                <div class="invalid-feedback">
+                                    Please fill a name.
                                 </div>
                             </div>
                         </div>
