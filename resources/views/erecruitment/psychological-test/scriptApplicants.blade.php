@@ -256,31 +256,31 @@
     });
 
     $('#importModal form').on('submit', function(event) {
-        event.preventDefault(); // Mencegah form untuk disubmit secara default
+        event.preventDefault(); 
 
-        let formData = new FormData(this); // Ambil data form, termasuk file yang diunggah
+        let formData = new FormData(this);
+        formData.append('_token', '{{ csrf_token() }}');
 
         $.ajax({
-            url: "{{ route('psychological-test.import') }}", // Rute untuk mengimpor file
+            url: "{{ route('psychological-test.import') }}", 
             type: 'POST',
-            data: {
-                formData,
-                vacancy_id: vacancyId
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $('#importMessage').html(''); 
             },
-            processData: false, 
-            contentType: false, 
             success: function(response) {
-                // Jika sukses, tampilkan pesan sukses dan tutup modal
                 $('#importMessage').html(
                     '<div class="alert alert-success">Import successful!</div>');
                 $('#importModal').modal('hide');
-                location.reload();
+                setTimeout(function() {
+                    location.reload(); 
+                }, 1000);
             },
             error: function(xhr, status, error) {
-                // Jika ada error, tampilkan pesan error
-                $('#importMessage').html(
-                    '<div class="alert alert-danger">An error occurred. Please try again.</div>'
-                );
+                $('#importMessage').html('<div class="alert alert-danger">An error occurred: ' + xhr
+                    .responseText + '</div>');
             }
         });
     });

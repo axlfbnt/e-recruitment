@@ -377,6 +377,7 @@
 
     <!-- Modal for Import Excel -->
     <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        @csrf
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -393,7 +394,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Import</button>
                     </form>
-                    <div id="importMessage" class="mt-3"></div> <!-- Area untuk feedback -->
+                    <div id="importMessage" class="mt-3"></div>
                 </div>
             </div>
         </div>

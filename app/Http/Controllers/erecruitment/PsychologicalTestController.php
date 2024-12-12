@@ -11,15 +11,20 @@ use App\Models\erecruitment\table\DtlHistory;
 use App\Models\erecruitment\table\DtlJobExperience;
 use App\Models\erecruitment\table\MsDomicile;
 use App\Models\erecruitment\table\MsJobDesc;
+use App\Models\erecruitment\table\PsychologicalTestResult;
+use App\Models\erecruitment\table\PsychologicalTestSubscore;
 use App\Models\erecruitment\table\TrxInputApplication;
 use App\Models\erecruitment\view\VwInputApplicantion;
 use App\Models\erecruitment\view\VwPsychologicalTest;
 use DateTime;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class PsychologicalTestController extends Controller
@@ -135,58 +140,125 @@ class PsychologicalTestController extends Controller
 
     public function importBulkProcess(Request $request)
     {
-        // Validasi file
-        $request->validate([
+        // Validasi file yang diunggah
+        $validator = Validator::make($request->all(), [
             'excel_file' => 'required|mimes:xlsx,xls',
         ]);
 
-        // Ambil ID vacancy
-        $vacancyId = $request->input('vacancy_id');
-
-        // Ambil file Excel
-        $file = $request->file('excel_file');
-        $spreadsheet = IOFactory::load($file);
-        $worksheet = $spreadsheet->getActiveSheet();
-
-        // Menggunakan array_slice untuk menghapus baris pertama (header)
-        $dataArray = array_slice($worksheet->toArray(null, true, true, true), 1);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validasi gagal',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
 
         try {
-            // Loop melalui data di Excel
-            foreach ($dataArray as $row) {
-                $applicantId = $row['A']; // Kolom A: Applicant ID
-                $applicantName = $row['B']; // Kolom B: Nama Pelamar
-                $status = $row['C']; // Kolom C: Status (Pass / Reject)
+            // Membuka file Excel
+            $file = $request->file('excel_file');
+            $spreadsheet = IOFactory::load($file->getRealPath());
+            $worksheet = $spreadsheet->getActiveSheet();
 
-                // Cari pelamar berdasarkan nama
-                $applicant = DtlApplicantVacancy::where('applicant_id', $applicantId)
-                    ->where('vacancy', $vacancyId)
-                    ->first();
+            // Ambil semua baris dari file Excel
+            $headers = $worksheet->toArray(null, true, true, true);
+            $subtestHeaders = $headers[2]; // Baris kedua untuk nama subtest
+            $subtestDetails = $headers[3]; // Baris ketiga untuk Norm Score / Cut Off Score
+            $subscoreColumns = [];
 
-                if ($applicant) {
-                    // Pembaruan berdasarkan status
-                    if ($status === 'Pass') {
-                        // Update status untuk pelamar yang lulus
-                        $applicant->update([
-                            'last_stage' => 'Initial Interview',
-                            'psychological_status' => 'Pass Psychological Test',
-                            'interview_status' => 'Waiting for invitation',
-                        ]);
-                    } elseif ($status === 'Reject') {
-                        // Update status untuk pelamar yang ditolak
-                        $applicant->update([
-                            'applicant_status' => 'Rejected',
-                            'psychological_status' => 'Failed Psychological Test',
-                        ]);
+            // Iterasi seluruh kolom header pada baris ke-2
+            foreach ($subtestHeaders as $key => $value) {
+                if (!empty($value) && $value !== 'HASIL' && $value !== null) {
+                    $normScoreKey = $key; // Kolom saat ini
+                    $cutOffScoreKey = array_search('Cut Off Score', $subtestDetails) ?: null; // Cari pasangan kolom Cut Off Score
+
+                    if ($subtestDetails[$normScoreKey] === 'Norm Score' && $subtestDetails[$cutOffScoreKey] === 'Cut Off Score') {
+                        $subscoreColumns[] = [
+                            'subtest_name' => $value,
+                            'norm_score_column' => $normScoreKey,
+                            'cutoff_score_column' => $cutOffScoreKey,
+                        ];
                     }
                 }
             }
 
-            // Setelah semua data diproses, redirect dengan pesan sukses
-            return redirect()->route('psychological-test.index')->with('success', 'Bulk psychological test evaluation applied successfully!');
+            if (empty($subscoreColumns)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tidak ditemukan subtest yang valid dalam file Excel.',
+                ], 400);
+            }
+
+            // Data dimulai dari baris ke-4
+            $rows = array_slice($headers, 3); // Baris ke-4 ke bawah
+
+            foreach ($rows as $row) {
+                $applicantId = $row['B'] ?? null;
+                $vacancyId = $row['G'] ?? null;
+                $testDate = $row['H'] ?? null;
+                $finalResult = $row['Y'] ?? null;
+
+                if (!$applicantId || !$vacancyId || !$testDate || !$finalResult) {
+                    continue; // Abaikan baris yang tidak lengkap
+                }
+
+                // Konversi tanggal ke format SQL
+                try {
+                    $testDateFormatted = Carbon::createFromFormat('m/d/Y', $testDate)->format('Y-m-d');
+                } catch (\Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Format tanggal tidak valid untuk test_date: $testDate",
+                    ], 422);
+                }
+
+                // Membuat atau memperbarui hasil tes
+                $testResult = PsychologicalTestResult::updateOrCreate(
+                    ['applicant_id' => $applicantId, 'vacancy' => $vacancyId],
+                    ['test_date' => $testDateFormatted, 'final_result' => $finalResult]
+                );
+
+                // Memproses skor subtest
+                foreach ($subscoreColumns as $columns) {
+                    $subtestName = $columns['subtest_name'];
+                    $normScoreKey = $columns['norm_score_column']; 
+                    $cutOffScoreKey = $columns['cutoff_score_column'];
+
+                    $normScore = $row[$normScoreKey] ?? null;
+                    $cutOffScore = $row[$cutOffScoreKey] ?? null;
+
+                    // Validasi data skor
+                    if (is_numeric($normScore) && is_numeric($cutOffScore)) {
+                        PsychologicalTestSubscore::updateOrCreate(
+                            ['test_result_id' => $testResult->id, 'subtest_name' => $subtestName],
+                            [
+                                'norm_score' => $normScore,
+                                'cutoff_score' => $cutOffScore,
+                                'status' => $normScore >= $cutOffScore ? 'Pass' : 'Fail',
+                            ]
+                        );
+                    }
+                }
+
+                // Tambahkan logika untuk memperbarui DtlApplicantVacancy
+                DtlApplicantVacancy::where('applicant_id', $applicantId)
+                    ->where('vacancy', $vacancyId)
+                    ->update([
+                        'last_stage' => 'Initial Interview',
+                        'psychological_status' => 'Pass Psychological Test',
+                        'interview_status' => 'Waiting for invitation',
+                    ]);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Import data psikotes berhasil diproses!',
+            ], 200);
         } catch (\Exception $e) {
-            // Jika terjadi kesalahan, tampilkan pesan error
-            return redirect()->back()->with('error', 'An error occurred while importing data.');
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan selama proses impor.',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 
