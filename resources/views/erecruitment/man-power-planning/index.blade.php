@@ -429,8 +429,8 @@
                                     <option value="" disabled selected>Select last education</option>
                                     <option value="1">SMA/SMK/Sederajat</option>
                                     <option value="2">Diploma 3</option>
-                                    <option value="3">Sarjana 1</option>
-                                    <option value="4">Sarjana 2</option>
+                                    <option value="3">Sarjana</option>
+                                    <option value="4">Magister</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please choose a last education.
