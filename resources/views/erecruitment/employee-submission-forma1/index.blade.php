@@ -41,7 +41,7 @@
                                             Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="{{ route('forma1.index') }}">Employee
-                                            Submission</a>
+                                            Request</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Form A1</li>
                                 </ol>
@@ -56,10 +56,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="header-title mb-0">Manage Employee Submission (Form A1)</h4>
+                                    <h4 class="header-title mb-0">Manage Employee Request (Form A1)</h4>
                                     <button type="button" class="btn btn-success rounded-pill button-add"
                                         data-bs-toggle="modal" data-bs-target="#addforma1-modal">
-                                        <i class="fa fa-plus"></i> Add Row
+                                        <i class="fa fa-plus"></i> Create Data
                                     </button>
                                 </div>
                                 <div class="alert alert-success d-none" id="alert-save-success" role="alert">
@@ -139,7 +139,7 @@
                                     style="vertical-align: middle; width: 35px; height: auto;">
                                 <span
                                     style="vertical-align: middle; font-size: 15px; font-weight: bold; margin-left: 10px;">
-                                    EMPLOYEE SUBMISSION (FORM A1)
+                                    EMPLOYEE REQUEST (FORM A1)
                                 </span>
                             </span>
                         </a>
@@ -229,6 +229,17 @@
                                 <!-- REQUIRED POSITION -->
                                 <div class="tab-pane" id="required-position">
                                     <div class="mb-2">
+                                        <div class="mt-2">
+                                            <div class="form-check form-check-inline">
+                                                <input type="checkbox" class="form-check-input"
+                                                    id="forma1-withoutmpp-checkbox" onchange="setFormA1WithoutMPP()">
+                                                <label class="form-check-label" for="forma1-withoutmpp-checkbox">Form A1
+                                                    Without MPP</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-2" id="position-withMPP-container" style="display: none;">
                                         <label for="position" class="form-label">Position</label>
                                         <select class="form-control select2" data-toggle="select2" id="position"
                                             name="position" required>
@@ -240,61 +251,163 @@
                                         </div>
                                     </div>
 
+                                    <div class="mb-2" id="position-withoutMPP-container" style="display: none;">
+                                        <label for="position-withoutMPP" class="form-label">Position</label>
+                                        <select class="form-control select2" data-toggle="select2"
+                                            id="position-withoutMPP" required>
+                                            <option value="" disabled selected>Select position</option>
+                                            <!-- Options akan dimuat secara dinamis menggunakan AJAX -->
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please choose a position.
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-2" id="new-position-container" style="display: none;">
+                                        <label for="new-position" class="form-label">New Position</label>
+                                        <input class="form-control" type="text" id="new-position" required
+                                            placeholder="fill new position">
+                                        <div class="invalid-feedback">
+                                            Please fill a new position.
+                                        </div>
+                                    </div>
+
                                     <div class="mb-2">
                                         <label for="direct-supervisor" class="form-label">Direct Supervisor</label>
-                                        <input class="form-control" type="text" id="direct-supervisor" required
-                                            disabled placeholder="Fill direct supervisor">
+                                        <input class="form-control" type="text" id="direct-supervisor"
+                                            value="{{ Auth::user()->name }}" required disabled
+                                            placeholder="Fill direct supervisor">
                                         <div class="invalid-feedback">
                                             Please choose a direct supervisor.
                                         </div>
                                     </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-md-6">
-                                            <label for="position-status" class="form-label">Position Status</label>
-                                            <input class="form-control" type="text" id="position-status" required
-                                                disabled placeholder="Fill position status">
-                                            <div class="invalid-feedback">
-                                                Please fill position status.
+                                    <div id="detailPosition-withMPP-container" style="display: none;">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <label for="position-status" class="form-label">Position Status</label>
+                                                <input class="form-control" type="text" id="position-status" required
+                                                    disabled placeholder="Fill position status">
+                                                <div class="invalid-feedback">
+                                                    Please fill position status.
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="source-submission" class="form-label">Source of
+                                                    Submission</label>
+                                                <input class="form-control" type="text" id="source-submission"
+                                                    required disabled placeholder="Fill source fulfillment man power">
+                                                <div class="invalid-feedback">
+                                                    Please fill source fulfillment man power.
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <label for="job-position" class="form-label">Job Position</label>
-                                            <input class="form-control" type="text" id="job-position" required
-                                                disabled placeholder="Fill job position">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <label for="job-position" class="form-label">Job Position</label>
+                                                <input class="form-control" type="text" id="job-position" required
+                                                    disabled placeholder="Fill job position">
+                                                <div class="invalid-feedback">
+                                                    Please fill job position.
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="number-requests" class="form-label">Number of Requests</label>
+                                                <input class="form-control" type="number" id="number-requests" required
+                                                    placeholder="Fill number of requests" min="" max="">
+                                                <div class="invalid-feedback">
+                                                    Please fill number of requests.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="join-date" class="form-label">Join Date</label>
+                                            <input class="form-control" type="date" id="join-date" required disabled
+                                                placeholder="fill join date">
                                             <div class="invalid-feedback">
-                                                Please fill job position.
+                                                Please set a join date.
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="mb-2">
-                                        <label for="join-date" class="form-label">Join Date</label>
-                                        <input class="form-control" type="date" id="join-date" required disabled
-                                            placeholder="fill join date">
-                                        <div class="invalid-feedback">
-                                            Please set a join date.
-                                        </div>
-                                    </div>
+                                    <div id="detailPosition-withoutMPP-container" style="display: none;">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <label for="position-status-withoutMPP" class="form-label">Position
+                                                    Status</label>
+                                                <select class="form-select" id="position-status-withoutMPP" required>
+                                                    <option value="" disabled selected>select position status
+                                                    </option>
+                                                    <option value="Replacement">Replacement</option>
+                                                    <option value="New">New</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please choose a position status.
+                                                </div>
+                                            </div>
 
-                                    <div class="row mb-2">
-                                        <div class="col-md-6">
-                                            <label for="number-requests" class="form-label">Number of Requests</label>
-                                            <input class="form-control" type="number" id="number-requests" required
-                                                placeholder="Fill number of requests" min="" max="">
-                                            <div class="invalid-feedback">
-                                                Please fill number of requests.
+                                            <div class="col-md-6">
+                                                <label for="source-submission-withoutMPP" class="form-label">Source of
+                                                    Submission</label>
+                                                <select class="form-select" id="source-submission-withoutMPP" required>
+                                                    <option value="" disabled selected>select source</option>
+                                                    <option value="Organik">Organik</option>
+                                                    <option value="Outsource">Outsource</option>
+                                                    <option value="Pelatihan Kerja">Pelatihan Kerja</option>
+                                                    <option value="OS PKWT">OS PKWT</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please choose a source.
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <label for="source-submission" class="form-label">Source of Fulfillment Man
-                                                Power</label>
-                                            <input class="form-control" type="text" id="source-submission" required
-                                                disabled placeholder="Fill source fulfillment man power">
+                                        <div class="mb-2" id="vendor-container" style="display: none;">
+                                            <label for="vendor" class="form-label">Vendor</label>
+                                            <select class="form-select" id="vendor" required>
+                                                <option value="" disabled selected>select vendor</option>
+                                            </select>
                                             <div class="invalid-feedback">
-                                                Please fill source fulfillment man power.
+                                                Please choose a vendor.
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <label for="job-position-withoutMPP" class="form-label">Job
+                                                    Position</label>
+                                                <select class="form-select" id="job-position-withoutMPP" required>
+                                                    <option value="" disabled selected>select job position</option>
+                                                    <option value="Head Office">Head Office</option>
+                                                    <option value="Plant">Plant</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please choose a job position.
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="number-requests-withoutMPP" class="form-label">Number of
+                                                    Requests</label>
+                                                <input class="form-control" type="number"
+                                                    id="number-requests-withoutMPP" required
+                                                    placeholder="Fill number of requests">
+                                                <div class="invalid-feedback">
+                                                    Please fill a number of requests.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="join-date-withoutMPP" class="form-label">Join Date</label>
+                                            <input class="form-control" type="date" id="join-date-withoutMPP" required
+                                                placeholder="fill join date">
+                                            <div class="invalid-feedback">
+                                                Please set a join date.
                                             </div>
                                         </div>
                                     </div>
@@ -323,12 +436,26 @@
                                         </div>
                                     </div>
 
-                                    <div class="mb-2">
+                                    <div class="mb-2" id="last-education-withMPP-container" style="display: none;">
                                         <label for="last-education" class="form-label">Last Education</label>
                                         <input class="form-control" type="text" id="last-education" required disabled
                                             placeholder="Fill last education">
                                         <div class="invalid-feedback">
                                             Please fill last education.
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-2" id="last-education-withoutMPP-container" style="display: none;">
+                                        <label for="last-education-withoutMPP" class="form-label">Last Education</label>
+                                        <select class="form-select" id="last-education-withoutMPP" required>
+                                            <option value="" disabled selected>select last education</option>
+                                            <option value="SMA/SMK/Sederajat">SMA/SMK/Sederajat</option>
+                                            <option value="Diploma 3">Diploma 3</option>
+                                            <option value="Sarjana">Sarjana</option>
+                                            <option value="Magister">Magister</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please choose a last education.
                                         </div>
                                     </div>
 
@@ -429,7 +556,7 @@
                                     style="vertical-align: middle; width: 35px; height: auto;">
                                 <span
                                     style="vertical-align: middle; font-size: 15px; font-weight: bold; margin-left: 10px;">
-                                    EDIT EMPLOYEE SUBMISSION (FORM A1)
+                                    EDIT EMPLOYEE REQUEST (FORM A1)
                                 </span>
                             </span>
                         </a>

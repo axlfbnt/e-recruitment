@@ -40,7 +40,7 @@
                                     <h4 class="header-title mb-0">Manage Job Description</h4>
                                     <button type="button" class="btn btn-success rounded-pill button-add"
                                         data-bs-toggle="modal" data-bs-target="#addjobdesc-modal">
-                                        <i class="fa fa-plus"></i> Add Row
+                                        <i class="fa fa-plus"></i> Create Data
                                     </button>
                                 </div>
                                 <div class="alert alert-success d-none" id="alert-save-success" role="alert">
@@ -63,6 +63,7 @@
                                             <th>Job Description</th>
                                             <th>Updated By</th>
                                             <th>Created At</th>
+                                            <th>Updated At</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

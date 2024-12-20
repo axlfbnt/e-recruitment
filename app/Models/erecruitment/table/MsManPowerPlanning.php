@@ -35,4 +35,5 @@ class MsManPowerPlanning extends Model
         "updated_at",
         "deleted_at",
     ];
+    protected $guarded = ['vendor'];
 }

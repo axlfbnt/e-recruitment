@@ -4,6 +4,7 @@ namespace App\Http\Controllers\erecruitment;
 
 use App\Http\Controllers\Controller;
 use App\Models\erecruitment\table\MsManPowerPlanning;
+use App\Models\erecruitment\table\MsVendor;
 use App\Models\erecruitment\view\VwCompanyStructure;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
@@ -77,6 +78,13 @@ class ManPowerPlanningController extends Controller
         return response()->json(['positions' => $positions]);
     }
 
+    public function getVendor()
+    {
+        $vendors = MsVendor::all();
+
+        return response()->json(['vendor' => $vendors]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -108,7 +116,8 @@ class ManPowerPlanningController extends Controller
             'last_education' => 'required|integer',
             'remarks' => 'nullable|string',
             'due_date' => 'required|date',
-            'new_position' => 'nullable|string', // Tambahkan ini untuk memvalidasi new_position
+            'new_position' => 'nullable|string', 
+            'vendor' => 'nullable', 
         ]);
 
         // Ambil data dari request
@@ -124,7 +133,8 @@ class ManPowerPlanningController extends Controller
             'last_education',
             'remarks',
             'due_date',
-            'new_position', // Ambil new_position jika ada
+            'new_position', 
+            'vendor', 
         ]);
 
         // Periksa apakah posisi adalah "Others"

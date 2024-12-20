@@ -48,6 +48,27 @@
                     visible: false
                 },
                 {
+                    data: 'updated_at',
+                    render: function(data) {
+                        if (!data) return ''; 
+
+                        let date = new Date(data);
+
+                        if (isNaN(date.getTime())) return '';
+
+                        let day = date.getUTCDate().toString().padStart(2, '0');
+                        let month = date.toLocaleString('en-US', {
+                            month: 'short'
+                        });
+                        let year = date.getUTCFullYear();
+                        let hours = date.getUTCHours().toString().padStart(2, '0');
+                        let minutes = date.getUTCMinutes().toString().padStart(2, '0');
+                        let seconds = date.getUTCSeconds().toString().padStart(2, '0');
+
+                        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+                    }
+                },
+                {
                     data: 'action',
                     orderable: false,
                     searchable: false
@@ -75,10 +96,10 @@
 
         $('#addjobdesc-modal').on('shown.bs.modal', function() {
             $('#department').select2({
-                dropdownParent: $('#addjobdesc-modal') 
+                dropdownParent: $('#addjobdesc-modal')
             });
             $('#position').select2({
-                dropdownParent: $('#addjobdesc-modal') 
+                dropdownParent: $('#addjobdesc-modal')
             });
         });
 

@@ -135,9 +135,43 @@
             });
         });
 
+        // Inisialisasi inputan with MPP show dan without MPP hide, Memunculkan Position with MPP
+        $('#position-withMPP-container').show();
+        // Menghilangkan Position without MPP
+        $('#position-withoutMPP-container').hide();
+        // Memunculkan Position Detail with MPP
+        $('#detailPosition-withMPP-container').show();
+        // Menghilangkan Position Detail without MPP
+        $('#detailPosition-withoutMPP-container').hide();
+        // Memunculkan Last Education with MPP
+        $('#last-education-withMPP-container').show();
+        // Menghilangkan Last Education without MPP
+        $('#last-education-withoutMPP-container').hide();
+        // Menambahkan required pada Position with MPP dan detail-nya
+        $('#position').prop('required', true);
+        $('#position-status').prop('required', true);
+        $('#source-submission').prop('required', true);
+        $('#job-position').prop('required', true);
+        $('#number-requests').prop('required', true);
+        $('#join-date').prop('required', true);
+        $('#last-education').prop('required', true);
+        // Menghilangkan required pada Position without MPP dan detail-nya
+        $('#position-withoutMPP').prop('required', false);
+        $('#new-position').prop('required', false);
+        $('#position-status-withoutMPP').prop('required', false);
+        $('#source-submission-withoutMPP').prop('required', false);
+        $('#vendor').prop('required', false);
+        $('#job-position-withoutMPP').prop('required', false);
+        $('#number-requests-withoutMPP').prop('required', false);
+        $('#join-date-withoutMPP').prop('required', false);
+        $('#last-education-withoutMPP').prop('required', false);
+
         $('#addforma1-modal').on('shown.bs.modal', function() {
             $('#position').select2({
-                dropdownParent: $('#addforma1-modal') 
+                dropdownParent: $('#addforma1-modal')
+            });
+            $('#position-withoutMPP').select2({
+                dropdownParent: $('#addforma1-modal')
             });
         });
 
@@ -161,6 +195,136 @@
                 console.error('Error fetching positions:', error);
             }
         });
+
+        $.ajax({
+            url: "{{ url('get-positions') }}",
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                company_name: '{{ Auth::user()->company_name }}',
+                department: $('#department').val(),
+                division: $('#division').val()
+            },
+            success: function(data) {
+                let positionOptions =
+                    '<option value="" disabled selected>Select position</option>';
+
+                if (data.positions.length > 0) {
+                    $.each(data.positions, function(
+                        index, position) {
+                        positionOptions +=
+                            '<option value="' +
+                            position +
+                            '">' +
+                            position +
+                            '</option>';
+                    });
+                } else {
+                    positionOptions +=
+                        '<option value="Others">Others</option>';
+                }
+
+                // Always add the 'Others' option at the end
+                positionOptions +=
+                    '<option value="Others">Others</option>';
+
+                $('#position-withoutMPP').html(
+                    positionOptions);
+            }
+        });
+
+        $.ajax({
+            url: "{{ route('get.vendor') }}",
+            type: 'GET',
+            success: function(data) {
+                let vendorOptions = '<option value="" disabled selected>Select vendor</option>';
+
+                $.each(data.vendor, function(index, vendor) {
+                    vendorOptions += '<option value="' + vendor.id + '">' + vendor
+                        .vendor + '</option>';
+                });
+                $('#vendor').html(vendorOptions);
+            }
+        });
+    });
+
+    function setFormA1WithoutMPP() {
+        var checkbox = document.getElementById('forma1-withoutmpp-checkbox');
+
+        if (checkbox.checked) {
+            // Menghilangkan Position with MPP
+            $('#position-withMPP-container').hide();
+            // Memunculkan Position without MPP
+            $('#position-withoutMPP-container').show();
+            // Menghilangkan Position Detail with MPP
+            $('#detailPosition-withMPP-container').hide();
+            // Memunculkan Position Detail without MPP
+            $('#detailPosition-withoutMPP-container').show();
+            // Menghilangkan Last Education with MPP
+            $('#last-education-withMPP-container').hide();
+            // Memunculkan Last Education without MPP
+            $('#last-education-withoutMPP-container').show();
+            // Menghilangkan required pada Position with MPP dan detail-nya
+            $('#position').prop('required', false);
+            $('#position-status').prop('required', false);
+            $('#source-submission').prop('required', false);
+            $('#job-position').prop('required', false);
+            $('#number-requests').prop('required', false);
+            $('#join-date').prop('required', false);
+            $('#last-education').prop('required', false);
+            // Menambahkan required pada Position without MPP dan detail-nya
+            $('#position-withoutMPP').prop('required', true);
+            $('#position-status-withoutMPP').prop('required', true);
+            $('#source-submission-withoutMPP').prop('required', true);
+            $('#job-position-withoutMPP').prop('required', true);
+            $('#number-requests-withoutMPP').prop('required', true);
+            $('#join-date-withoutMPP').prop('required', true);
+            $('#last-education-withoutMPP').prop('required', true);
+            resetAddFormA1ForCheckbox();
+        } else {
+            // Memunculkan Position with MPP
+            $('#position-withMPP-container').show();
+            // Menghilangkan Position without MPP
+            $('#position-withoutMPP-container').hide();
+            // Memunculkan Position Detail with MPP
+            $('#detailPosition-withMPP-container').show();
+            // Menghilangkan Position Detail without MPP
+            $('#detailPosition-withoutMPP-container').hide();
+            // Memunculkan Last Education with MPP
+            $('#last-education-withMPP-container').show();
+            // Menghilangkan Last Education without MPP
+            $('#last-education-withoutMPP-container').hide();
+            // Menambahkan required pada Position with MPP dan detail-nya
+            $('#position').prop('required', true);
+            $('#position-status').prop('required', true);
+            $('#source-submission').prop('required', true);
+            $('#job-position').prop('required', true);
+            $('#number-requests').prop('required', true);
+            $('#join-date').prop('required', true);
+            $('#last-education').prop('required', true);
+            // Menghilangkan required pada Position without MPP dan detail-nya
+            $('#position-withoutMPP').prop('required', false);
+            $('#position-status-withoutMPP').prop('required', false);
+            $('#source-submission-withoutMPP').prop('required', false);
+            $('#job-position-withoutMPP').prop('required', false);
+            $('#number-requests-withoutMPP').prop('required', false);
+            $('#join-date-withoutMPP').prop('required', false);
+            $('#last-education-withoutMPP').prop('required', false);
+            resetAddFormA1ForCheckbox();
+        }
+    }
+
+    // Memunculkan input untuk new position ketika Position without MPP selected is Others
+    $('#position-withoutMPP').on('change', function() {
+        var selectedValue = $(this).val();
+
+        if (selectedValue === 'Others') {
+            $('#new-position-container').show();
+            $('#new-position').prop('required', true);
+        } else {
+            $('#new-position-container').hide();
+            $('#new-position').prop('required', false);
+        }
     });
 
     $('#position').on('change', function() {
@@ -178,7 +342,6 @@
             },
             dataType: 'json',
             success: function(response) {
-                $('#direct-supervisor').val(response.direct_supervisor);
                 $('#position-status').val(response.position_status);
                 $('#job-position').val(response.job_position);
                 $('#join-date').val(response.due_date);
@@ -191,11 +354,26 @@
                 $('#source-submission').val(response.source_submission);
                 quillJobDesk.root.innerHTML = response.job_desc || '';
                 $('#last-education').val(response.last_education);
+                quillPersonalityTraits.root.innerHTML = response.personality_traits || '';
+                quillRequiredSkills.root.innerHTML = response.required_skills || '';
             },
             error: function(xhr, status, error) {
                 console.error('Error fetching position details:', error);
             }
         });
+    });
+
+    // Memunculkan dropdownlist untuk vendor list ketika source-submission selected is Outsource atau OS PKWT
+    $('#source-submission-withoutMPP').on('change', function() {
+        var selectedValue = $(this).val();
+
+        if (selectedValue === 'Outsource' || selectedValue === 'OS PKWT') {
+            $('#vendor-container').show();
+            $('#vendor').prop('required', true); // Menjadikan field required
+        } else {
+            $('#vendor-container').hide();
+            $('#vendor').prop('required', false); // Menghilangkan required jika tidak dipilih
+        }
     });
 
     // Fungsi untuk menambah input major
@@ -230,6 +408,9 @@
         formData.append('join_date', $('#join-date').val());
         formData.append('number_requests', $('#number-requests').val());
 
+        var is_withmpp = $('#forma1-withoutmpp-checkbox').is(':checked') ? 'Without MPP' : 'With MPP';
+        formData.append('is_withmpp', is_withmpp);
+
         // Ambil nilai dari dropdowns
         formData.append('position', $('#position').val());
         formData.append('direct_supervisor', $('#direct-supervisor').val());
@@ -237,6 +418,17 @@
         formData.append('job_position', $('#job-position').val());
         formData.append('source_submission', $('#source-submission').val());
         formData.append('last_education', $('#last-education').val());
+
+        // Ambil nilai untuk without MPP
+        formData.append('position_withoutMPP', $('#position-withoutMPP').val());
+        formData.append('position_status_withoutMPP', $('#position-status-withoutMPP').val());
+        formData.append('source_submission_withoutMPP', $('#source-submission-withoutMPP').val());
+        formData.append('job_position_withoutMPP', $('#job-position-withoutMPP').val());
+        formData.append('number_requests_withoutMPP', $('#number-requests-withoutMPP').val());
+        formData.append('last_education_withoutMPP', $('#last-education-withoutMPP').val());
+        formData.append('join_date_withoutMPP', $('#join-date-withoutMPP').val());
+        formData.append('vendor', $('#vendor').val());
+        formData.append('new_position', $('#new-position').val());
 
         // Ambil nilai dari Quill editor
         formData.append('job_desc', quillJobDesk.root.innerHTML); // Mengambil isi dari editor job_desc
@@ -292,6 +484,7 @@
     function simpan() {
         var formData = collectDataAddFormA1();
         formData.append('_token', '{{ csrf_token() }}');
+        console.log(formData);
 
         $.ajax({
             url: "{{ url('employee-submission-forma1') }}",
@@ -630,9 +823,50 @@
         $('#join-date').val('');
         $('#number-requests').val('');
 
+        $('#position').val('').change();
+        $('#position-status').val('');
+        $('#job-position').val('');
+        $('#source-submission').val('');
+        $('#last-education').val('');
+
+        // Reset Quill editors
+        quillJobDesk.setContents([]);
+        quillPersonalityTraits.setContents([]);
+        quillRequiredSkills.setContents([]);
+
+        // Reset checkboxes
+        $('#man').prop('checked', false);
+        $('#woman').prop('checked', false);
+        $('#marry').prop('checked', false);
+        $('#single').prop('checked', false);
+        $('#forma1-withoutmpp-checkbox').prop('checked', false);
+
+        // Reset dynamic major fields
+        $('#major-container .row').slice(1).remove();
+        $('#major-container .row:first-child input').val('');
+
+        document.querySelectorAll('.nav-link').forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-pane').forEach(function(content) {
+            content.classList.remove('active', 'show');
+        });
+
+        document.querySelector('a[href="#information"]').classList.add('active');
+        document.getElementById('information').classList.add('active', 'show');
+        document.querySelector('.bar').style.width = '33%';
+    }
+
+    // Reset Modal Add Form A1
+    function resetAddFormA1ForCheckbox() {
+        // Reset input teks biasa
+        $('#no-form').val("{{ $formattedId }}");
+        $('#join-date').val('');
+        $('#join-date').val('');
+        $('#number-requests').val('');
+
         // Reset dropdowns
         $('#position').val('').change();
-        $('#direct-supervisor').val('').change();
         $('#position-status').val('');
         $('#job-position').val('');
         $('#source-submission').val('');
@@ -652,17 +886,6 @@
         // Reset dynamic major fields
         $('#major-container .row').slice(1).remove();
         $('#major-container .row:first-child input').val('');
-
-        document.querySelectorAll('.nav-link').forEach(function(tab) {
-            tab.classList.remove('active');
-        });
-        document.querySelectorAll('.tab-pane').forEach(function(content) {
-            content.classList.remove('active', 'show');
-        });
-
-        document.querySelector('a[href="#information"]').classList.add('active');
-        document.getElementById('information').classList.add('active', 'show');
-        document.querySelector('.bar').style.width = '33%';
     }
 
     var quillJobDesk = new Quill("#job-desc", {

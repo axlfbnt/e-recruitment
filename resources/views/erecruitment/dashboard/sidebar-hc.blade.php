@@ -9,7 +9,7 @@
 <li class="side-nav-item" style="margin-bottom: 7px;">
     <a href="{{ url('employee-submission-forma1') }}" class="side-nav-link">
         <i class="ri-inbox-unarchive-line"></i>
-        <span> Employee Submission </span>
+        <span> Employee Request (Form A1) </span>
     </a>
 </li>
 

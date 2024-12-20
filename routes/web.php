@@ -55,6 +55,7 @@ Route::get('/get-companies', [ManPowerPlanningController::class, 'getCompanies']
 Route::post('/get-departments', [ManPowerPlanningController::class, 'getDepartments'])->name('get.departments');
 Route::post('/get-division', [ManPowerPlanningController::class, 'getDivision'])->name('get.division');
 Route::post('/get-positions', [ManPowerPlanningController::class, 'getPositions'])->name('get.positions');
+Route::get('/get-vendor', [ManPowerPlanningController::class, 'getVendor'])->name('get.vendor');
 
 // Rute untuk EmployeeSubmissionFormA1Controller dengan prefix 'Employee Submission Form A1'
 Route::prefix('employee-submission-forma1')->group(function () {

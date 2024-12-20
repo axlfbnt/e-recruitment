@@ -124,6 +124,8 @@
                             labelClass = 'label-onprocess';
                         } else if (data === 'Close' || data === 'Closed') {
                             labelClass = 'label-close';
+                        } else if (data === 'Need Approval') {
+                            labelClass = 'label-close';
                         }
                         return '<span class="' + labelClass + '">' + data +
                             '</span>';
@@ -157,10 +159,10 @@
 
         $('#addmpp-modal').on('shown.bs.modal', function() {
             $('#department').select2({
-                dropdownParent: $('#addmpp-modal') 
+                dropdownParent: $('#addmpp-modal')
             });
             $('#position').select2({
-                dropdownParent: $('#addmpp-modal') 
+                dropdownParent: $('#addmpp-modal')
             });
         });
 
@@ -221,7 +223,7 @@
 
                     if ($('#division')
                         .val()
-                    ) { // Load Data Position by Company, Department, and Division Selected
+                    ) { 
                         $.ajax({
                             url: "{{ url('get-positions') }}",
                             type: 'POST',
@@ -277,6 +279,34 @@
                 $('#new-position').prop('required', false); // Menghilangkan required jika tidak dipilih
             }
         });
+
+        // Load Data Vendor
+        $.ajax({
+            url: "{{ route('get.vendor') }}",
+            type: 'GET',
+            success: function(data) {
+                let vendorOptions = '<option value="" disabled selected>Select vendor</option>';
+
+                $.each(data.vendor, function(index, vendor) {
+                    vendorOptions += '<option value="' + vendor.id + '">' + vendor
+                        .vendor + '</option>';
+                });
+                $('#vendor').html(vendorOptions);
+            }
+        });
+    });
+
+    // Memunculkan dropdownlist untuk vendor list ketika source-submission selected is Outsource atau OS PKWT
+    $('#source-submission').on('change', function() {
+        var selectedValue = $(this).val();
+
+        if (selectedValue === '2' || selectedValue === '4') {
+            $('#vendor-container').show();
+            $('#vendor').prop('required', true); // Menjadikan field required
+        } else {
+            $('#vendor-container').hide();
+            $('#vendor').prop('required', false); // Menghilangkan required jika tidak dipilih
+        }
     });
 
     // Collect data dari form Add MPP
@@ -295,6 +325,7 @@
         }
 
         formData.append('source_submission', $('#source-submission').val());
+        formData.append('vendor', $('#vendor').val());
         formData.append('job_position', $('#job-position').val());
         formData.append('total_man_power', $('#total-man-power').val());
         formData.append('last_education', $('#last-education').val());
@@ -465,7 +496,7 @@
             type: 'DELETE',
             data: {
                 "_token": $('meta[name="csrf-token"]').attr(
-                    'content') 
+                    'content')
             },
             success: function(response) {
                 console.log(response.message);

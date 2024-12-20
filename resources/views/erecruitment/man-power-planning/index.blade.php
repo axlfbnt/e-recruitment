@@ -67,7 +67,7 @@
                                     <h4 class="header-title mb-0">Manage Man Power Planning</h4>
                                     <button type="button" class="btn btn-success rounded-pill button-add"
                                         data-bs-toggle="modal" data-bs-target="#addmpp-modal">
-                                        <i class="fa fa-plus"></i> Add Row
+                                        <i class="fa fa-plus"></i> Create Data
                                     </button>
                                 </div>
                                 <div class="alert alert-success d-none" id="alert-save-success" role="alert">
@@ -178,7 +178,7 @@
 
                         <div class="mb-2">
                             <label for="division" class="form-label">Division</label>
-                            <input class="form-control" type="text" id="division" required readonly
+                            <input class="form-control" type="text" id="division" required disabled
                                 placeholder="fill division">
                             <div class="invalid-feedback">
                                 Please fill a division.
@@ -247,6 +247,16 @@
                             </div>
                         </div>
 
+                        <div class="mb-2" id="vendor-container" style="display: none;">
+                            <label for="vendor" class="form-label">Vendor</label>
+                            <select class="form-select" id="vendor" required>
+                                <option value="" disabled selected>select vendor</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please choose a vendor.
+                            </div>
+                        </div>
+
                         <div class="row mb-2">
                             <div class="col-md-6">
                                 <label for="total-man-power" class="form-label">Total Man Power</label>
@@ -262,8 +272,8 @@
                                     <option value="" disabled selected>select last education</option>
                                     <option value="1">SMA/SMK/Sederajat</option>
                                     <option value="2">Diploma 3</option>
-                                    <option value="3">Sarjana 1</option>
-                                    <option value="4">Sarjana 2</option>
+                                    <option value="3">Sarjana</option>
+                                    <option value="4">Magister</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please choose a last education.

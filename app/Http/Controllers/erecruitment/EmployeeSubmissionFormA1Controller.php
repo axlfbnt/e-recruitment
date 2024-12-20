@@ -140,6 +140,10 @@ class EmployeeSubmissionFormA1Controller extends Controller
                 ->where('position', $positionId)
                 ->first();
 
+            $personality_traits = MsFormA1::select('personality_traits')
+                ->where('position', $positionId)
+                ->first();
+
             // Mapping untuk position_status
             $positionStatusMapping = [
                 1 => 'Replacement',
@@ -158,22 +162,19 @@ class EmployeeSubmissionFormA1Controller extends Controller
             $lastEducationMapping = [
                 1 => 'SMA/SMK/Sederajat',
                 2 => 'Diploma 3',
-                3 => 'Sarjana 1',
-                4 => 'Sarjana 2'
+                3 => 'Sarjana',
+                4 => 'Magister'
             ];
-
-            // Direct supervisor Auth user Dept Head
-            $direct_supervisor = Auth::user()->name;
 
             $response = [
                 'position_status' => $positionStatusMapping[$mpp->position_status] ?? 'N/A',
                 'job_position' => $mpp->job_position,
                 'due_date' => $mpp->due_date,
-                'total_man_power' => $remainingQuota, // Menampilkan sisa kuota
+                'total_man_power' => $remainingQuota,
                 'source_submission' => $sourceSubmissionMapping[$mpp->source_submission] ?? 'N/A',
                 'job_desc' => $jobdesc ? $jobdesc->job_desc : null,
                 'last_education' => $lastEducationMapping[$mpp->last_education] ?? 'N/A',
-                'direct_supervisor' => $direct_supervisor,
+                'personality_traits' => $personality_traits ? $personality_traits->personality_traits : null,
                 'required_skills' => $required_skills ? $required_skills->required_skills : null,
             ];
 
@@ -205,83 +206,189 @@ class EmployeeSubmissionFormA1Controller extends Controller
         $request->validate([
             'no_form' => 'required|string',
             'due_date' => 'required|date',
-            'join_date' => 'required|date',
-            'number_requests' => 'required|integer',
-            'position' => 'required|string',
+            'join_date' => 'nullable|date',
+            'number_requests' => 'nullable|integer',
+            'position' => 'nullable',
             'direct_supervisor' => 'required|string',
-            'position_status' => 'required|string',
-            'job_position' => 'required|string',
-            'source_submission' => 'required|string',
-            'last_education' => 'required|string',
+            'position_status' => 'nullable|string',
+            'job_position' => 'nullable|string',
+            'source_submission' => 'nullable|string',
+            'last_education' => 'nullable|string',
             'job_desc' => 'required|string',
             'personality_traits' => 'required|string',
             'required_skills' => 'required|string',
             'gender' => 'required|string',
             'marital_status' => 'required|string',
             'majors' => 'required|string',
+            'vendor' => 'nullable', 
         ]);
 
-        // Ambil data manpower planning berdasarkan id_mpp
-        $manpower = MsManPowerPlanning::where('id_mpp', $request->input('position'))->first();
-        if (!$manpower) {
-            return response()->json(['error' => 'Manpower Planning not found'], 404);
-        }
-        $position = $manpower->position; // Ambil position dari manpower planning
+        if ($request->input('is_withmpp') == 'With MPP') {
+            // Ambil data manpower planning berdasarkan id_mpp
+            $manpower = MsManPowerPlanning::where('id_mpp', $request->input('position'))->first();
+            if (!$manpower) {
+                return response()->json(['error' => 'Manpower Planning not found'], 404);
+            }
+            $position = $manpower->position; // Ambil position dari manpower planning
 
-        // Cek apakah job_desc sudah ada di MsJobDesc
-        $jobDesc = MsJobDesc::where('position', $position)
-            ->where('department', Auth::user()->department)
-            ->first();
+            // Cek apakah job_desc sudah ada di MsJobDesc
+            $jobDesc = MsJobDesc::where('position', $position)
+                ->where('department', Auth::user()->department)
+                ->first();
 
-        $maxId = MsJobDesc::withTrashed()->max('id_jobdesc');
-        $nextId = $maxId ? $maxId + 1 : 1;
+            $maxId = MsJobDesc::withTrashed()->max('id_jobdesc');
+            $nextId = $maxId ? $maxId + 1 : 1;
 
-        if ($jobDesc) {
-            // Jika job_desc ada, cek apakah job_desc dari request berbeda dengan yang ada di database
-            if ($jobDesc->job_desc !== $request->input('job_desc')) {
-                // Jika berbeda, lakukan update
-                $jobDesc->update([
+            if ($jobDesc) {
+                // Jika job_desc ada, cek apakah job_desc dari request berbeda dengan yang ada di database
+                if ($jobDesc->job_desc !== $request->input('job_desc')) {
+                    // Jika berbeda, lakukan update
+                    $jobDesc->update([
+                        'job_desc' => $request->input('job_desc'),
+                        'updated_by' => Auth::user()->id,
+                    ]);
+                }
+            } else {
+                MsJobDesc::create([
+                    'id_jobdesc' => $nextId,
+                    'company' => Auth::user()->company_name,
+                    'department' => Auth::user()->department,
+                    'division' => Auth::user()->division,
+                    'position' => $position, // Gunakan position dari manpower planning
                     'job_desc' => $request->input('job_desc'),
-                    'updated_by' => Auth::user()->id,
+                    'created_by' => Auth::user()->id,
                 ]);
             }
+
+            MsFormA1::create([
+                'id_form_a1' => $request->input('no_form'),
+                'department' => Auth::user()->department,
+                'division' => Auth::user()->division,
+                'due_date' => $request->input('due_date'),
+                'position' => $request->input('position'),
+                'direct_supervisor' => Auth::user()->id,
+                'position_status' => $request->input('position_status'),
+                'job_position' => $request->input('job_position'),
+                'join_date' => $request->input('join_date'),
+                'number_requests' => $request->input('number_requests'),
+                'source_submission' => $request->input('source_submission'),
+                'job_desc' => $request->input('job_desc'),
+                'last_education' => $request->input('last_education'),
+                'major' => $request->input('majors'),
+                'gender' => $request->input('gender'),
+                'marital_status' => $request->input('marital_status'),
+                'personality_traits' => $request->input('personality_traits'),
+                'required_skills' => $request->input('required_skills'),
+                'sla' => null,
+                'a1_status' => 'Not Yet',
+                'rejection_statement' => null,
+                'created_by' => Auth::user()->id,
+            ]);
         } else {
-            MsJobDesc::create([
-                'id_jobdesc' => $nextId,
+            // Cek apakah posisi adalah "Others"
+            if ($request->input('position_withoutMPP') === 'Others' && $request->has('new_position')) {
+                $new_position = $request->input('new_position');
+            }
+            
+            // Cek apakah job_desc sudah ada di MsJobDesc
+            $jobDesc = MsJobDesc::where('position', $new_position)
+                ->where('department', Auth::user()->department)
+                ->first();
+
+            $maxId = MsJobDesc::withTrashed()->max('id_jobdesc');
+            $nextId = $maxId ? $maxId + 1 : 1;
+
+            if ($jobDesc) {
+                // Jika job_desc ada, cek apakah job_desc dari request berbeda dengan yang ada di database
+                if ($jobDesc->job_desc !== $request->input('job_desc')) {
+                    // Jika berbeda, lakukan update
+                    $jobDesc->update([
+                        'job_desc' => $request->input('job_desc'),
+                        'updated_by' => Auth::user()->id,
+                    ]);
+                }
+            } else {
+                MsJobDesc::create([
+                    'id_jobdesc' => $nextId,
+                    'company' => Auth::user()->company_name,
+                    'department' => Auth::user()->department,
+                    'division' => Auth::user()->division,
+                    'position' => $new_position,
+                    'job_desc' => $request->input('job_desc'),
+                    'created_by' => Auth::user()->id,
+                ]);
+            }
+
+            // Mapping untuk position_status
+            $positionStatusMapping = [
+                'Replacement' => 1,
+                'New' => 2
+            ];
+
+            // Mapping untuk source_submission
+            $sourceSubmissionMapping = [
+                'Organik' => 1,
+                'Outsource' => 2,
+                'Pelatihan Kerja' => 3,
+                'OS PKWT' => 4
+            ];
+
+            // Mapping untuk last_education
+            $lastEducationMapping = [
+                'SMA/SMK/Sederajat' => 1,
+                'Diploma 3' => 2,
+                'Sarjana' => 3,
+                'Magister' => 4
+            ];
+
+            // Jika id_mpp tidak auto-increment, hitung nilai berikutnya
+            $maxId = MsManPowerPlanning::withTrashed()->max('id_mpp');
+            $nextId = $maxId ? $maxId + 1 : 1;
+            
+            MsManPowerPlanning::create([
+                'id_mpp' => $nextId,
                 'company' => Auth::user()->company_name,
                 'department' => Auth::user()->department,
                 'division' => Auth::user()->division,
-                'position' => $position, // Gunakan position dari manpower planning
+                'position' => $new_position,
+                'position_status' => $positionStatusMapping[$request->input('position_status_withoutMPP')],
+                'source_submission' => $sourceSubmissionMapping[$request->input('source_submission_withoutMPP')],
+                'job_position' => $request->input('job_position_withoutMPP'),
+                'total_man_power' => $request->input('number_requests_withoutMPP'),
+                'last_education' => $lastEducationMapping[$request->input('last_education_withoutMPP')],
+                'due_date' => $request->input('join_date_withoutMPP'),
+                'vendor' => $request->input('vendor') ?? null,
+                'man_power_status' => 'Need Approval',
+                'a1_status' => 'Not Yet',
+                'created_by' => Auth::user()->id,
+            ]);
+
+            MsFormA1::create([
+                'id_form_a1' => $request->input('no_form'),
+                'department' => Auth::user()->department,
+                'division' => Auth::user()->division,
+                'due_date' => $request->input('due_date'),
+                'position' => $nextId,
+                'direct_supervisor' => Auth::user()->id,
+                'position_status' => $request->input('position_status_withoutMPP'),
+                'job_position' => $request->input('job_position_withoutMPP'),
+                'join_date' => $request->input('join_date_withoutMPP'),
+                'number_requests' => $request->input('number_requests_withoutMPP'),
+                'source_submission' => $request->input('source_submission_withoutMPP'),
                 'job_desc' => $request->input('job_desc'),
+                'last_education' => $request->input('last_education_withoutMPP'),
+                'major' => $request->input('majors'),
+                'gender' => $request->input('gender'),
+                'marital_status' => $request->input('marital_status'),
+                'personality_traits' => $request->input('personality_traits'),
+                'required_skills' => $request->input('required_skills'),
+                'sla' => null,
+                'a1_status' => 'Not Yet',
+                'rejection_statement' => null,
                 'created_by' => Auth::user()->id,
             ]);
         }
 
-        // Simpan data ke MsFormA1
-        MsFormA1::create([
-            'id_form_a1' => $request->input('no_form'),
-            'department' => Auth::user()->department,
-            'division' => Auth::user()->division,
-            'due_date' => $request->input('due_date'),
-            'position' => $request->input('position'),
-            'direct_supervisor' => Auth::user()->id,
-            'position_status' => $request->input('position_status'),
-            'job_position' => $request->input('job_position'),
-            'join_date' => $request->input('join_date'),
-            'number_requests' => $request->input('number_requests'),
-            'source_submission' => $request->input('source_submission'),
-            'job_desc' => $request->input('job_desc'),
-            'last_education' => $request->input('last_education'),
-            'major' => $request->input('majors'),
-            'gender' => $request->input('gender'),
-            'marital_status' => $request->input('marital_status'),
-            'personality_traits' => $request->input('personality_traits'),
-            'required_skills' => $request->input('required_skills'),
-            'sla' => null,
-            'a1_status' => 'Not Yet',
-            'rejection_statement' => null,
-            'created_by' => Auth::user()->id,
-        ]);
         return response()->json(['success' => "Successfully saved data"]);
     }
 
