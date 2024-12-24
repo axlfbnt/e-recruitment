@@ -22,6 +22,32 @@ class ManPowerPlanningController extends Controller
     {
         if ($request->expectsJson()) {
             $data = MsManPowerPlanning::query();
+
+            // Filter berdasarkan company
+            if ($request->filled('company') && $request->company !== 'All') {
+                $data->where('company', $request->company);
+            }
+
+            // Filter berdasarkan department
+            if ($request->filled('department') && $request->department !== 'All') {
+                $data->where('department', $request->department);
+            }
+
+            // Filter berdasarkan division
+            if ($request->filled('division') && $request->division !== 'All') {
+                $data->where('division', $request->division);
+            }
+
+            // Filter berdasarkan position_status
+            if ($request->filled('position_status') && $request->position_status !== 'All') {
+                $data->where('position_status', $request->position_status);
+            }
+
+            // Filter berdasarkan a1_status
+            if ($request->filled('a1_status') && $request->a1_status !== 'All') {
+                $data->where('a1_status', $request->a1_status);
+            }
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
@@ -39,12 +65,23 @@ class ManPowerPlanningController extends Controller
         return response()->json($companies);
     }
 
+    public function getFilterDepartments()
+    {
+        $filter_department = VwCompanyStructure::distinct()->get(['department']);
+        return response()->json($filter_department);
+    }
+
     public function getDepartments(Request $request)
     {
         $company_name = $request->input('company_name');
-        $departments = VwCompanyStructure::where('company_name', $company_name)
-            ->distinct()
-            ->pluck('department');
+
+        if ($company_name === 'All') {
+            $departments = VwCompanyStructure::distinct()->pluck('department');
+        } else {
+            $departments = VwCompanyStructure::where('company_name', $company_name)
+                ->distinct()
+                ->pluck('department');
+        }
         return response()->json(['departments' => $departments]);
     }
 
@@ -116,8 +153,8 @@ class ManPowerPlanningController extends Controller
             'last_education' => 'required|integer',
             'remarks' => 'nullable|string',
             'due_date' => 'required|date',
-            'new_position' => 'nullable|string', 
-            'vendor' => 'nullable', 
+            'new_position' => 'nullable|string',
+            'vendor' => 'nullable',
         ]);
 
         // Ambil data dari request
@@ -133,8 +170,8 @@ class ManPowerPlanningController extends Controller
             'last_education',
             'remarks',
             'due_date',
-            'new_position', 
-            'vendor', 
+            'new_position',
+            'vendor',
         ]);
 
         // Periksa apakah posisi adalah "Others"
@@ -216,6 +253,14 @@ class ManPowerPlanningController extends Controller
             'last_education',
             'remarks',
             'due_date',
+            'progress_recruitment',
+            'psikotes',
+            'interview_hc',
+            'interview_user',
+            'interview_bod',
+            'mcu',
+            'offering_letter',
+            'closed'
         ]);
 
         $mpp = MsManPowerPlanning::findOrFail($id);

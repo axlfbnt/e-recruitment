@@ -52,6 +52,7 @@ Route::prefix('man-power-planning')->group(function () {
 
 // Get Data Kebutuhan Man Power
 Route::get('/get-companies', [ManPowerPlanningController::class, 'getCompanies'])->name('get.companies');
+Route::get('/get-filter-departments', [ManPowerPlanningController::class, 'getFilterDepartments'])->name('get.filterDepartments');
 Route::post('/get-departments', [ManPowerPlanningController::class, 'getDepartments'])->name('get.departments');
 Route::post('/get-division', [ManPowerPlanningController::class, 'getDivision'])->name('get.division');
 Route::post('/get-positions', [ManPowerPlanningController::class, 'getPositions'])->name('get.positions');

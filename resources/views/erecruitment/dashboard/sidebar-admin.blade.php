@@ -7,6 +7,13 @@
 </li>
 
 <li class="side-nav-item" style="margin-bottom: 5px;">
+    <a href="{{ url('man-power-planning') }}" class="side-nav-link">
+        <i class="ri-team-line"></i>
+        <span> Man Power Planning </span>
+    </a>
+</li>
+
+<li class="side-nav-item" style="margin-bottom: 5px;">
     <a href="{{ url('employee-submission-forma1') }}" class="side-nav-link">
         <i class="ri-inbox-unarchive-line"></i>
         <span> Employee Request (Form A1) </span>
@@ -20,14 +27,7 @@
     </a>
 </li>
 
-<li class="side-nav-item" style="margin-bottom: 5px;">
-    <a href="{{ url('man-power-planning') }}" class="side-nav-link">
-        <i class="ri-team-line"></i>
-        <span> Man Power Planning </span>
-    </a>
-</li>
-
-<li class="side-nav-item" style="margin-bottom: 5px;">
+{{-- <li class="side-nav-item" style="margin-bottom: 5px;">
     <a href="{{ url('job-vacancy') }}" class="side-nav-link">
         <i class="ri-briefcase-line"></i>
         <span> Job Vacancy </span>
@@ -149,4 +149,4 @@
             </li>
         </ul>
     </div>
-</li>
+</li> --}}

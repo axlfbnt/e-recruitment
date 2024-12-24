@@ -7,132 +7,133 @@
         });
 
         // Inisialisasi Datatable
-        $(document).ready(function() {
-            $('#forma1-datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ url('employee-submission-forma1') }}",
-                    type: 'GET'
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'position_name',
-                        name: 'position_name',
-                        render: function(data, type, row) {
-                            return data ? data :
-                                'N/A'; // Jika data null, tampilkan 'N/A'
-                        }
-                    },
-                    {
-                        data: 'department',
-                        name: 'department',
-                        render: function(data, type, row) {
-                            return data ? data :
-                                'N/A'; // Jika data null, tampilkan string kosong
-                        }
-                    },
-                    {
-                        data: 'last_education',
-                        name: 'last_education',
-                        render: function(data, type, row) {
-                            return data ? data :
-                                'N/A'; // Jika data null, tampilkan string kosong
-                        }
-                    },
-                    {
-                        data: 'number_requests',
-                        name: 'number_requests',
-                        render: function(data, type, row) {
-                            return data ? data :
-                                'N/A'; // Jika data null, tampilkan string kosong
-                        }
-                    },
-                    {
-                        data: 'due_date',
-                        name: 'due_date',
-                        render: function(data, type, row) {
-                            if (data) {
-                                var date = new Date(data);
-                                return date.toLocaleDateString(
-                                    'id-ID'); // Format tanggal
-                            }
-                            return 'N/A'; // Jika data null, tampilkan string kosong
-                        }
-                    },
-                    {
-                        data: 'sla',
-                        name: 'sla',
-                        render: function(data, type, row) {
-                            // Jika data null atau kosong, tampilkan "0 hari"
-                            // Jika ada data, tambahkan " hari"
-                            return data ? data + ' hari' : '0 hari';
-                        }
-                    },
-                    {
-                        data: 'a1_status',
-                        name: 'a1_status',
-                        render: function(data, type, row) {
-                            var labelClass = '';
-                            if (data === 'Created by HC' || data ===
-                                'Approved by Dept Head' ||
-                                data === 'Approved by Div Head' || data ===
-                                'Approved by Human Capital') {
-                                labelClass = 'label-open';
-                            } else if (data === 'Not Yet') {
-                                labelClass = 'label-close';
-                            }
-                            return '<span class="' + labelClass + '">' + data +
-                                '</span>';
-                        }
-                    },
-                    {
-                        data: 'rejection_statement',
-                        name: 'rejection_statement',
-                        render: function(data, type, row) {
-                            return data ? data :
-                                'N/A'; // Jika data null, tampilkan string kosong
-                        }
-                    },
-                    {
-                        data: 'created_at',
-                        name: 'created_at',
-                        visible: false,
-                        render: function(data, type, row) {
-                            return data ? data :
-                                'N/A'; // Jika data null, tampilkan string kosong
-                        }
-                    },
-                    {
-                        data: 'action',
-                        orderable: false,
-                        searchable: false
-                    }
-                ],
-                order: [
-                    [9, 'desc']
-                ],
-                keys: true,
-                scrollY: 550,
-                scrollX: true,
-                scrollCollapse: true,
-                pagingType: "full_numbers",
-                autoWidth: false,
-                columnDefs: [{
-                    targets: "_all",
-                    render: function(data, type, row) {
-                        return '<div style="white-space: normal;">' + (data ? data :
-                            '') + '</div>';
-                    }
-                }],
-                drawCallback: function() {
-                    $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+        var table = $('#forma1-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ url('employee-submission-forma1') }}",
+                type: 'GET',
+                data: function(d) {
+                    d.department = $('#filter-department')
+                        .val(); // Kirim filter department
+                    d.status = $('#filter-status').val(); // Kirim filter status
                 }
-            });
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'position_name',
+                    name: 'position_name',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'department',
+                    name: 'department',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'last_education',
+                    name: 'last_education',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'number_requests',
+                    name: 'number_requests',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'due_date',
+                    name: 'due_date',
+                    render: function(data) {
+                        return data ? new Date(data).toLocaleDateString('id-ID') :
+                            'N/A';
+                    }
+                },
+                {
+                    data: 'sla',
+                    name: 'sla',
+                    render: function(data) {
+                        return data ? data + ' hari' : '0 hari';
+                    }
+                },
+                {
+                    data: 'a1_status',
+                    name: 'a1_status',
+                    render: function(data) {
+                        var labelClass = '';
+                        if (data === 'Created by HC' || data ===
+                            'Approved by Dept Head' || data ===
+                            'Approved by Div Head' || data ===
+                            'Approved by Human Capital') {
+                            labelClass = 'label-open';
+                        } else if (data === 'Not Yet') {
+                            labelClass = 'label-close';
+                        }
+                        return '<span class="' + labelClass + '">' + data +
+                            '</span>';
+                    }
+                },
+                {
+                    data: 'rejection_statement',
+                    name: 'rejection_statement',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at',
+                    visible: false,
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                }
+            ],
+            order: [
+                [9, 'desc']
+            ],
+            keys: true,
+            scrollY: 550,
+            scrollX: true,
+            scrollCollapse: true,
+            pagingType: "full_numbers",
+            autoWidth: false,
+            columnDefs: [{
+                targets: "_all",
+                render: function(data) {
+                    return '<div style="white-space: normal;">' + (data ? data :
+                        '') + '</div>';
+                }
+            }],
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+            }
+        });
+
+        // Event listener untuk filter department
+        $('#filter-department').on('change', function() {
+            table.draw(); // Memanggil ulang DataTables
+        });
+
+        // Event listener untuk filter status
+        $('#filter-status').on('change', function() {
+            table.draw(); // Memanggil ulang DataTables
         });
 
         // Inisialisasi inputan with MPP show dan without MPP hide, Memunculkan Position with MPP
@@ -310,6 +311,7 @@
             $('#number-requests-withoutMPP').prop('required', false);
             $('#join-date-withoutMPP').prop('required', false);
             $('#last-education-withoutMPP').prop('required', false);
+            $('#new-position').prop('required', false);
             resetAddFormA1ForCheckbox();
         }
     }

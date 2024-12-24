@@ -75,6 +75,28 @@
                                     <strong>Success - </strong> Your data has been successfully deleted. Thank you!
                                 </div>
                                 <hr>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label for="filter-department">Filter Department:</label>
+                                        <select id="filter-department" class="form-control">
+                                            <option value="">All</option>
+                                            <option value="HR">HR</option>
+                                            <option value="Finance">Finance</option>
+                                            <option value="IT">IT</option>
+                                            <option value="Sales">Sales</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="filter-status">Filter Status:</label>
+                                        <select id="filter-status" class="form-control">
+                                            <option value="">All</option>
+                                            <option value="Created by HC">Created by HC</option>
+                                            <option value="Approved by Dept Head">Approved by Dept Head</option>
+                                            <option value="Approved by Div Head">Approved by Div Head</option>
+                                            <option value="Not Yet">Not Yet</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <table id="forma1-datatable" class="table table-striped w-100 nowrap">
                                     <thead>
                                         <tr>

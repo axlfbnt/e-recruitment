@@ -8,31 +8,74 @@
         });
 
         // Inisialisasi Datatable
-        $('#mpp-datatable').DataTable({
+        var table = $('#mpp-datatable').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
                 url: "{{ url('man-power-planning') }}",
-                type: 'GET'
+                type: 'GET',
+                data: function(d) {
+                    d.company = $('#filter-company').val(); // Kirim filter company
+                    d.department = $('#filter-department').val(); // Kirim filter department
+                    d.position_status = $('#filter-position-status')
+                        .val(); // Kirim filter position status
+                }
             },
             columns: [{
+                    data: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+                {
                     data: 'DT_RowIndex',
                     orderable: false,
                     searchable: false
                 },
                 {
-                    data: 'company'
+                    data: 'company',
+                    render: function(data) {
+                        if (!data) {
+                            return 'N/A';
+                        }
+
+                        function generateAcronym(companyName) {
+                            const words = companyName.split(' ');
+                            const acronym = words
+                                .filter(word => word.length >
+                                    2)
+                                .map(word => word[0]
+                                    .toUpperCase())
+                                .join('');
+                            return acronym;
+                        }
+
+                        return generateAcronym(data); // Kembalikan hanya singkatan
+                    }
                 },
                 {
-                    data: 'division'
+                    data: 'division',
+                    render: function(data) {
+                        if (!data) {
+                            return 'N/A';
+                        }
+                        return data.replace(/\bCorporate\b/g, 'Corp.');
+                    }
                 },
                 {
-                    data: 'position'
+                    data: 'position',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
+                    data: 'is_mpp',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
                 },
                 {
                     data: 'position_status',
-                    render: function(data, type, row) {
-                        // Mapping untuk position_status
+                    render: function(data) {
                         const positionStatus = {
                             1: 'Replacement',
                             2: 'New'
@@ -42,8 +85,7 @@
                 },
                 {
                     data: 'source_submission',
-                    render: function(data, type, row) {
-                        // Mapping untuk source_submission
+                    render: function(data) {
                         const sourceSubmission = {
                             1: 'Organik',
                             2: 'Outsource',
@@ -54,12 +96,14 @@
                     }
                 },
                 {
-                    data: 'total_man_power'
+                    data: 'total_man_power',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
                 },
                 {
                     data: 'last_education',
-                    render: function(data, type, row) {
-                        // Mapping untuk last_education
+                    render: function(data) {
                         const lastEducation = {
                             1: 'SMA/SMK/Sederajat',
                             2: 'Diploma 3',
@@ -70,63 +114,126 @@
                     }
                 },
                 {
-                    data: 'remarks'
-                },
-                {
-                    data: 'created_at',
-                    render: function(data, type, row) {
+                    data: 'entry_od_date',
+                    render: function(data) {
                         if (data) {
                             const date = new Date(data);
-                            const day = String(date.getDate()).padStart(2, '0');
-                            const month = String(date.getMonth() + 1).padStart(2, '0');
-                            const year = date.getFullYear();
-                            return `${day}-${month}-${year}`;
+                            return date.toLocaleDateString('id-ID');
+                        }
+                        return '';
+                    }
+                },
+                {
+                    data: 'approved_date',
+                    render: function(data) {
+                        if (data) {
+                            const date = new Date(data);
+                            return date.toLocaleDateString('id-ID');
                         }
                         return '';
                     }
                 },
                 {
                     data: 'due_date',
-                    render: function(data, type, row) {
-                        // Pastikan data tidak kosong
+                    render: function(data) {
                         if (data) {
-                            var date = new Date(data);
-                            // Format tanggal ke DD/MM/YYYY
-                            var day = String(date.getDate()).padStart(2, '0');
-                            var month = String(date.getMonth() + 1).padStart(2, '0');
-                            var year = date.getFullYear();
-                            return day + '/' + month + '/' + year;
+                            const date = new Date(data);
+                            return date.toLocaleDateString('id-ID');
                         }
-                        return data; // Jika data kosong, kembalikan nilai aslinya
+                        return '';
+                    }
+                },
+                {
+                    data: 'closed_date',
+                    render: function(data) {
+                        if (data) {
+                            const date = new Date(data);
+                            return date.toLocaleDateString('id-ID');
+                        }
+                        return '';
+                    }
+                },
+                {
+                    data: 'sla',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'progress_recruitment',
+                    render: function(data) {
+                        var labelClass = data === 'Open' ? 'label-open' : (data ===
+                            'Sourcing' || data === 'Psikotes' || data === 'Interview HC' ||
+                            data === 'Interview User' || data === 'Interview BOD' ||
+                            data === 'MCU' || data === 'Offering Letter' ?
+                            'label-onprocess' : (data ===
+                                'Closed' || data === 'Cancel' ? 'label-close' :
+                                ''));
+                        return '<span class="' + labelClass + '">' + data +
+                            '</span>';
+                    }
+                },
+                {
+                    data: 'psikotes',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'interview_hc',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'interview_user',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'interview_bod',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'mcu',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'offering_letter',
+                    render: function(data) {
+                        return data ? data : '0';
+                    }
+                },
+                {
+                    data: 'closed',
+                    render: function(data) {
+                        return data ? data : '0';
                     }
                 },
                 {
                     data: 'a1_status',
-                    render: function(data, type, row) {
-                        var labelClass = '';
-                        if (data === 'Created by HC' || data === 'Approved by Dept Head' ||
-                            data === 'Approved by Div Head' || data === 'Approved by HC') {
-                            labelClass = 'label-open';
-                        } else if (data === 'Not Yet') {
-                            labelClass = 'label-close';
-                        }
+                    render: function(data) {
+                        var labelClass = data === 'Created by HC' || data ===
+                            'Approved by Dept Head' || data ===
+                            'Approved by Div Head' || data === 'Approved by HC' ?
+                            'label-open' :
+                            (data === 'Not Yet' ? 'label-close' : '');
                         return '<span class="' + labelClass + '">' + data +
                             '</span>';
                     }
                 },
                 {
                     data: 'man_power_status',
-                    render: function(data, type, row) {
-                        var labelClass = '';
-                        if (data === 'Open') {
-                            labelClass = 'label-open';
-                        } else if (data === 'On Process') {
-                            labelClass = 'label-onprocess';
-                        } else if (data === 'Close' || data === 'Closed') {
-                            labelClass = 'label-close';
-                        } else if (data === 'Need Approval') {
-                            labelClass = 'label-close';
-                        }
+                    render: function(data) {
+                        var labelClass = data === 'Open' ? 'label-open' : (data ===
+                            'On Process' ? 'label-onprocess' : (data ===
+                                'Closed' || data === 'Need Approval' ? 'label-close' :
+                                ''));
                         return '<span class="' + labelClass + '">' + data +
                             '</span>';
                     }
@@ -135,26 +242,100 @@
                     data: 'action',
                     orderable: false,
                     searchable: false
-                }
+                }, {
+                    data: 'created_at',
+                    name: 'created_at',
+                    visible: false,
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
             ],
             order: [
-                ['9', 'desc']
+                ['26', 'desc']
             ],
             keys: true,
-            scrollY: 550,
+            scrollY: true,
             scrollX: true,
             scrollCollapse: true,
             pagingType: "full_numbers",
             autoWidth: false,
             columnDefs: [{
                 targets: "_all",
-                render: function(data, type, row) {
-                    return '<div style="white-space: normal;">' + data + '</div>';
+                render: function(data) {
+                    return '<div style="white-space: normal;">' + data +
+                        '</div>';
                 }
             }],
             drawCallback: function() {
                 $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
             }
+        });
+
+        // Event listener untuk filter company
+        $('#filter-company').on('change', function() {
+            table.draw(); // Memanggil ulang DataTables
+        });
+        $('#filter-company').select2();
+        $.ajax({
+            url: "{{ url('get-companies') }}",
+            type: 'GET',
+            success: function(companies) {
+                let companyOptions = '<option value="All" selected>All</option>';
+                $.each(companies, function(index, company) {
+                    companyOptions += '<option value="' + company.company_name + '">' +
+                        company
+                        .company_name + '</option>';
+                });
+                $('#filter-company').html(companyOptions);
+            }
+        });
+
+        // Event listener untuk filter department
+        $('#filter-department').on('change', function() {
+            table.draw(); // Memanggil ulang DataTables
+        });
+        $('#filter-department').select2();
+        $.ajax({
+            url: "{{ url('get-filter-departments') }}",
+            type: 'GET',
+            success: function(filter_department) {
+                let filterDepartmentOptions = '<option value="" selected>All</option>';
+                $.each(filter_department, function(index, department) {
+                    filterDepartmentOptions += '<option value="' + department.department +
+                        '">' +
+                        department
+                        .department + '</option>';
+                });
+                $('#filter-department').html(filterDepartmentOptions);
+            }
+        });
+        $('#filter-company').on('change', function() {
+            var company_name = $(this).val();
+            $.ajax({
+                url: "{{ url('get-departments') }}",
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    company_name: company_name
+                },
+                success: function(data) {
+                    let departmentOptions =
+                        '<option value="" selected>All</option>';
+                    $.each(data.departments, function(index, department) {
+                        departmentOptions += '<option value="' +
+                            department + '">' + department +
+                            '</option>';
+                    });
+                    table.draw(); // Memanggil ulang DataTables
+                    $('#filter-department').html(departmentOptions);
+                }
+            });
+        });
+
+        // Event listener untuk filter position status
+        $('#filter-position-status').on('change', function() {
+            table.draw(); // Memanggil ulang DataTables
         });
 
         $('#addmpp-modal').on('shown.bs.modal', function() {
@@ -200,6 +381,7 @@
                             '</option>';
                     });
                     $('#department').html(departmentOptions);
+                    $('#filter-department').html(departmentOptions);
                 }
             });
         });
@@ -223,7 +405,7 @@
 
                     if ($('#division')
                         .val()
-                    ) { 
+                    ) {
                         $.ajax({
                             url: "{{ url('get-positions') }}",
                             type: 'POST',
@@ -414,6 +596,14 @@
                 $('#edit-last-education').val(response.result.last_education);
                 $('#edit-remarks').val(response.result.remarks);
                 $('#edit-due-date').val(response.result.due_date);
+                $('#edit-progress-recruitment').val(response.result.progress_recruitment);
+                $('#edit-psikotes').val(response.result.psikotes);
+                $('#edit-interview-hc').val(response.result.interview_hc);
+                $('#edit-interview-user').val(response.result.interview_user);
+                $('#edit-interview-bod').val(response.result.interview_bod);
+                $('#edit-mcu').val(response.result.mcu);
+                $('#edit-offering-letter').val(response.result.offering_letter);
+                $('#edit-closed').val(response.result.closed);
 
                 $('.button-update').data('id', id);
             }
@@ -440,6 +630,14 @@
         formData.append('last_education', $('#edit-last-education').val());
         formData.append('remarks', $('#edit-remarks').val());
         formData.append('due_date', $('#edit-due-date').val());
+        formData.append('progress_recruitment', $('#edit-progress-recruitment').val());
+        formData.append('psikotes', $('#edit-psikotes').val());
+        formData.append('interview_hc', $('#edit-interview-hc').val());
+        formData.append('interview_user', $('#edit-interview-user').val());
+        formData.append('interview_bod', $('#edit-interview-bod').val());
+        formData.append('mcu', $('#edit-mcu').val());
+        formData.append('offering_letter', $('#edit-offering-letter').val());
+        formData.append('closed', $('#edit-closed').val());
 
         formData.append('_method', 'PUT');
 
