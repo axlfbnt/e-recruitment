@@ -33,7 +33,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
                 ->filterColumn('position_name', function ($query, $keyword) {
                     $query->whereRaw("LOWER(ms_manpowerplanning.position) like ?", ["%{$keyword}%"]);
                 })
-                ->rawColumns(['action']) // Add this if there are HTML elements in the action column
+                ->rawColumns(['action'])
                 ->make(true);
         }
 
@@ -220,7 +220,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
             'gender' => 'required|string',
             'marital_status' => 'required|string',
             'majors' => 'required|string',
-            'vendor' => 'nullable', 
+            'vendor' => 'nullable',
         ]);
 
         if ($request->input('is_withmpp') == 'With MPP') {
@@ -289,7 +289,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
             if ($request->input('position_withoutMPP') === 'Others' && $request->has('new_position')) {
                 $new_position = $request->input('new_position');
             }
-            
+
             // Cek apakah job_desc sudah ada di MsJobDesc
             $jobDesc = MsJobDesc::where('position', $new_position)
                 ->where('department', Auth::user()->department)
@@ -344,7 +344,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
             // Jika id_mpp tidak auto-increment, hitung nilai berikutnya
             $maxId = MsManPowerPlanning::withTrashed()->max('id_mpp');
             $nextId = $maxId ? $maxId + 1 : 1;
-            
+
             MsManPowerPlanning::create([
                 'id_mpp' => $nextId,
                 'company' => Auth::user()->company_name,
@@ -433,19 +433,33 @@ class EmployeeSubmissionFormA1Controller extends Controller
 
     public function approvalFormA1(Request $request, $id)
     {
+        $userId = Auth::user()->id;
+        $userName = Auth::user()->name;
         $userEmail = Auth::user()->email;
+        $currentDate = now(); 
+
+        $data = [];
 
         if ($userEmail == '1612075') {
             $data = [
-                'a1_status' => 'Approved by Dept Head'
+                'a1_status' => 'Approved by Dept Head',
+                'approved_dept_id' => $userId,
+                'approved_dept_name' => $userName,
+                'approved_dept_date' => $currentDate,
             ];
         } elseif ($userEmail == '1801002') {
             $data = [
-                'a1_status' => 'Approved by Div Head'
+                'a1_status' => 'Approved by Div Head',
+                'approved_div_id' => $userId,
+                'approved_div_name' => $userName,
+                'approved_div_date' => $currentDate,
             ];
         } elseif ($userEmail == 'firdariskap@gmail.com') {
             $data = [
-                'a1_status' => 'Approved by Human Capital'
+                'a1_status' => 'Approved by HC',
+                'approved_hc_id' => $userId,
+                'approved_hc_name' => $userName,
+                'approved_hc_date' => $currentDate,
             ];
 
             $formA1 = MsFormA1::where('id_form_a1', $id)->first();

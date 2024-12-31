@@ -34,22 +34,17 @@
                 {
                     data: 'company',
                     render: function(data) {
-                        if (!data) {
-                            return 'N/A';
-                        }
+                        if (!data) return 'N/A';
 
-                        function generateAcronym(companyName) {
-                            const words = companyName.split(' ');
-                            const acronym = words
-                                .filter(word => word.length >
-                                    2)
-                                .map(word => word[0]
-                                    .toUpperCase())
-                                .join('');
-                            return acronym;
-                        }
+                        const initials = data
+                            .split(' ')
+                            .filter(word => word.length > 2 && word.toLowerCase() !==
+                                'pt')
+                            .map(word => word[0]
+                                .toUpperCase())
+                            .join('');
 
-                        return generateAcronym(data); // Kembalikan hanya singkatan
+                        return initials;
                     }
                 },
                 {
@@ -68,35 +63,19 @@
                     }
                 },
                 {
-                    data: 'is_mpp',
+                    data: 'position_status',
                     render: function(data) {
                         return data ? data : 'N/A';
                     }
                 },
                 {
-                    data: 'position_status',
-                    render: function(data) {
-                        const positionStatus = {
-                            1: 'Replacement',
-                            2: 'New'
-                        };
-                        return `<div data-search="${data}">${positionStatus[data] || 'N/A'}</div>`;
-                    }
-                },
-                {
                     data: 'source_submission',
                     render: function(data) {
-                        const sourceSubmission = {
-                            1: 'Organik',
-                            2: 'Outsource',
-                            3: 'Pelatihan Kerja',
-                            4: 'OS PKWT'
-                        };
-                        return `<div data-search="${data}">${sourceSubmission[data] || 'N/A'}</div>`;
+                        return data ? data : 'N/A';
                     }
                 },
                 {
-                    data: 'total_man_power',
+                    data: 'number_requests',
                     render: function(data) {
                         return data ? data : 'N/A';
                     }
@@ -104,33 +83,7 @@
                 {
                     data: 'last_education',
                     render: function(data) {
-                        const lastEducation = {
-                            1: 'SMA/SMK/Sederajat',
-                            2: 'Diploma 3',
-                            3: 'Sarjana 1',
-                            4: 'Sarjana 2'
-                        };
-                        return `<div data-search="${data}">${lastEducation[data] || 'N/A'}</div>`;
-                    }
-                },
-                {
-                    data: 'entry_od_date',
-                    render: function(data) {
-                        if (data) {
-                            const date = new Date(data);
-                            return date.toLocaleDateString('id-ID');
-                        }
-                        return '';
-                    }
-                },
-                {
-                    data: 'approved_date',
-                    render: function(data) {
-                        if (data) {
-                            const date = new Date(data);
-                            return date.toLocaleDateString('id-ID');
-                        }
-                        return '';
+                        return data ? data : 'N/A';
                     }
                 },
                 {
@@ -144,87 +97,18 @@
                     }
                 },
                 {
-                    data: 'closed_date',
-                    render: function(data) {
-                        if (data) {
-                            const date = new Date(data);
-                            return date.toLocaleDateString('id-ID');
-                        }
-                        return '';
-                    }
-                },
-                {
-                    data: 'sla',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'progress_recruitment',
-                    render: function(data) {
-                        var labelClass = data === 'Open' ? 'label-open' : (data ===
-                            'Sourcing' || data === 'Psikotes' || data === 'Interview HC' ||
-                            data === 'Interview User' || data === 'Interview BOD' ||
-                            data === 'MCU' || data === 'Offering Letter' ?
-                            'label-onprocess' : (data ===
-                                'Closed' || data === 'Cancel' ? 'label-close' :
-                                ''));
-                        return '<span class="' + labelClass + '">' + data +
-                            '</span>';
-                    }
-                },
-                {
-                    data: 'psikotes',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'interview_hc',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'interview_user',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'interview_bod',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'mcu',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'offering_letter',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
-                    data: 'closed',
-                    render: function(data) {
-                        return data ? data : '0';
-                    }
-                },
-                {
                     data: 'a1_status',
                     render: function(data) {
+                        if (!data)
+                    return '<span>N/A</span>'; 
+
                         var labelClass = data === 'Created by HC' || data ===
-                            'Approved by Dept Head' || data ===
-                            'Approved by Div Head' || data === 'Approved by HC' ?
+                            'Approved by Dept Head' ||
+                            data === 'Approved by Div Head' || data === 'Approved by HC' ?
                             'label-open' :
                             (data === 'Not Yet' ? 'label-close' : '');
-                        return '<span class="' + labelClass + '">' + data +
-                            '</span>';
+
+                        return '<span class="' + labelClass + '">' + data + '</span>';
                     }
                 },
                 {
@@ -242,18 +126,11 @@
                     data: 'action',
                     orderable: false,
                     searchable: false
-                }, {
-                    data: 'created_at',
-                    name: 'created_at',
-                    visible: false,
-                    render: function(data) {
-                        return data ? data : 'N/A';
-                    }
                 },
             ],
-            order: [
-                ['26', 'desc']
-            ],
+            // order: [
+            //     ['1', 'asc']
+            // ],
             keys: true,
             scrollY: true,
             scrollX: true,
@@ -596,14 +473,6 @@
                 $('#edit-last-education').val(response.result.last_education);
                 $('#edit-remarks').val(response.result.remarks);
                 $('#edit-due-date').val(response.result.due_date);
-                $('#edit-progress-recruitment').val(response.result.progress_recruitment);
-                $('#edit-psikotes').val(response.result.psikotes);
-                $('#edit-interview-hc').val(response.result.interview_hc);
-                $('#edit-interview-user').val(response.result.interview_user);
-                $('#edit-interview-bod').val(response.result.interview_bod);
-                $('#edit-mcu').val(response.result.mcu);
-                $('#edit-offering-letter').val(response.result.offering_letter);
-                $('#edit-closed').val(response.result.closed);
 
                 $('.button-update').data('id', id);
             }
@@ -630,14 +499,6 @@
         formData.append('last_education', $('#edit-last-education').val());
         formData.append('remarks', $('#edit-remarks').val());
         formData.append('due_date', $('#edit-due-date').val());
-        formData.append('progress_recruitment', $('#edit-progress-recruitment').val());
-        formData.append('psikotes', $('#edit-psikotes').val());
-        formData.append('interview_hc', $('#edit-interview-hc').val());
-        formData.append('interview_user', $('#edit-interview-user').val());
-        formData.append('interview_bod', $('#edit-interview-bod').val());
-        formData.append('mcu', $('#edit-mcu').val());
-        formData.append('offering_letter', $('#edit-offering-letter').val());
-        formData.append('closed', $('#edit-closed').val());
 
         formData.append('_method', 'PUT');
 

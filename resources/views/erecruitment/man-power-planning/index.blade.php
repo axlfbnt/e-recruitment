@@ -99,8 +99,8 @@
                                         <label for="filter-position-status">Filter Position Status:</label>
                                         <select id="filter-position-status" class="form-control">
                                             <option value="">All</option>
-                                            <option value="1">Replacement</option>
-                                            <option value="2">New</option>
+                                            <option value="Replacement">Replacement</option>
+                                            <option value="New">New</option>
                                         </select>
                                     </div>
                                 </div>
@@ -112,28 +112,14 @@
                                             <th>Company</th>
                                             <th>Division</th>
                                             <th>Position</th>
-                                            <th>is MPP</th>
                                             <th>Position Status</th>
                                             <th>Source of Submission</th>
-                                            <th>Total Man Power</th>
+                                            <th>Number of Request</th>
                                             <th>Last Education</th>
-                                            <th>Date Entry to OD</th>
-                                            <th>Approved Date</th>
                                             <th>Due Date</th>
-                                            <th>Closed Date</th>
-                                            <th>Lead Time</th>
-                                            <th>Progress Recruitment</th>
-                                            <th>Psikotes</th>
-                                            <th>Interview HC</th>
-                                            <th>Interview User</th>
-                                            <th>Interview BOD</th>
-                                            <th>MCU</th>
-                                            <th>Offering Letter</th>
-                                            <th>Closed</th>
                                             <th>Form A1 Status</th>
                                             <th>Man Power Status</th>
                                             <th>Action</th>
-                                            <th>Created At</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -488,88 +474,7 @@
                                 Please set a due date.
                             </div>
                         </div>
-
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label for="edit-progress-recruitment" class="form-label">Progress Recruitment</label>
-                                <select class="form-select" id="edit-progress-recruitment" required>
-                                    <option value="" disabled selected>Select Progress Recruitment</option>
-                                    <option value="Open">Open</option>
-                                    <option value="Sourcing">Sourcing</option>
-                                    <option value="Psikotes">Psikotes</option>
-                                    <option value="Interview HC">Interview HC</option>
-                                    <option value="Interview uSer">Interview User</option>
-                                    <option value="Interview BOD">Interview BOD</option>
-                                    <option value="MCU">MCU</option>
-                                    <option value="Offering Letter">Offering Letter</option>
-                                    <option value="Closed">Closed</option>
-                                    <option value="Cancel">Cancel</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please choose a progress recruitment.
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="edit-psikotes" class="form-label">Psikotes</label>
-                                <input class="form-control" type="number" id="edit-psikotes" required
-                                    placeholder="Fill psikotes">
-                                <div class="invalid-feedback">
-                                    Please fill psikotes.
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="edit-interview-hc" class="form-label">Interview HC</label>
-                                <input class="form-control" type="number" id="edit-interview-hc" required
-                                    placeholder="Fill interview hc">
-                                <div class="invalid-feedback">
-                                    Please fill interview hc.
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="edit-interview-user" class="form-label">Interview User</label>
-                                <input class="form-control" type="number" id="edit-interview-user" required
-                                    placeholder="Fill interview user">
-                                <div class="invalid-feedback">
-                                    Please fill interview user.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <label for="edit-interview-bod" class="form-label">Interview BOD</label>
-                                <input class="form-control" type="number" id="edit-interview-bod" required
-                                    placeholder="Fill interview bod">
-                                <div class="invalid-feedback">
-                                    Please fill interview bod.
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="edit-mcu" class="form-label">MCU</label>
-                                <input class="form-control" type="number" id="edit-mcu" required
-                                    placeholder="Fill mcu">
-                                <div class="invalid-feedback">
-                                    Please fill mcu.
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="edit-offering-letter" class="form-label">Offering Letter</label>
-                                <input class="form-control" type="number" id="edit-offering-letter" required
-                                    placeholder="Fill offering letter">
-                                <div class="invalid-feedback">
-                                    Please fill offering letter.
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="edit-closed" class="form-label">Closed</label>
-                                <input class="form-control" type="number" id="edit-closed" required
-                                    placeholder="Fill closed">
-                                <div class="invalid-feedback">
-                                    Please fill closed.
-                                </div>
-                            </div>
-                        </div>
-
+                        
                         <div class="d-flex justify-content-end mb-4 mt-3">
                             <button type="button" id="closeEditModalBtn" class="btn btn-soft-warning me-2"
                                 data-bs-dismiss="modal">Cancel</button>

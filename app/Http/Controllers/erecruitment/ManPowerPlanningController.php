@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\erecruitment\table\MsManPowerPlanning;
 use App\Models\erecruitment\table\MsVendor;
 use App\Models\erecruitment\view\VwCompanyStructure;
+use App\Models\erecruitment\view\VwMPPFormA1;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class ManPowerPlanningController extends Controller
     public function index(Request $request)
     {
         if ($request->expectsJson()) {
-            $data = MsManPowerPlanning::query();
+            $data = VwMPPFormA1::query();
 
             // Filter berdasarkan company
             if ($request->filled('company') && $request->company !== 'All') {
@@ -41,11 +42,6 @@ class ManPowerPlanningController extends Controller
             // Filter berdasarkan position_status
             if ($request->filled('position_status') && $request->position_status !== 'All') {
                 $data->where('position_status', $request->position_status);
-            }
-
-            // Filter berdasarkan a1_status
-            if ($request->filled('a1_status') && $request->a1_status !== 'All') {
-                $data->where('a1_status', $request->a1_status);
             }
 
             return DataTables::of($data)
@@ -253,14 +249,6 @@ class ManPowerPlanningController extends Controller
             'last_education',
             'remarks',
             'due_date',
-            'progress_recruitment',
-            'psikotes',
-            'interview_hc',
-            'interview_user',
-            'interview_bod',
-            'mcu',
-            'offering_letter',
-            'closed'
         ]);
 
         $mpp = MsManPowerPlanning::findOrFail($id);
