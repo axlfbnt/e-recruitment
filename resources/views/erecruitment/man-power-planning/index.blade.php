@@ -99,27 +99,27 @@
                                         <label for="filter-position-status">Filter Position Status:</label>
                                         <select id="filter-position-status" class="form-control">
                                             <option value="">All</option>
-                                            <option value="Replacement">Replacement</option>
-                                            <option value="New">New</option>
+                                            <option value="1">Replacement</option>
+                                            <option value="2">New</option>
                                         </select>
                                     </div>
                                 </div>
                                 <table id="mpp-datatable" class="table table-striped w-100 nowrap">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th>No</th>
                                             <th>Company</th>
                                             <th>Division</th>
                                             <th>Position</th>
                                             <th>Position Status</th>
                                             <th>Source of Submission</th>
-                                            <th>Number of Request</th>
+                                            <th>Total Man Power</th>
                                             <th>Last Education</th>
                                             <th>Due Date</th>
                                             <th>Form A1 Status</th>
                                             <th>Man Power Status</th>
                                             <th>Action</th>
+                                            <th>Created At</th>
                                         </tr>
                                     </thead>
                                 </table>

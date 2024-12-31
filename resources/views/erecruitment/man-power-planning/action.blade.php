@@ -1,4 +1,7 @@
 <div class="btn-group" role="group">
+    <button type="button" data-id="{{ $data->id_mpp }}" data-bs-toggle="modal" data-bs-target="" title="Detail" class="btn btn-success btn-sm button-detail">
+        <i class="ri-eye-line"></i>
+    </button>
     <button type="button" data-id="{{ $data->id_mpp }}" data-bs-toggle="modal" data-bs-target="#editmpp-modal" title="Edit" class="btn btn-warning btn-sm button-edit">
         <i class="ri-edit-2-line"></i>
     </button>

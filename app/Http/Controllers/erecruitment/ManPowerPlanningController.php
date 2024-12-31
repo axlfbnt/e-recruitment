@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\erecruitment\table\MsManPowerPlanning;
 use App\Models\erecruitment\table\MsVendor;
 use App\Models\erecruitment\view\VwCompanyStructure;
-use App\Models\erecruitment\view\VwMPPFormA1;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +21,7 @@ class ManPowerPlanningController extends Controller
     public function index(Request $request)
     {
         if ($request->expectsJson()) {
-            $data = VwMPPFormA1::query();
+            $data = MsManPowerPlanning::query();
 
             // Filter berdasarkan company
             if ($request->filled('company') && $request->company !== 'All') {

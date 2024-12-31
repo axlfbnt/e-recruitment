@@ -22,11 +22,6 @@
                 }
             },
             columns: [{
-                    data: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-                {
                     data: 'DT_RowIndex',
                     orderable: false,
                     searchable: false
@@ -34,17 +29,10 @@
                 {
                     data: 'company',
                     render: function(data) {
-                        if (!data) return 'N/A';
-
-                        const initials = data
-                            .split(' ')
-                            .filter(word => word.length > 2 && word.toLowerCase() !==
-                                'pt')
-                            .map(word => word[0]
-                                .toUpperCase())
-                            .join('');
-
-                        return initials;
+                        if (!data) {
+                            return 'N/A';
+                        }
+                        return data.replace(/\bCorporate\b/g, 'Corp.');
                     }
                 },
                 {
@@ -65,25 +53,45 @@
                 {
                     data: 'position_status',
                     render: function(data) {
-                        return data ? data : 'N/A';
+                        const positionStatusMap = {
+                            1: 'Replacement',
+                            2: 'New'
+                        };
+                        return positionStatusMap[data] ||
+                        'N/A'; 
                     }
                 },
                 {
                     data: 'source_submission',
                     render: function(data) {
-                        return data ? data : 'N/A';
+                        const sourceSubmissionMap = {
+                            1: 'Organik',
+                            2: 'Outsource',
+                            3: 'Pelatihan Kerja',
+                            4: 'OS PKWT'
+                        };
+                        return sourceSubmissionMap[data] ||
+                        'N/A'; 
                     }
                 },
                 {
-                    data: 'number_requests',
+                    data: 'total_man_power',
                     render: function(data) {
-                        return data ? data : 'N/A';
+                        return data ? data :
+                        'N/A'; 
                     }
                 },
                 {
                     data: 'last_education',
                     render: function(data) {
-                        return data ? data : 'N/A';
+                        const educationMap = {
+                            1: 'SMA/SMK/Sederajat',
+                            2: 'Diploma 3',
+                            3: 'Sarjana 1',
+                            4: 'Sarjana 2'
+                        };
+                        return educationMap[data] ||
+                        'N/A'; 
                     }
                 },
                 {
@@ -100,7 +108,7 @@
                     data: 'a1_status',
                     render: function(data) {
                         if (!data)
-                    return '<span>N/A</span>'; 
+                            return '<span>N/A</span>';
 
                         var labelClass = data === 'Created by HC' || data ===
                             'Approved by Dept Head' ||
@@ -127,10 +135,14 @@
                     orderable: false,
                     searchable: false
                 },
+                {
+                    data: 'created_at',
+                    visible: false
+                },
             ],
-            // order: [
-            //     ['1', 'asc']
-            // ],
+            order: [
+                ['12', 'desc']
+            ],
             keys: true,
             scrollY: true,
             scrollX: true,
@@ -446,6 +458,59 @@
             }
         });
     }
+
+    // Proses Button Detail
+    $(document).on('click', '.button-detail', function() {
+        var id = $(this).data('id');
+        console.log(id);
+        alert('Detail button clicked!');
+
+        // CSRF Token
+        // var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // $.ajax({
+        //     url: "{{ url('employee-submission-forma1') }}" + "/" + id + '/detail',
+        //     type: 'GET',
+        //     success: function(response) {
+        //         console.log(response);
+
+        //         // Pengisian data input form
+        //         $('#detail-no-form').val(response.result.id_form_a1);
+        //         $('#detail-department').val(response.result.department);
+        //         $('#detail-division').val(response.result.division);
+        //         $('#detail-due-date').val(response.result.due_date);
+        //         $('#detail-position').val(response.result.position_name);
+        //         $('#detail-direct-supervisor').val(response.result.supervisor_name);
+        //         $('#detail-position-status').val(response.result.position_status);
+        //         $('#detail-job-position').val(response.result.job_position);
+        //         $('#detail-join-date').val(response.result.join_date);
+        //         $('#detail-number-requests').val(response.result.number_requests);
+        //         $('#detail-source-submission').val(response.result.source_submission);
+        //         $('#detail-last-education').val(response.result.last_education);
+        //         $('#detail-remarks').val(response.result.remarks);
+
+        //         // Isi Quill editor dengan data dari response
+        //         quillJobDeskDetail.root.innerHTML = response.result.job_desc || '';
+        //         quillPersonalityTraitsDetail.root.innerHTML = response.result.personality_traits ||
+        //             '';
+        //         quillRequiredSkillsDetail.root.innerHTML = response.result.required_skills || '';
+
+        //         var major = response.result.major;
+        //         var formattedMajor = major.split(',').join(', ');
+        //         $('#detail-major').val(formattedMajor);
+
+        //         // Isi checkbox gender
+        //         var genders = response.result.gender.split(',');
+        //         $('#detail-man').prop('checked', genders.includes('Man'));
+        //         $('#detail-woman').prop('checked', genders.includes('Woman'));
+
+        //         // Isi checkbox marital status
+        //         var maritalStatuses = response.result.marital_status.split(',');
+        //         $('#detail-marry').prop('checked', maritalStatuses.includes('Marry'));
+        //         $('#detail-single').prop('checked', maritalStatuses.includes('Single'));
+        //     }
+        // });
+    });
 
     // Proses Button Edit
     $(document).on('click', '.button-edit', function() {
