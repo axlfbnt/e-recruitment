@@ -15,10 +15,10 @@
                 url: "{{ url('man-power-planning') }}",
                 type: 'GET',
                 data: function(d) {
-                    d.company = $('#filter-company').val(); // Kirim filter company
-                    d.department = $('#filter-department').val(); // Kirim filter department
-                    d.position_status = $('#filter-position-status')
-                        .val(); // Kirim filter position status
+                    d.company = $('#filter-company').val(); 
+                    d.department = $('#filter-department').val(); 
+                    d.a1_status = $('#filter-a1-status')
+                        .val(); 
                 }
             },
             columns: [{
@@ -58,7 +58,7 @@
                             2: 'New'
                         };
                         return positionStatusMap[data] ||
-                        'N/A'; 
+                            'N/A';
                     }
                 },
                 {
@@ -71,14 +71,14 @@
                             4: 'OS PKWT'
                         };
                         return sourceSubmissionMap[data] ||
-                        'N/A'; 
+                            'N/A';
                     }
                 },
                 {
                     data: 'total_man_power',
                     render: function(data) {
                         return data ? data :
-                        'N/A'; 
+                            'N/A';
                     }
                 },
                 {
@@ -91,7 +91,7 @@
                             4: 'Sarjana 2'
                         };
                         return educationMap[data] ||
-                        'N/A'; 
+                            'N/A';
                     }
                 },
                 {
@@ -222,9 +222,9 @@
             });
         });
 
-        // Event listener untuk filter position status
-        $('#filter-position-status').on('change', function() {
-            table.draw(); // Memanggil ulang DataTables
+        // Event listener untuk filter a1 status
+        $('#filter-a1-status').on('change', function() {
+            table.draw(); 
         });
 
         $('#addmpp-modal').on('shown.bs.modal', function() {
@@ -463,53 +463,101 @@
     $(document).on('click', '.button-detail', function() {
         var id = $(this).data('id');
         console.log(id);
-        alert('Detail button clicked!');
 
         // CSRF Token
-        // var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // $.ajax({
-        //     url: "{{ url('employee-submission-forma1') }}" + "/" + id + '/detail',
-        //     type: 'GET',
-        //     success: function(response) {
-        //         console.log(response);
+        $.ajax({
+            url: "{{ url('man-power-planning') }}" + "/" + id + '/detail',
+            type: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function(response) {
+                console.log(response);
+                $('#detailmpp-modal').modal('show');
 
-        //         // Pengisian data input form
-        //         $('#detail-no-form').val(response.result.id_form_a1);
-        //         $('#detail-department').val(response.result.department);
-        //         $('#detail-division').val(response.result.division);
-        //         $('#detail-due-date').val(response.result.due_date);
-        //         $('#detail-position').val(response.result.position_name);
-        //         $('#detail-direct-supervisor').val(response.result.supervisor_name);
-        //         $('#detail-position-status').val(response.result.position_status);
-        //         $('#detail-job-position').val(response.result.job_position);
-        //         $('#detail-join-date').val(response.result.join_date);
-        //         $('#detail-number-requests').val(response.result.number_requests);
-        //         $('#detail-source-submission').val(response.result.source_submission);
-        //         $('#detail-last-education').val(response.result.last_education);
-        //         $('#detail-remarks').val(response.result.remarks);
+                if (response.data && response.data.length > 0) {
+                    var data = response.data;
 
-        //         // Isi Quill editor dengan data dari response
-        //         quillJobDeskDetail.root.innerHTML = response.result.job_desc || '';
-        //         quillPersonalityTraitsDetail.root.innerHTML = response.result.personality_traits ||
-        //             '';
-        //         quillRequiredSkillsDetail.root.innerHTML = response.result.required_skills || '';
+                    $('#detail-container').empty();
 
-        //         var major = response.result.major;
-        //         var formattedMajor = major.split(',').join(', ');
-        //         $('#detail-major').val(formattedMajor);
+                    data.forEach(function(item, index) {
+                        var detailHTML = `
+                        <div class="alert alert-info text-center fw-bold py-1 mb-0" role="alert">
+                            <i class="ri-file-text-line me-1"></i> PROGRESS RECRUITMENT
+                        </div>
+                        <hr>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">A1 Status</label>
+                                <input class="form-control" type="text" value="${item.a1_status}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Number Request</label>
+                                <input class="form-control" type="number" value="${item.number_requests}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Lead Time</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="number" value="${item.sla}" readonly>
+                                    <span class="input-group-text">Day</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Progress Recruitment</label>
+                                <input class="form-control" type="text" value="${item.progress_recruitment}" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Psikotes</label>
+                                <input class="form-control" type="number" value="${item.psikotes}" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Interview HC</label>
+                                <input class="form-control" type="number" value="${item.interview_hc}" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Interview User</label>
+                                <input class="form-control" type="number" value="${item.interview_user}" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Interview BOD</label>
+                                <input class="form-control" type="number" value="${item.interview_bod}" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Medical Check UP</label>
+                                <input class="form-control" type="number" value="${item.mcu}" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Offering Letter</label>
+                                <input class="form-control" type="number" value="${item.offering_letter}" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Closed</label>
+                                <input class="form-control" type="number" value="${item.closed}" readonly>
+                            </div>
+                        </div>
+                    `;
 
-        //         // Isi checkbox gender
-        //         var genders = response.result.gender.split(',');
-        //         $('#detail-man').prop('checked', genders.includes('Man'));
-        //         $('#detail-woman').prop('checked', genders.includes('Woman'));
+                        $('#detail-container').append(detailHTML);
+                    });
+                } else {
+                    alert('No data found for this ID');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error: ', status, error);
 
-        //         // Isi checkbox marital status
-        //         var maritalStatuses = response.result.marital_status.split(',');
-        //         $('#detail-marry').prop('checked', maritalStatuses.includes('Marry'));
-        //         $('#detail-single').prop('checked', maritalStatuses.includes('Single'));
-        //     }
-        // });
+                $('#alert-no-applications-yet').removeClass('d-none');
+                setTimeout(function() {
+                    $('#alert-no-applications-yet').addClass('d-none');
+                }, 5000);
+            }
+        });
     });
 
     // Proses Button Edit

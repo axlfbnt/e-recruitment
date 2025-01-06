@@ -79,6 +79,9 @@
                                 <div class="alert alert-success d-none" id="alert-delete-success" role="alert">
                                     <strong>Success - </strong> Your data has been successfully deleted. Thank you!
                                 </div>
+                                <div class="alert alert-danger d-none" id="alert-no-applications-yet" role="alert">
+                                    <strong>Failed - </strong> Sorry, No application yet !
+                                </div>
                                 <hr>
                                 <div class="row mb-3">
                                     <div class="col-md-2">
@@ -96,11 +99,11 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2">
-                                        <label for="filter-position-status">Filter Position Status:</label>
-                                        <select id="filter-position-status" class="form-control">
+                                        <label for="filter-a1-status">Filter A1 Status:</label>
+                                        <select id="filter-a1-status" class="form-control">
                                             <option value="">All</option>
-                                            <option value="1">Replacement</option>
-                                            <option value="2">New</option>
+                                            <option value="Not Yet">Not Yet</option>
+                                            <option value="Approved by HC">Approved by HC</option>
                                         </select>
                                     </div>
                                 </div>
@@ -474,7 +477,7 @@
                                 Please set a due date.
                             </div>
                         </div>
-                        
+
                         <div class="d-flex justify-content-end mb-4 mt-3">
                             <button type="button" id="closeEditModalBtn" class="btn btn-soft-warning me-2"
                                 data-bs-dismiss="modal">Cancel</button>
@@ -486,6 +489,38 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!-- Detail Man Power Planning modal content -->
+    <div id="detailmpp-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="auth-brand text-center mt-2 mb-3 position-relative top-0">
+                        <a class="logo-dark">
+                            <span class="logo-lg">
+                                <img src="{{ asset('images/recruitment.png') }}" alt="dark logo"
+                                    style="vertical-align: middle; width: 35px; height: auto;">
+                                <span
+                                    style="vertical-align: middle; font-size: 15px; font-weight: bold; margin-left: 10px;">
+                                    DETAIL MAN POWER PLANNING
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <form class="needs-validation ps-3 pe-3" novalidate>
+                        <div id="detail-container"></div>
+
+                        <div class="d-flex justify-content-end mb-4 mt-3">
+                            <button type="button" id="closeModalBtn" class="btn btn-soft-warning me-2"
+                                data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deletempp-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">

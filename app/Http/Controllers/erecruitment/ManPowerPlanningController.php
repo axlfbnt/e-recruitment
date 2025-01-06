@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\erecruitment;
 
 use App\Http\Controllers\Controller;
+use App\Models\erecruitment\table\MsFormA1;
 use App\Models\erecruitment\table\MsManPowerPlanning;
 use App\Models\erecruitment\table\MsVendor;
 use App\Models\erecruitment\view\VwCompanyStructure;
@@ -38,9 +39,9 @@ class ManPowerPlanningController extends Controller
                 $data->where('division', $request->division);
             }
 
-            // Filter berdasarkan position_status
-            if ($request->filled('position_status') && $request->position_status !== 'All') {
-                $data->where('position_status', $request->position_status);
+            // Filter berdasarkan a1_status
+            if ($request->filled('a1_status') && $request->a1_status !== 'All') {
+                $data->where('a1_status', $request->a1_status);
             }
 
             return DataTables::of($data)
@@ -199,6 +200,20 @@ class ManPowerPlanningController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function detail($id)
+    {
+        // Mengambil semua data dengan kondisi
+        $data = MsFormA1::where('position', $id)->get();
+
+        // Cek jika data kosong
+        if ($data->isEmpty()) {
+            return response()->json(['error' => 'No data found for the given condition'], 404);
+        }
+
+        // Mengembalikan data dalam bentuk JSON
+        return response()->json(['data' => $data], 200);
     }
 
     /**

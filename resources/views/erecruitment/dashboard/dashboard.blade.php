@@ -389,6 +389,14 @@
     <!-- Apex Charts js -->
     <script src="{{ asset('vendor/apexcharts/apexcharts.min.js') }}"></script>
 
+    <!-- Apex Chart Bar Demo js -->
+    {{-- <script src="{{ asset('js/pages/demo.apex-bar.js') }}"></script> --}}
+
+    <!-- Apex Chart Column Demo js -->
+    {{-- <script src="{{ asset('js/pages/demo.apex-column.js') }}"></script> --}}
+
+    {{-- <script src="{{ asset('js/pages/demo.apex-radialbar.js') }}"></script> --}}
+
     <!-- Vector Map js -->
     <script src="{{ asset('vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
