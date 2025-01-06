@@ -185,9 +185,9 @@
                             .replace(/Production Plant (\d+)/gi,
                                 'Prod. Plant $1')
                             .replace(/Human Capital/gi, 'HC')
-                            .replace(/Strategy/gi, 'St.')
+                            .replace(/Strategy/gi, 'S.')
                             .replace(/Digitalization/gi,
-                                'Dg.')
+                                'D.')
                             .replace(/Information System/gi,
                                 'IS.')
                             .replace(/Supply Chain Management/gi,
