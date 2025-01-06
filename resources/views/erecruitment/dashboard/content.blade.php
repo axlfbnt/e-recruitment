@@ -127,7 +127,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="text-muted text-uppercase fs-13 mt-0">Total Man Power Approved</h5>
+                                        <h5 class="text-muted text-uppercase fs-13 mt-0">Man Power Approved</h5>
                                         <h3 class="my-3" id="manpower-approved">0</h3>
                                         <p class="mb-0 text-muted text-truncate">
                                             <span>Man Power</span>
