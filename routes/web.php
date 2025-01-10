@@ -42,6 +42,7 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 
 // Get Data Kebutuhan Dashboard
 Route::get('/get-manpower-summary', [HomeController::class, 'getManPowerSummary'])->name('get.manpowerSummary');
+Route::get('/get-performance-recruitment', [HomeController::class, 'getPerformanceRecruitment'])->name('get.performanceRecruitment');
 Route::get('/get-manpower-approved-division', [HomeController::class, 'getManPowerApprovedDivision'])->name('get.manpowerApprovedDivision');
 Route::get('/get-applicant-process-summary', [HomeController::class, 'getApplicantProcessSummary'])->name('get.applicantProcessSummary');
 Route::get('/get-achievement-division', [HomeController::class, 'getAchievementByDivision'])->name('get.achievementByDivision');
@@ -55,6 +56,7 @@ Route::prefix('man-power-planning')->group(function () {
     Route::get('/{id}', [ManPowerPlanningController::class, 'show'])->name('mpp.show');
     Route::get('/{id}/edit', [ManPowerPlanningController::class, 'edit'])->name('mpp.edit');
     Route::get('/{id}/detail', [ManPowerPlanningController::class, 'detail'])->name('forma1.detail');
+    Route::put('/{id}/detailUpdate', [ManPowerPlanningController::class, 'detailUpdate'])->name('forma1.detailUpdate');
     Route::put('/{id}', [ManPowerPlanningController::class, 'update'])->name('mpp.update');
     Route::delete('/{id}', [ManPowerPlanningController::class, 'destroy'])->name('mpp.destroy');
 });

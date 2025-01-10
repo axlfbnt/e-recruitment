@@ -1,6 +1,13 @@
 @extends('erecruitment.dashboard.dashboard')
 
 @section('content')
+    <style>
+        #circle-angle-radial {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
@@ -147,7 +154,7 @@
 
                 <!-- Charts Section -->
                 <div class="row row-cols-1 row-cols-md-2">
-                    <div class="col-xl-4">
+                    <div class="col-xl-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h4 class="header-title">Man Power Approved by Division</h4>
@@ -158,18 +165,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h4 class="header-title">Applicant Process Summary</h4>
-                                <div dir="ltr">
-                                    <div id="basic-column" class="apex-charts"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4">
+                    <div class="col-xl-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h4 class="header-title mb-4">Recruitment Achievement by Division</h4>
@@ -180,17 +176,82 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Additional Chart -->
-                <div class="row row-cols-1 row-cols-md-2 mt-2">
-                    <div class="col-xl-4">
+                    <div class="col-xl-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h4 class="header-title">Man Power by Source</h4>
                                 <div dir="ltr" class="mb-4">
                                     <div id="basic-polar-area" class="apex-charts"
                                         data-colors="#4254ba,#6c757d,#17a497,#fa5c7c,#ffbc00,#39afd1"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="header-title">Applicant Process Summary</h4>
+                                <div dir="ltr" class="mb-4">
+                                    <div id="basic-column" class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-2 mt-2">
+                    {{-- <div class="col-xl-4 col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="header-title">Applicant Process Summary</h4>
+                                <div dir="ltr">
+                                    <div id="basic-column" class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="card widget-icon-box">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="text-muted text-uppercase fs-13 mt-0">Performance Recruitment</h5>
+                                        <h3 class="my-3" id="performance-recruitment">0</h3>
+                                        <p class="mb-0 text-muted text-truncate">
+                                            <span>Percent</span>
+                                        </p>
+                                    </div>
+                                    <div class="avatar-sm flex-shrink-0">
+                                        <span
+                                            class="avatar-title text-bg-success rounded rounded-3 fs-3 widget-icon-box-avatar shadow">
+                                            <i class="bi bi-emoji-smile"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="card widget-icon-box">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="text-muted text-uppercase fs-13 mt-0">Lead Time Average</h5>
+                                        <h3 class="my-3" id="sla-average">0</h3>
+                                        <p class="mb-0 text-muted text-truncate">
+                                            <span>Days</span>
+                                        </p>
+                                    </div>
+                                    <div class="avatar-sm flex-shrink-0">
+                                        <span
+                                            class="avatar-title text-bg-warning rounded rounded-3 fs-3 widget-icon-box-avatar shadow">
+                                            <i class="bi bi-inboxes"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

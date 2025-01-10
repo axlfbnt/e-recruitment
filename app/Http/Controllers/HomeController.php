@@ -7,6 +7,7 @@ use App\Models\erecruitment\view\VwApplicantProcessSummary;
 use App\Models\erecruitment\view\VwManPowerApprovedByDivision;
 use App\Models\erecruitment\view\VwManpowerBySource;
 use App\Models\erecruitment\view\VwManPowerSummary;
+use App\Models\erecruitment\view\VwPerformanceRecruitment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,6 +37,13 @@ class HomeController extends Controller
         $manPowerSummary = VwManPowerSummary::get();
         
         return response()->json($manPowerSummary);
+    }
+
+    public function getPerformanceRecruitment()
+    {
+        $performanceRecruitment = VwPerformanceRecruitment::get();
+        
+        return response()->json($performanceRecruitment);
     }
 
     public function getManPowerApprovedDivision()

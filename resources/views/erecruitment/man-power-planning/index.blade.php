@@ -510,6 +510,32 @@
 
                     <form class="needs-validation ps-3 pe-3" novalidate>
                         <div id="detail-container"></div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- No Application Man Power Planning modal content -->
+    <div id="noapplication-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="auth-brand text-center mt-2 mb-3 position-relative top-0">
+                        <a class="logo-dark">
+                            <span class="logo-lg">
+                                <img src="{{ asset('images/recruitment.png') }}" alt="dark logo"
+                                    style="vertical-align: middle; width: 35px; height: auto;">
+                                <span
+                                    style="vertical-align: middle; font-size: 15px; font-weight: bold; margin-left: 10px;">
+                                    FAILED - SORRY, NO APPLICATION YET !
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <form class="needs-validation ps-3 pe-3" novalidate>
+                        <div id="noapplication-container"></div>
 
                         <div class="d-flex justify-content-end mb-4 mt-3">
                             <button type="button" id="closeModalBtn" class="btn btn-soft-warning me-2"

@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MsFormA1 extends Model
 {
-    use SoftDeletes;
-    use HasFactory;
-    
+    use SoftDeletes, HasFactory;
+
     protected $connection = 'mysql-erec';
     public $table = "ms_form_a1";
+
+    protected $primaryKey = 'id_form_a1';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $fillable = [
         'id_form_a1',
         "department",

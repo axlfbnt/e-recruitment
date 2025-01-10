@@ -216,6 +216,42 @@ class ManPowerPlanningController extends Controller
         return response()->json(['data' => $data], 200);
     }
 
+    public function detailUpdate(Request $request, $id)
+    {
+        // Validate the request
+        $validatedData = $request->validate([
+            'progress_recruitment' => 'required|string',
+            'psikotes' => 'nullable|integer',
+            'interview_hc' => 'nullable|integer',
+            'interview_user' => 'nullable|integer',
+            'interview_bod' => 'nullable|integer',
+            'mcu' => 'nullable|integer',
+            'offering_letter' => 'nullable|integer',
+            'closed' => 'nullable|integer',
+        ]);
+
+        // Find the MsFormA1 record by ID
+        $formA1 = MsFormA1::findOrFail($id);
+
+        // Update only the specified fields
+        $formA1->update([
+            'progress_recruitment' => $validatedData['progress_recruitment'],
+            'psikotes' => $validatedData['psikotes'],
+            'interview_hc' => $validatedData['interview_hc'],
+            'interview_user' => $validatedData['interview_user'],
+            'interview_bod' => $validatedData['interview_bod'],
+            'mcu' => $validatedData['mcu'],
+            'offering_letter' => $validatedData['offering_letter'],
+            'closed' => $validatedData['closed'],
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        return response()->json([
+            'message' => 'Data updated successfully!',
+            'data' => $formA1,
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

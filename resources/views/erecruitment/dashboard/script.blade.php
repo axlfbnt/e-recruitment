@@ -23,6 +23,26 @@
         });
 
         $.ajax({
+            url: '/get-performance-recruitment',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                if (data.length > 0) {
+                    const performance = data[0];
+
+                    $('#performance-recruitment').text(performance
+                        .performance_recruitment_percentage || 0);
+                    $('#sla-average').text(performance.lead_time_average || 0);
+                } else {
+                    console.error("No data received");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching manpower performance:', error);
+            }
+        });
+
+        $.ajax({
             url: '/get-manpower-approved-division',
             method: 'GET',
             dataType: 'json',
@@ -207,15 +227,18 @@
 
                     const options = {
                         chart: {
-                            height: 350,
-                            type: 'radialBar'
+                            height: 400, 
+                            type: 'radialBar',
+                            toolbar: {
+                                show: true, 
+                            },
                         },
                         series: seriesData,
                         labels: labels,
                         plotOptions: {
                             radialBar: {
                                 hollow: {
-                                    size: '50%'
+                                    size: '50%' 
                                 },
                                 dataLabels: {
                                     name: {
@@ -230,12 +253,10 @@
                                 }
                             }
                         },
-                        colors: ['#17a497', '#fa5c7c', '#4254ba',
-                            '#ffbc00'
-                        ],
+                        colors: ['#17a497', '#fa5c7c', '#4254ba', '#ffbc00'],
                         legend: {
                             show: true,
-                            position: 'right',
+                            position: 'bottom', // Pindahkan legend ke bawah
                             formatter: function(seriesName, opts) {
                                 const index = opts.seriesIndex;
                                 const fulfilled = parseInt(response[index]
@@ -243,10 +264,11 @@
                                 const request = parseInt(response[index].total_requests ||
                                     0);
                                 return `${seriesName} : ${fulfilled}/${request}`;
-                            }
+                            },
+                            horizontalAlign: 'center', // Rata tengah untuk legend
                         },
                         title: {
-                            align: 'center'
+                            align: 'center',
                         }
                     };
 
@@ -271,7 +293,7 @@
                     // Extract data for the chart
                     const categories = response.map(item => item.source_type); // Source types
                     const seriesData = response.map(item => parseInt(item.total_manpower ||
-                    0)); // Total manpower
+                        0)); // Total manpower
 
                     // Chart options
                     const options = {

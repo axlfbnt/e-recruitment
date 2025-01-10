@@ -75,7 +75,7 @@
                         if (data === 'Created by HC' || data ===
                             'Approved by Dept Head' || data ===
                             'Approved by Div Head' || data ===
-                            'Approved by Human Capital') {
+                            'Approved by HC') {
                             labelClass = 'label-open';
                         } else if (data === 'Not Yet') {
                             labelClass = 'label-close';

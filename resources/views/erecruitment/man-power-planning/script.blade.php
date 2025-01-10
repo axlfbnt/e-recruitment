@@ -15,10 +15,10 @@
                 url: "{{ url('man-power-planning') }}",
                 type: 'GET',
                 data: function(d) {
-                    d.company = $('#filter-company').val(); 
-                    d.department = $('#filter-department').val(); 
+                    d.company = $('#filter-company').val();
+                    d.department = $('#filter-department').val();
                     d.a1_status = $('#filter-a1-status')
-                        .val(); 
+                        .val();
                 }
             },
             columns: [{
@@ -224,7 +224,7 @@
 
         // Event listener untuk filter a1 status
         $('#filter-a1-status').on('change', function() {
-            table.draw(); 
+            table.draw();
         });
 
         $('#addmpp-modal').on('shown.bs.modal', function() {
@@ -468,7 +468,7 @@
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({
-            url: "{{ url('man-power-planning') }}" + "/" + id + '/detail',
+            url: `/man-power-planning/${id}/detail`,
             type: 'GET',
             headers: {
                 'X-CSRF-TOKEN': csrfToken
@@ -482,68 +482,144 @@
 
                     $('#detail-container').empty();
 
-                    data.forEach(function(item, index) {
+                    data.forEach(function(item) {
                         var detailHTML = `
                         <div class="alert alert-info text-center fw-bold py-1 mb-0" role="alert">
-                            <i class="ri-file-text-line me-1"></i> PROGRESS RECRUITMENT
+                            <i class="ri-file-text-line me-1"></i> FORM A1 | PROGRESS RECRUITMENT
                         </div>
                         <hr>
                         <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label class="form-label">A1 Status</label>
-                                <input class="form-control" type="text" value="${item.a1_status}" readonly>
+                            <div class="col-md-6">
+                                <label class="form-label">No Form</label>
+                                <input class="form-control" type="text" value="${item.id_form_a1}" disabled>
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Number Request</label>
-                                <input class="form-control" type="number" value="${item.number_requests}" readonly>
+                            <div class="col-md-3">
+                                <label class="form-label">Due Date</label>
+                                <input class="form-control" type="text" value="${item.due_date}" disabled>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label class="form-label">Lead Time</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="number" value="${item.sla}" readonly>
+                                    <input class="form-control" type="number" value="${item.sla}" disabled>
                                     <span class="input-group-text">Day</span>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
+                                <label class="form-label">A1 Status</label>
+                                <input class="form-control" type="text" value="${item.a1_status}" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Number Request</label>
+                                <input class="form-control" type="number" value="${item.number_requests}" disabled>
+                            </div>
+                            <div class="col-md-4">
                                 <label class="form-label">Progress Recruitment</label>
-                                <input class="form-control" type="text" value="${item.progress_recruitment}" readonly>
+                                <select id="progress_recruitment-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" disabled>
+                                    <option value="Open" ${item.progress_recruitment === 'Open' ? 'selected' : ''}>Open</option>
+                                    <option value="Sourcing" ${item.progress_recruitment === 'Sourcing' ? 'selected' : ''}>Sourcing</option>
+                                    <option value="Psikotes" ${item.progress_recruitment === 'Psikotes' ? 'selected' : ''}>Psikotes</option>
+                                    <option value="Interview HC" ${item.progress_recruitment === 'Interview HC' ? 'selected' : ''}>Interview HC</option>
+                                    <option value="Interview User" ${item.progress_recruitment === 'Interview User' ? 'selected' : ''}>Interview User</option>
+                                    <option value="Interview BOD" ${item.progress_recruitment === 'Interview BOD' ? 'selected' : ''}>Interview BOD</option>
+                                    <option value="MCU" ${item.progress_recruitment === 'MCU' ? 'selected' : ''}>MCU</option>
+                                    <option value="Offering Letter" ${item.progress_recruitment === 'Offering Letter' ? 'selected' : ''}>Offering Letter</option>
+                                    <option value="Closed" ${item.progress_recruitment === 'Closed' ? 'selected' : ''}>Closed</option>
+                                    <option value="Cancel" ${item.progress_recruitment === 'Cancel' ? 'selected' : ''}>Cancel</option>
+                                    <option value="Waiting Approval" ${item.progress_recruitment === 'Waiting Approval' ? 'selected' : ''}>Waiting Approval</option>
+                                </select>
                             </div>
-                            <div class="col-md-3">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
                                 <label class="form-label">Psikotes</label>
-                                <input class="form-control" type="number" value="${item.psikotes}" readonly>
+                                <input id="psikotes-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.psikotes}" disabled>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label">Interview HC</label>
-                                <input class="form-control" type="number" value="${item.interview_hc}" readonly>
+                                <input id="interview_hc-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.interview_hc}" disabled>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="form-label">Interview User</label>
-                                <input class="form-control" type="number" value="${item.interview_user}" readonly>
+                                <input id="interview_user-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.interview_user}" disabled>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <label class="form-label">Interview BOD</label>
-                                <input class="form-control" type="number" value="${item.interview_bod}" readonly>
+                                <input id="interview_bod-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.interview_bod}" disabled>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Medical Check UP</label>
-                                <input class="form-control" type="number" value="${item.mcu}" readonly>
+                                <input id="mcu-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.mcu}" disabled>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Offering Letter</label>
-                                <input class="form-control" type="number" value="${item.offering_letter}" readonly>
+                                <input id="offering_letter-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.offering_letter}" disabled>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Closed</label>
-                                <input class="form-control" type="number" value="${item.closed}" readonly>
+                                <input id="closed-${item.id_form_a1}" class="form-control field-edit-${item.id_form_a1}" type="number" value="${item.closed}" disabled>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-end mb-4 mt-3">
+                            <button type="button" id="button-update-${item.id_form_a1}" value="${item.id_form_a1}" class="btn btn-warning me-2">
+                                Update
+                            </button>
+                        </div>
                     `;
-
                         $('#detail-container').append(detailHTML);
+                    });
+
+                    $(document).on('click', `[id^=button-update-]`, function() {
+                        var formId = $(this).val();
+                        console.log("Update clicked for ID:", formId);
+
+                        $(`.field-edit-${formId}`).prop('disabled', false);
+
+                        $(this).replaceWith(`
+                        <button type="button" id="button-save-${formId}" value="${formId}" class="btn btn-primary me-2">
+                            Update Data
+                        </button>
+                    `);
+                    });
+
+                    $(document).on('click', `[id^=button-save-]`, function() {
+                        var formId = $(this).val(); // Use `val()` to get the form ID
+                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                        // Collect updated values
+                        var updatedData = {
+                            progress_recruitment: $(`#progress_recruitment-${formId}`)
+                                .val(),
+                            psikotes: $(`#psikotes-${formId}`).val(),
+                            interview_hc: $(`#interview_hc-${formId}`).val(),
+                            interview_user: $(`#interview_user-${formId}`).val(),
+                            interview_bod: $(`#interview_bod-${formId}`).val(),
+                            mcu: $(`#mcu-${formId}`).val(),
+                            offering_letter: $(`#offering_letter-${formId}`).val(),
+                            closed: $(`#closed-${formId}`).val(),
+                            _token: csrfToken,
+                            _method: 'PUT'
+                        };
+
+                        $.ajax({
+                            url: `/man-power-planning/${formId}/detailUpdate`,
+                            type: 'PUT',
+                            data: updatedData,
+                            success: function(response) {
+                                alert('Data updated successfully!');
+                                location
+                            .reload(); // Reload the page after successful update
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error updating data:', xhr
+                                    .responseText);
+                                alert(
+                                    'Failed to update data. Please try again.');
+                            }
+                        });
                     });
                 } else {
                     alert('No data found for this ID');
@@ -552,10 +628,15 @@
             error: function(xhr, status, error) {
                 console.error('Error: ', status, error);
 
-                $('#alert-no-applications-yet').removeClass('d-none');
-                setTimeout(function() {
-                    $('#alert-no-applications-yet').addClass('d-none');
-                }, 5000);
+                $('#noapplication-modal').modal('show');
+                $('#noapplication-container').empty();
+
+                var noapplicationHTML = `
+                <div class="alert alert-danger text-center fw-bold py-1 mb-0" role="alert">
+                    <i class="ri-file-text-line me-1"></i> No Application Found
+                </div>
+            `;
+                $('#noapplication-container').append(noapplicationHTML);
             }
         });
     });
