@@ -57,6 +57,7 @@ class MsFormA1 extends Model
         "closed",
         "closed_date",
         "rejection_statement",
+        "attachment",
         "created_by",
         "updated_by",
     ];

@@ -542,6 +542,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="mb-2">
+                                        <label for="cv" class="form-label">Attachment <span
+                                                style="color: red; font-size: 11px;">*file allowed are pdf</span></label>
+                                        <input class="form-control" type="file" id="attachment"
+                                            accept="application/pdf" placeholder="upload attachment">
+                                        <div class="invalid-feedback">
+                                            Please upload attachment.
+                                        </div>
+                                    </div>
+
                                     <ul class="pager wizard mb-0 list-inline">
                                         <li class="previous list-inline-item">
                                             <button type="button" class="btn btn-light"

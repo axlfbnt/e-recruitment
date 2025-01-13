@@ -181,7 +181,7 @@
 
                     <form class="needs-validation ps-3 pe-3" novalidate>
                         <div class="mb-2">
-                            <label for="company" class="form-label">Company</label>
+                            <label for="company" class="form-label">Company<span class="text-danger"> *</span></label>
                             <select class="form-select" id="company" required>
                                 <option value="" disabled selected>Select company</option>
                                 <!-- Options akan dimuat secara dinamis menggunakan AJAX -->
@@ -192,7 +192,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="department" class="form-label">Department</label>
+                            <label for="department" class="form-label">Department<span class="text-danger"> *</span></label>
                             <select class="form-control select2" data-toggle="select2" id="department" required>
                                 <option value="" disabled selected>Select department</option>
                                 <!-- Options akan dimuat secara dinamis menggunakan AJAX -->
@@ -203,7 +203,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="division" class="form-label">Division</label>
+                            <label for="division" class="form-label">Division<span class="text-danger"> *</span></label>
                             <input class="form-control" type="text" id="division" required disabled
                                 placeholder="fill division">
                             <div class="invalid-feedback">
@@ -213,7 +213,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="position" class="form-label">Position</label>
+                                <label for="position" class="form-label">Position<span class="text-danger"> *</span></label>
                                 <select class="form-control select2" data-toggle="select2" id="position" required>
                                     <option value="" disabled selected>Select position</option>
                                     <!-- Options akan dimuat secara dinamis menggunakan AJAX -->
@@ -224,7 +224,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="position-status" class="form-label">Position Status</label>
+                                <label for="position-status" class="form-label">Position Status<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="position-status" required>
                                     <option value="" disabled selected>select position status</option>
                                     <option value="1">Replacement</option>
@@ -237,7 +237,7 @@
                         </div>
 
                         <div class="mb-2" id="new-position-container" style="display: none;">
-                            <label for="new-position" class="form-label">New Position</label>
+                            <label for="new-position" class="form-label">New Position<span class="text-danger"> *</span></label>
                             <input class="form-control" type="text" id="new-position" required
                                 placeholder="fill new position">
                             <div class="invalid-feedback">
@@ -247,7 +247,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="source-submission" class="form-label">Source of Submission</label>
+                                <label for="source-submission" class="form-label">Source of Submission<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="source-submission" required>
                                     <option value="" disabled selected>select source</option>
                                     <option value="1">Organik</option>
@@ -261,7 +261,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="job-position" class="form-label">Job Position</label>
+                                <label for="job-position" class="form-label">Job Position<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="job-position" required>
                                     <option value="" disabled selected>select job position</option>
                                     <option value="Head Office">Head Office</option>
@@ -274,7 +274,7 @@
                         </div>
 
                         <div class="mb-2" id="vendor-container" style="display: none;">
-                            <label for="vendor" class="form-label">Vendor</label>
+                            <label for="vendor" class="form-label">Vendor<span class="text-danger"> *</span></label>
                             <select class="form-select" id="vendor" required>
                                 <option value="" disabled selected>select vendor</option>
                             </select>
@@ -285,7 +285,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="total-man-power" class="form-label">Total Man Power</label>
+                                <label for="total-man-power" class="form-label">Total Man Power<span class="text-danger"> *</span></label>
                                 <input class="form-control" type="number" id="total-man-power" required
                                     placeholder="fill total man power">
                                 <div class="invalid-feedback">
@@ -293,7 +293,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="last-education" class="form-label">Last Education</label>
+                                <label for="last-education" class="form-label">Last Education<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="last-education" required>
                                     <option value="" disabled selected>select last education</option>
                                     <option value="1">SMA/SMK/Sederajat</option>
@@ -308,8 +308,8 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="remarks" class="form-label">Remarks</label>
-                            <textarea class="form-control" id="remarks" rows="2"></textarea>
+                            <label for="remarks" class="form-label">Remarks<span class="text-danger"> *</span></label>
+                            <textarea class="form-control" id="remarks" rows="2" required></textarea>
                         </div>
 
                         <div class="mb-2">
@@ -357,7 +357,7 @@
 
                     <form class="needs-validation ps-3 pe-3" novalidate>
                         <div class="mb-2">
-                            <label for="edit-company" class="form-label">Company</label>
+                            <label for="edit-company" class="form-label">Company<span class="text-danger"> *</span></label>
                             <input class="form-control" type="text" id="edit-company" required disabled
                                 placeholder="Select company">
                             <div class="invalid-feedback">
@@ -366,7 +366,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="edit-department" class="form-label">Department</label>
+                            <label for="edit-department" class="form-label">Department<span class="text-danger"> *</span></label>
                             <input class="form-control" type="text" id="edit-department" required disabled
                                 placeholder="Select department">
                             <div class="invalid-feedback">
@@ -375,7 +375,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="edit-division" class="form-label">Division</label>
+                            <label for="edit-division" class="form-label">Division<span class="text-danger"> *</span></label>
                             <input class="form-control" type="text" id="edit-division" required disabled
                                 placeholder="Select division">
                             <div class="invalid-feedback">
@@ -385,7 +385,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="edit-position" class="form-label">Position</label>
+                                <label for="edit-position" class="form-label">Position<span class="text-danger"> *</span></label>
                                 <input class="form-control" type="text" id="edit-position" required disabled
                                     placeholder="Select position">
                                 <div class="invalid-feedback">
@@ -394,7 +394,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="edit-position-status" class="form-label">Position Status</label>
+                                <label for="edit-position-status" class="form-label">Position Status<span class="text-danger"> *</span></label>
                                 <input class="form-control" type="text" id="edit-position-status" required disabled
                                     placeholder="Select position status">
                                 <div class="invalid-feedback">
@@ -404,7 +404,7 @@
                         </div>
 
                         <div class="mb-2" id="edit-new-position-container" style="display: none;">
-                            <label for="edit-new-position" class="form-label">New Position</label>
+                            <label for="edit-new-position" class="form-label">New Position<span class="text-danger"> *</span></label>
                             <input class="form-control" type="text" id="edit-new-position" required
                                 placeholder="Fill new position">
                             <div class="invalid-feedback">
@@ -414,7 +414,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="edit-source-submission" class="form-label">Source of Submission</label>
+                                <label for="edit-source-submission" class="form-label">Source of Submission<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="edit-source-submission" required>
                                     <option value="" disabled selected>Select source</option>
                                     <option value="1">Organik</option>
@@ -428,7 +428,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="edit-job-position" class="form-label">Job Position</label>
+                                <label for="edit-job-position" class="form-label">Job Position<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="edit-job-position" required>
                                     <option value="" disabled selected>Select job position</option>
                                     <option value="Head Office">Head Office</option>
@@ -442,7 +442,7 @@
 
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label for="edit-total-man-power" class="form-label">Total Man Power</label>
+                                <label for="edit-total-man-power" class="form-label">Total Man Power<span class="text-danger"> *</span></label>
                                 <input class="form-control" type="number" id="edit-total-man-power" required
                                     placeholder="Fill total man power">
                                 <div class="invalid-feedback">
@@ -450,7 +450,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="edit-last-education" class="form-label">Last Education</label>
+                                <label for="edit-last-education" class="form-label">Last Education<span class="text-danger"> *</span></label>
                                 <select class="form-select" id="edit-last-education" required>
                                     <option value="" disabled selected>Select last education</option>
                                     <option value="1">SMA/SMK/Sederajat</option>
@@ -465,12 +465,12 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="edit-remarks" class="form-label">Remarks</label>
-                            <textarea class="form-control" id="edit-remarks" rows="2"></textarea>
+                            <label for="edit-remarks" class="form-label">Remarks<span class="text-danger"> *</span></label>
+                            <textarea class="form-control" id="edit-remarks" rows="2" required></textarea>
                         </div>
 
                         <div class="mb-2">
-                            <label for="edit-due-date" class="form-label">Due Date</label>
+                            <label for="edit-due-date" class="form-label">Due Date<span class="text-danger"> *</span></label>
                             <input class="form-control" type="date" id="edit-due-date" required
                                 placeholder="Fill due date">
                             <div class="invalid-feedback">

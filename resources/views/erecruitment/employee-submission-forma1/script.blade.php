@@ -465,6 +465,11 @@
         });
         formData.append('majors', majors.join(','));
 
+        var attachment = $('#attachment')[0].files[0];
+        if (attachment) {
+            formData.append('attachment', attachment);
+        }
+
         return formData;
     }
 

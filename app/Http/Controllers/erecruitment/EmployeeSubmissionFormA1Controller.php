@@ -47,31 +47,25 @@ class EmployeeSubmissionFormA1Controller extends Controller
 
     public function generateFormattedId($division, $department)
     {
-        // Ambil tahun saat ini
         $year = date('Y');
 
-        // Buat singkatan dari divisi dan departemen
         $divisionAbbreviation = $this->getAbbreviation($division);
         $departmentAbbreviation = $this->getAbbreviation($department);
 
-        // Pola untuk pencarian ID terakhir berdasarkan divisi dan departemen tertentu di tahun ini
         $pattern = 'FRMA1-' . $year . '-' . $divisionAbbreviation . '-' . $departmentAbbreviation . '-%';
 
-        // Cari ID terakhir di database dengan format yang mirip
-        $lastEntry = MsFormA1::where('id_form_a1', 'like', $pattern)
+        $lastEntry = MsFormA1::withTrashed() 
+            ->where('id_form_a1', 'like', $pattern)
             ->orderBy('id_form_a1', 'desc')
             ->first();
 
         if ($lastEntry) {
-            // Ambil nomor urut dari ID terakhir dan tingkatkan satu
             $lastNumber = (int) substr($lastEntry->id_form_a1, -5);
             $newNumber = str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
         } else {
-            // Jika tidak ada ID yang ditemukan, mulai dari 00001
             $newNumber = '00001';
         }
 
-        // Gabungkan semua komponen untuk membuat ID yang diformat
         $formattedId = 'FRMA1-' . $year . '-' . $divisionAbbreviation . '-' . $departmentAbbreviation . '-' . $newNumber;
 
         return $formattedId;
@@ -260,6 +254,15 @@ class EmployeeSubmissionFormA1Controller extends Controller
                 ]);
             }
 
+            $attachment = null;
+            // Menyimpan file attachment jika ada
+            if ($request->file('attachment')) {
+                $attachment = $request->file('attachment');
+                $attachmentName = 'FRMA1attachment-' . date('Ymdhis') . '.' . $attachment->getClientOriginalExtension();
+                $storedattachmentPath = $attachment->storeAs('attachment', $attachmentName, 'public');
+                $attachment = '/storage/' . $storedattachmentPath;
+            }
+
             MsFormA1::create([
                 'id_form_a1' => $request->input('no_form'),
                 'department' => Auth::user()->department,
@@ -282,6 +285,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
                 'sla' => null,
                 'a1_status' => 'Not Yet',
                 'rejection_statement' => null,
+                'attachment' => $attachment,
                 'created_by' => Auth::user()->id,
             ]);
         } else {
@@ -436,7 +440,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
         $userId = Auth::user()->id;
         $userName = Auth::user()->name;
         $userEmail = Auth::user()->email;
-        $currentDate = now(); 
+        $currentDate = now();
 
         $data = [];
 
