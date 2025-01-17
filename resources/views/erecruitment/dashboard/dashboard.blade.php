@@ -126,16 +126,16 @@
                 <ul class="side-nav">
                     <li class="side-nav-title mt-1">Main Menu</li>
 
-                    @if ($userEmail == '1612075')
+                    @if ($userEmail == '1801002')
                         {{-- Include sidebar untuk Dept Head --}}
                         @include('erecruitment.dashboard.sidebar-dept-head')
-                    @elseif ($userEmail == '1801002')
+                    @elseif ($userEmail == '2111040')
                         {{-- Include sidebar untuk Div Head --}}
                         @include('erecruitment.dashboard.sidebar-div-head')
                     @elseif ($userEmail == 'fabiantoaxel042@gmail.com')
                         {{-- Include sidebar untuk Admin --}}
                         @include('erecruitment.dashboard.sidebar-admin')
-                    @elseif ($userEmail == 'firdariskap@gmail.com')
+                    @elseif ($userEmail == '10124022')
                         {{-- Include sidebar untuk HC --}}
                         @include('erecruitment.dashboard.sidebar-hc')
                     @else

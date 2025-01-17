@@ -77,23 +77,25 @@
                                 <hr>
                                 <div class="row mb-3">
                                     <div class="col-md-2">
-                                        <label for="filter-department">Filter Department:</label>
-                                        <select id="filter-department" class="form-control">
-                                            <option value="">All</option>
-                                            <option value="HR">HR</option>
-                                            <option value="Finance">Finance</option>
-                                            <option value="IT">IT</option>
-                                            <option value="Sales">Sales</option>
+                                        <label for="filter-company">Filter Company:</label>
+                                        <select class="form-select" id="filter-company" required>
+                                            <option value="All" selected>All</option>
+                                            <!-- Options akan dimuat secara dinamis menggunakan AJAX -->
                                         </select>
                                     </div>
                                     <div class="col-md-2">
-                                        <label for="filter-status">Filter Status:</label>
-                                        <select id="filter-status" class="form-control">
+                                        <label for="filter-department">Filter Department:</label>
+                                        <select class="form-select" id="filter-department" required>
+                                            <option value="All" selected>All</option>
+                                            <!-- Options akan dimuat secara dinamis menggunakan AJAX -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="filter-a1-status">Filter A1 Status:</label>
+                                        <select id="filter-a1-status" class="form-control">
                                             <option value="">All</option>
-                                            <option value="Created by HC">Created by HC</option>
-                                            <option value="Approved by Dept Head">Approved by Dept Head</option>
-                                            <option value="Approved by Div Head">Approved by Div Head</option>
                                             <option value="Not Yet">Not Yet</option>
+                                            <option value="Approved by HC">Approved by HC</option>
                                         </select>
                                     </div>
                                 </div>
@@ -107,8 +109,8 @@
                                             <th>Number of Requests</th>
                                             <th>Date</th>
                                             <th>SLA</th>
+                                            <th>is MPP</th>
                                             <th>Status</th>
-                                            <th>Rejection Statement</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -996,7 +998,7 @@
                         <div class="d-flex justify-content-end mb-4 mt-3">
                             <button type="button" id="closeDetailModalBtn" class="btn btn-soft-warning me-2"
                                 data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" id="button-approve" class="btn btn-success">Approve Form A1</button>
+                            <button type="button" id="button-approve" class="btn btn-success" style="display: none;">Approve Form A1</button>
                         </div>
                     </form>
                 </div>
@@ -1004,6 +1006,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
     <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteforma1-modal" tabindex="-1" aria-labelledby="deleteModalLabel"
         aria-hidden="true">

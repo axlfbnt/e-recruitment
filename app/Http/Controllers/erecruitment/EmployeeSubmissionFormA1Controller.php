@@ -18,31 +18,64 @@ class EmployeeSubmissionFormA1Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Request $request)
     {
-        if ($request->expectsJson()) {
-            $data = MsFormA1::select('ms_form_a1.*', 'ms_manpowerplanning.position as position_name')
-                ->join('ms_manpowerplanning', 'ms_form_a1.position', '=', 'ms_manpowerplanning.id_mpp');
+        $userDepartment = Auth::user()->department;
+        $userDivision = Auth::user()->division;
+        $userEmail = Auth::user()->email;
 
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($data) {
-                    return view('erecruitment.employee-submission-forma1.action', compact('data'))->render();
-                })
-                ->filterColumn('position_name', function ($query, $keyword) {
-                    $query->whereRaw("LOWER(ms_manpowerplanning.position) like ?", ["%{$keyword}%"]);
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+        if ($request->expectsJson()) {
+            $query = null;
+
+            switch ($userEmail) {
+                case '1801002':
+                    $query = MsFormA1::select('ms_form_a1.*', 'ms_manpowerplanning.position as position_name')
+                        ->join('ms_manpowerplanning', 'ms_form_a1.position', '=', 'ms_manpowerplanning.id_mpp')
+                        ->where('ms_form_a1.department', 'LIKE', '%' . $userDepartment . '%');
+                    break;
+                case '2111040':
+                    $query = MsFormA1::select('ms_form_a1.*', 'ms_manpowerplanning.position as position_name')
+                        ->join('ms_manpowerplanning', 'ms_form_a1.position', '=', 'ms_manpowerplanning.id_mpp')
+                        ->where('ms_form_a1.division', 'LIKE', '%' . $userDivision . '%')
+                        ->whereIn('ms_form_a1.a1_status', ['Approved by Dept Head', 'Approved by Div Head', 'Approved by HC']);
+                    break;
+                case '10124022':
+                    $query = MsFormA1::select('ms_form_a1.*', 'ms_manpowerplanning.position as position_name')
+                        ->join('ms_manpowerplanning', 'ms_form_a1.position', '=', 'ms_manpowerplanning.id_mpp');
+                    break;
+                default:
+                    $query = MsFormA1::select('ms_form_a1.*', 'ms_manpowerplanning.position as position_name')
+                        ->join('ms_manpowerplanning', 'ms_form_a1.position', '=', 'ms_manpowerplanning.id_mpp');
+                    break;
+            }
+
+            if ($query) {
+                return DataTables::of($query)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($data) {
+                        return view('erecruitment.employee-submission-forma1.action', compact('data'))->render();
+                    })
+                    ->filterColumn('position_name', function ($query, $keyword) {
+                        $query->whereRaw("LOWER(ms_manpowerplanning.position) LIKE ?", ["%{$keyword}%"]);
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            } else {
+                return response()->json(['error' => 'No query available'], 400);
+            }
         }
 
-        // Menyediakan ID yang diformat untuk tampilan form baru
         $division = Auth::user()->division;
         $department = Auth::user()->department;
         $formattedId = $this->generateFormattedId($division, $department);
 
         return view('erecruitment.employee-submission-forma1.index', compact('formattedId'));
+    }
+
+    private function extractPositionTitle($title)
+    {
+        preg_match('/(Division Head|Department Head|HC)/i', $title, $matches);
+        return $matches[0] ?? 'Unknown Position';
     }
 
     public function generateFormattedId($division, $department)
@@ -54,7 +87,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
 
         $pattern = 'FRMA1-' . $year . '-' . $divisionAbbreviation . '-' . $departmentAbbreviation . '-%';
 
-        $lastEntry = MsFormA1::withTrashed() 
+        $lastEntry = MsFormA1::withTrashed()
             ->where('id_form_a1', 'like', $pattern)
             ->orderBy('id_form_a1', 'desc')
             ->first();
@@ -373,6 +406,7 @@ class EmployeeSubmissionFormA1Controller extends Controller
                 'division' => Auth::user()->division,
                 'due_date' => $request->input('due_date'),
                 'position' => $nextId,
+                'is_mpp' => 'Non MPP',
                 'direct_supervisor' => Auth::user()->id,
                 'position_status' => $request->input('position_status_withoutMPP'),
                 'job_position' => $request->input('job_position_withoutMPP'),
@@ -409,80 +443,140 @@ class EmployeeSubmissionFormA1Controller extends Controller
 
     public function detail($id)
     {
-        // Mengambil data menggunakan where dan first()
         $data = MsFormA1::where('id_form_a1', $id)->first();
 
         if (!$data) {
             return response()->json(['error' => 'Data not found'], 404);
         }
 
-        // Ambil nama direct_supervisor dari tabel User, jika ada
+        $userTitle = Auth::user()->title;
+        $positionTitle = $this->extractPositionTitle($userTitle);
+
+        $approvalDept = $data->approved_dept_name === null && $positionTitle === 'Department Head';
+        $approvalDiv = $data->approved_dept_name !== null && $data->approved_div_name === null && $positionTitle === 'Division Head';
+        $approvalHc = $data->approved_div_name !== null && $data->approved_hc_name === null && $positionTitle === 'HC';
+
         if ($data->direct_supervisor) {
             $supervisor = User::where('id', $data->direct_supervisor)
                 ->select('name')
                 ->first();
             $data->supervisor_name = $supervisor ? $supervisor->name : null;
+        } else {
+            $data->supervisor_name = null;
         }
 
-        // Ambil nama position dari tabel MsManPowerPlanning, jika ada
         if ($data->position) {
             $position = MsManPowerPlanning::where('id_mpp', $data->position)
                 ->select('position')
                 ->first();
             $data->position_name = $position ? $position->position : null;
+        } else {
+            $data->position_name = null;
         }
 
-        return response()->json(['result' => $data]);
+        // Kembalikan response JSON
+        return response()->json([
+            'result' => $data,
+            'positionTitle' => $positionTitle,
+            'approvalDept' => $approvalDept,
+            'approvalDiv' => $approvalDiv,
+            'approvalHc' => $approvalHc,
+        ]);
     }
 
     public function approvalFormA1(Request $request, $id)
     {
         $userId = Auth::user()->id;
         $userName = Auth::user()->name;
-        $userEmail = Auth::user()->email;
+        $approvalRole = $request->input('approval_role');
         $currentDate = now();
+
+        $formA1 = MsFormA1::where('id_form_a1', $id)->first();
+
+        if (!$formA1) {
+            return response()->json(['error' => "Form A1 not found"], 404);
+        }
 
         $data = [];
 
-        if ($userEmail == '1612075') {
-            $data = [
-                'a1_status' => 'Approved by Dept Head',
-                'approved_dept_id' => $userId,
-                'approved_dept_name' => $userName,
-                'approved_dept_date' => $currentDate,
-            ];
-        } elseif ($userEmail == '1801002') {
-            $data = [
-                'a1_status' => 'Approved by Div Head',
-                'approved_div_id' => $userId,
-                'approved_div_name' => $userName,
-                'approved_div_date' => $currentDate,
-            ];
-        } elseif ($userEmail == 'firdariskap@gmail.com') {
-            $data = [
-                'a1_status' => 'Approved by HC',
-                'approved_hc_id' => $userId,
-                'approved_hc_name' => $userName,
-                'approved_hc_date' => $currentDate,
-            ];
+        switch ($approvalRole) {
+            case 'dept_head':
+                if (!is_null($formA1->approved_dept_name)) {
+                    return response()->json(['error' => "Already approved by Dept Head"], 400);
+                }
+                $data = [
+                    'a1_status' => 'Approved by Dept Head',
+                    'approved_dept_id' => $userId,
+                    'approved_dept_name' => $userName,
+                    'approved_dept_date' => $currentDate,
+                ];
+                break;
 
-            $formA1 = MsFormA1::where('id_form_a1', $id)->first();
+            case 'div_head':
+                if (is_null($formA1->approved_dept_name)) {
+                    return response()->json(['error' => "Approval by Dept Head required"], 400);
+                }
+                if (!is_null($formA1->approved_div_name)) {
+                    return response()->json(['error' => "Already approved by Div Head"], 400);
+                }
+                $data = [
+                    'a1_status' => 'Approved by Div Head',
+                    'approved_div_id' => $userId,
+                    'approved_div_name' => $userName,
+                    'approved_div_date' => $currentDate,
+                ];
+                break;
 
-            if ($formA1) {
-                $id_mpp = $formA1->position;
+            case 'hc':
+                if (is_null($formA1->approved_div_name)) {
+                    return response()->json(['error' => "Approval by Div Head required"], 400);
+                }
+                if (!is_null($formA1->approved_hc_name)) {
+                    return response()->json(['error' => "Already approved by HC"], 400);
+                }
+                $data = [
+                    'a1_status' => 'Approved by HC',
+                    'approved_hc_id' => $userId,
+                    'approved_hc_name' => $userName,
+                    'approved_hc_date' => $currentDate,
+                ];
+                break;
 
-                MsManPowerPlanning::where('id_mpp', $id_mpp)->update([
-                    'man_power_status' => 'On Process',
-                    'a1_status' => 'Approved by HC'
-                ]);
-            }
-        } else {
-            return response()->json(['error' => "User email does not have approval rights"], 403);
+            default:
+                return response()->json(['error' => "Invalid approval role"], 400);
         }
 
-        MsFormA1::where('id_form_a1', $id)->update($data);
+        $formA1->update($data);
 
-        return response()->json(['success' => "Successfully updated data"]);
+        $this->updateMppStatus($formA1->position);
+
+        return response()->json(['success' => "Approval successfully recorded"]);
+    }
+
+    private function updateMppStatus($id_mpp)
+    {
+        $statuses = MsFormA1::where('position', $id_mpp)->pluck('a1_status')->toArray();
+
+        $priority = [
+            'Not Yet' => 0,
+            'Approved by Dept Head' => 1,
+            'Approved by Div Head' => 2,
+            'Approved by HC' => 3,
+        ];
+
+        $highestStatus = 'Not Yet';
+        foreach ($statuses as $status) {
+            if ($priority[$status] > $priority[$highestStatus]) {
+                $highestStatus = $status;
+            }
+        }
+
+        $manPowerStatus = ($highestStatus === 'Approved by HC') ? 'On Process' : 'Open';
+
+        MsManPowerPlanning::where('id_mpp', $id_mpp)->update([
+            'a1_status' => $highestStatus,
+            'man_power_status' => $manPowerStatus,
+        ]);
     }
 
     /**

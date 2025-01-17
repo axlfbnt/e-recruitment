@@ -68,6 +68,13 @@
                     }
                 },
                 {
+                    data: 'is_mpp',
+                    name: 'is_mpp',
+                    render: function(data) {
+                        return data ? data : 'N/A';
+                    }
+                },
+                {
                     data: 'a1_status',
                     name: 'a1_status',
                     render: function(data) {
@@ -82,13 +89,6 @@
                         }
                         return '<span class="' + labelClass + '">' + data +
                             '</span>';
-                    }
-                },
-                {
-                    data: 'rejection_statement',
-                    name: 'rejection_statement',
-                    render: function(data) {
-                        return data ? data : 'N/A';
                     }
                 },
                 {
@@ -693,18 +693,21 @@
 
     $(document).on('click', '.button-detail', function() {
         var id = $(this).data('id');
-        console.log(id);
 
         // CSRF Token
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
+        // AJAX request untuk mendapatkan detail Form A1
         $.ajax({
-            url: "{{ url('employee-submission-forma1') }}" + "/" + id + '/detail',
+            url: "{{ url('employee-submission-forma1') }}" + "/" + id + "/detail",
             type: 'GET',
             success: function(response) {
-                console.log(response);
+                if (!response.result) {
+                    alert("Data not found");
+                    return;
+                }
 
-                // Pengisian data input form
+                // Mengisi data form detail
                 $('#detail-no-form').val(response.result.id_form_a1);
                 $('#detail-department').val(response.result.department);
                 $('#detail-division').val(response.result.division);
@@ -717,55 +720,78 @@
                 $('#detail-number-requests').val(response.result.number_requests);
                 $('#detail-source-submission').val(response.result.source_submission);
                 $('#detail-last-education').val(response.result.last_education);
-                $('#detail-remarks').val(response.result.remarks);
 
-                // Isi Quill editor dengan data dari response
+                // Mengisi Quill editor
                 quillJobDeskDetail.root.innerHTML = response.result.job_desc || '';
-                quillPersonalityTraitsDetail.root.innerHTML = response.result.personality_traits ||
-                    '';
+                quillPersonalityTraitsDetail.root.innerHTML =
+                    response.result.personality_traits || '';
                 quillRequiredSkillsDetail.root.innerHTML = response.result.required_skills || '';
 
+                // Mengisi Major
                 var major = response.result.major;
-                var formattedMajor = major.split(',').join(', ');
+                var formattedMajor = major ? major.split(',').join(', ') : '';
                 $('#detail-major').val(formattedMajor);
 
-                // Isi checkbox gender
-                var genders = response.result.gender.split(',');
+                // Mengisi Gender
+                var genders = response.result.gender ? response.result.gender.split(',') : [];
                 $('#detail-man').prop('checked', genders.includes('Man'));
                 $('#detail-woman').prop('checked', genders.includes('Woman'));
 
-                // Isi checkbox marital status
-                var maritalStatuses = response.result.marital_status.split(',');
+                // Mengisi Marital Status
+                var maritalStatuses = response.result.marital_status ?
+                    response.result.marital_status.split(',') :
+                    [];
                 $('#detail-marry').prop('checked', maritalStatuses.includes('Marry'));
                 $('#detail-single').prop('checked', maritalStatuses.includes('Single'));
-            }
-        });
 
-        $('#button-approve').off('click').on('click', function() {
-            var position = $('#detail-position').val();
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-            $.ajax({
-                url: "{{ route('forma1.approvalFormA1', '') }}/" + id,
-                type: 'PUT',
-                data: {
-                    _token: csrfToken,
-                    position: position
-                },
-                success: function(response) {
-                    // Menampilkan alert
-                    $('#alert-approve-success').removeClass('d-none');
-
-                    $('#forma1-datatable').DataTable().ajax.reload();
-
-                    setTimeout(function() {
-                        $('#alert-approve-success').addClass('d-none');
-                    }, 5000);
+                // Menentukan apakah tombol approve harus ditampilkan
+                if (response.approvalDept) {
+                    $('#button-approve')
+                        .show()
+                        .text("Approve by Dept Head")
+                        .data('approval-role', 'dept_head');
+                } else if (response.approvalDiv) {
+                    $('#button-approve')
+                        .show()
+                        .text("Approve by Div Head")
+                        .data('approval-role', 'div_head');
+                } else if (response.approvalHc) {
+                    $('#button-approve')
+                        .show()
+                        .text("Approve by HC")
+                        .data('approval-role', 'hc');
+                } else {
+                    $('#button-approve').hide();
                 }
-            });
-            // Hide the modal after the action
-            $('#detailforma1-modal').modal('hide');
+            },
+            error: function(xhr) {
+                alert("Error fetching detail data.");
+            },
         });
+
+        // Klik tombol Approve
+        $('#button-approve')
+            .off('click')
+            .on('click', function() {
+                var approvalRole = $(this).data('approval-role');
+
+                $.ajax({
+                    url: "{{ route('forma1.approvalFormA1', '') }}/" + id,
+                    type: 'PUT',
+                    data: {
+                        _token: csrfToken,
+                        approval_role: approvalRole,
+                    },
+                    success: function(response) {
+                        alert(response.success || "Approval successful");
+                        $('#forma1-datatable').DataTable().ajax.reload();
+                        $('#detailforma1-modal').modal('hide');
+                    },
+                    error: function(xhr) {
+                        alert("Error during approval process.");
+                    },
+                });
+            });
     });
 
     // Proses Button Delete
